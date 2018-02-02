@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,14 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Glowne_Okno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Glowne_Okno.Designer.cs">
+      <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Obiekty Bazy\Lekarz.cs" />
+    <Compile Include="LekarzeGlowneOkno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LekarzeGlowneOkno.Designer.cs">
+      <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Obiekty Bazy\Polaczenie.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Glowne_Okno.resx">
+      <DependentUpon>Glowne_Okno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LekarzeGlowneOkno.resx">
+      <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Przychodnia
 {
-    public partial class Form1 : Form
+    public partial class Okno_glowne : Form
     {
-        public Form1()
+        public Okno_glowne()
         {
             InitializeComponent();
+        }
+
+        private void buttonLekarze_Click(object sender, EventArgs e)
+        {
+            var lekarzeOkno = new LekarzeGlowneOkno();
+            lekarzeOkno.Show();
         }
     }
 }
