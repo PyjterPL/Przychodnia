@@ -62,8 +62,20 @@ namespace Przychodnia
 
                 lekarze.Add(lekarz);
             }
+            DbHelper.Polaczenie.Close();
             return lekarze;
 
+        }
+        public static void UsunLekarza(int index)
+        {
+            var zapytanie = string.Format("DELETE FROM lekarze WHERE Id_lekarza={0}",index.ToString());
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
         }
 
     }

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.Tabela = new System.Windows.Forms.DataGridView();
+            this.Dodaj = new System.Windows.Forms.Button();
+            this.Usun = new System.Windows.Forms.Button();
+            this.Edytuj = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,14 +39,13 @@
             this.Adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Miasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dodaj = new System.Windows.Forms.Button();
-            this.Usun = new System.Windows.Forms.Button();
-            this.Edytuj = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
             // Tabela
             // 
+            this.Tabela.AllowUserToAddRows = false;
+            this.Tabela.AllowUserToDeleteRows = false;
             this.Tabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Tabela.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -55,43 +57,9 @@
             this.Telefon});
             this.Tabela.Location = new System.Drawing.Point(13, 13);
             this.Tabela.Name = "Tabela";
+            this.Tabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabela.Size = new System.Drawing.Size(746, 243);
             this.Tabela.TabIndex = 0;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            // 
-            // Imie
-            // 
-            this.Imie.HeaderText = "Imie";
-            this.Imie.Name = "Imie";
-            // 
-            // Nazwisko
-            // 
-            this.Nazwisko.HeaderText = "Nazwisko";
-            this.Nazwisko.Name = "Nazwisko";
-            // 
-            // Data_urodzenia
-            // 
-            this.Data_urodzenia.HeaderText = "Data urodzenia";
-            this.Data_urodzenia.Name = "Data_urodzenia";
-            // 
-            // Adres
-            // 
-            this.Adres.HeaderText = "Adres";
-            this.Adres.Name = "Adres";
-            // 
-            // Miasto
-            // 
-            this.Miasto.HeaderText = "Miasto";
-            this.Miasto.Name = "Miasto";
-            // 
-            // Telefon
-            // 
-            this.Telefon.HeaderText = "Telefon";
-            this.Telefon.Name = "Telefon";
             // 
             // Dodaj
             // 
@@ -110,6 +78,7 @@
             this.Usun.TabIndex = 2;
             this.Usun.Text = "Usuń";
             this.Usun.UseVisualStyleBackColor = true;
+            this.Usun.Click += new System.EventHandler(this.Usun_Click);
             // 
             // Edytuj
             // 
@@ -119,6 +88,48 @@
             this.Edytuj.TabIndex = 3;
             this.Edytuj.Text = "Edytuj";
             this.Edytuj.UseVisualStyleBackColor = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Imie
+            // 
+            this.Imie.HeaderText = "Imie";
+            this.Imie.Name = "Imie";
+            this.Imie.ReadOnly = true;
+            // 
+            // Nazwisko
+            // 
+            this.Nazwisko.HeaderText = "Nazwisko";
+            this.Nazwisko.Name = "Nazwisko";
+            this.Nazwisko.ReadOnly = true;
+            // 
+            // Data_urodzenia
+            // 
+            this.Data_urodzenia.HeaderText = "Data urodzenia";
+            this.Data_urodzenia.Name = "Data_urodzenia";
+            this.Data_urodzenia.ReadOnly = true;
+            // 
+            // Adres
+            // 
+            this.Adres.HeaderText = "Adres";
+            this.Adres.Name = "Adres";
+            this.Adres.ReadOnly = true;
+            // 
+            // Miasto
+            // 
+            this.Miasto.HeaderText = "Miasto";
+            this.Miasto.Name = "Miasto";
+            this.Miasto.ReadOnly = true;
+            // 
+            // Telefon
+            // 
+            this.Telefon.HeaderText = "Telefon";
+            this.Telefon.Name = "Telefon";
+            this.Telefon.ReadOnly = true;
             // 
             // LekarzeGlowneOkno
             // 
@@ -139,6 +150,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView Tabela;
+        private System.Windows.Forms.Button Dodaj;
+        private System.Windows.Forms.Button Usun;
+        private System.Windows.Forms.Button Edytuj;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Imie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nazwisko;
@@ -146,8 +160,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Miasto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefon;
-        private System.Windows.Forms.Button Dodaj;
-        private System.Windows.Forms.Button Usun;
-        private System.Windows.Forms.Button Edytuj;
     }
 }

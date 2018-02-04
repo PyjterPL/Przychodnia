@@ -39,6 +39,5 @@ namespace Przychodnia.Obiekty_Bazy
             var _connString = _builder.ToString();
             _polaczenie = new MySqlConnection(_connString);
         }
-       // priva
     }
 }
