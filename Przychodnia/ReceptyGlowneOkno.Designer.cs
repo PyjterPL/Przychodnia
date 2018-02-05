@@ -124,6 +124,7 @@
             this.UsuRecpt.TabIndex = 4;
             this.UsuRecpt.Text = "Usuń Receptę";
             this.UsuRecpt.UseVisualStyleBackColor = true;
+            this.UsuRecpt.Click += new System.EventHandler(this.UsuRecpt_Click);
             // 
             // ReceptyGlowneOkno
             // 

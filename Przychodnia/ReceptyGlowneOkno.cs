@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Przychodnia.Obiekty_Bazy;
+using Przychodnia.DialogRecepty;
 namespace Przychodnia
 {
     public partial class ReceptyGlowneOkno : Form
@@ -38,7 +39,18 @@ namespace Przychodnia
 
         private void DodRecpt_Click(object sender, EventArgs e)
         {
+            var dialogRecept = new DodRecepte();
+            dialogRecept.Show();
+        }
 
+        private void UsuRecpt_Click(object sender, EventArgs e)
+        {
+            var selectedRow = ReceptyTabela.SelectedRows;
+            if (selectedRow.Count > 1)
+                MessageBox.Show(this, "Uwaga wybrano więcej niż jedną receptę ! Czy na pewno chcesz wszystkie usunąć ? ", "Uwaga !", MessageBoxButtons.OK);
+                
+            if (selectedRow.Count == 0)
+                MessageBox.Show(this, "Nie wybrano żadnej recepty", "Uwaga", MessageBoxButtons.OK);
         }
     }
 }

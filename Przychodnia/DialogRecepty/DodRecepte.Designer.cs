@@ -36,7 +36,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.PacjentLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.TrescR = new System.Windows.Forms.RichTextBox();
             this.TrescLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -48,6 +48,7 @@
             this.DodajRecepteDialog.TabIndex = 0;
             this.DodajRecepteDialog.Text = "Dodaj";
             this.DodajRecepteDialog.UseVisualStyleBackColor = true;
+            this.DodajRecepteDialog.Click += new System.EventHandler(this.DodajRecepteDialog_Click);
             // 
             // AnulujRecepteDialog
             // 
@@ -57,6 +58,7 @@
             this.AnulujRecepteDialog.TabIndex = 1;
             this.AnulujRecepteDialog.Text = "Anuluj";
             this.AnulujRecepteDialog.UseVisualStyleBackColor = true;
+            this.AnulujRecepteDialog.Click += new System.EventHandler(this.AnulujRecepteDialog_Click);
             // 
             // ComboLekarz
             // 
@@ -112,13 +114,13 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Data Ważności";
             // 
-            // richTextBox1
+            // TrescR
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(67, 122);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(572, 249);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
+            this.TrescR.Location = new System.Drawing.Point(67, 122);
+            this.TrescR.Name = "TrescR";
+            this.TrescR.Size = new System.Drawing.Size(572, 249);
+            this.TrescR.TabIndex = 8;
+            this.TrescR.Text = "";
             // 
             // TrescLabel
             // 
@@ -137,7 +139,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 426);
             this.Controls.Add(this.TrescLabel);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.TrescR);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.ComboPacjent);
@@ -163,7 +165,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label PacjentLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox TrescR;
         private System.Windows.Forms.Label TrescLabel;
     }
 }
