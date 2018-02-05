@@ -52,6 +52,7 @@
             this.buttonPacienci.TabIndex = 1;
             this.buttonPacienci.Text = "Pacienci";
             this.buttonPacienci.UseVisualStyleBackColor = true;
+            this.buttonPacienci.Click += new System.EventHandler(this.buttonPacienci_Click);
             // 
             // Okno_glowne
             // 
