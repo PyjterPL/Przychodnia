@@ -30,6 +30,7 @@
         {
             this.buttonLekarze = new System.Windows.Forms.Button();
             this.buttonPacienci = new System.Windows.Forms.Button();
+            this.buttonRecepty = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLekarze
@@ -53,11 +54,23 @@
             this.buttonPacienci.Text = "Pacienci";
             this.buttonPacienci.UseVisualStyleBackColor = true;
             // 
+            // buttonRecepty
+            // 
+            this.buttonRecepty.AutoSize = true;
+            this.buttonRecepty.Location = new System.Drawing.Point(12, 70);
+            this.buttonRecepty.Name = "buttonRecepty";
+            this.buttonRecepty.Size = new System.Drawing.Size(284, 23);
+            this.buttonRecepty.TabIndex = 2;
+            this.buttonRecepty.Text = "Recepty";
+            this.buttonRecepty.UseVisualStyleBackColor = true;
+            this.buttonRecepty.Click += new System.EventHandler(this.buttonRecepty_Click);
+            // 
             // Okno_glowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 210);
+            this.Controls.Add(this.buttonRecepty);
             this.Controls.Add(this.buttonPacienci);
             this.Controls.Add(this.buttonLekarze);
             this.Name = "Okno_glowne";
@@ -71,6 +84,7 @@
 
         private System.Windows.Forms.Button buttonLekarze;
         private System.Windows.Forms.Button buttonPacienci;
+        private System.Windows.Forms.Button buttonRecepty;
     }
 }
 

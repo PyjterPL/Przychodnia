@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Przychodnia
 {
     public partial class Okno_glowne : Form
@@ -21,6 +22,13 @@ namespace Przychodnia
         {
             var lekarzeOkno = new LekarzeGlowneOkno();
             lekarzeOkno.Show();
+        }
+
+        private void buttonRecepty_Click(object sender, EventArgs e)
+        {
+            var receptyOkno = new ReceptyGlowneOkno();
+            receptyOkno.Show();
+            
         }
     }
 }
