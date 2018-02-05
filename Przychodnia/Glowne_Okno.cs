@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Przychodnia.Pacjenci_formy;
+
 
 namespace Przychodnia
 {
@@ -24,10 +24,11 @@ namespace Przychodnia
             lekarzeOkno.Show();
         }
 
-        private void buttonPacienci_Click(object sender, EventArgs e)
+        private void buttonRecepty_Click(object sender, EventArgs e)
         {
-            var pacjenciOkno = new Pacjenci_glowne_okno();
-            pacjenciOkno.Show();
+            var receptyOkno = new ReceptyGlowneOkno();
+            receptyOkno.Show();
+            
         }
     }
 }
