@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Przychodnia.Obiekty_Bazy;
+using Przychodnia;
+using Przychodnia.Lekarze_formy;
 namespace Przychodnia
 {
     public partial class LekarzeGlowneOkno : Form
@@ -25,8 +26,8 @@ namespace Przychodnia
             int i = 0;
             foreach (Lekarz lekarz in listaLekarzy)
             {
-                Tabela.Rows.Insert(i, lekarz.ID, lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString(), lekarz.Adres,
-                    lekarz.IdMiasta, lekarz.Telefon);
+                Tabela.Rows.Insert(i, lekarz.ID, lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres,
+                    lekarz.NazwaMiasta, lekarz.Telefon);
                 i++;
             }
         }
@@ -51,7 +52,10 @@ namespace Przychodnia
             }
         }
 
-
-
+        private void Dodaj_Click(object sender, EventArgs e)
+        {
+            var dodawanie = new Dodaj_lekarza_form();
+            dodawanie.Show();
+        }
     }
 }

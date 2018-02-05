@@ -20,15 +20,15 @@ namespace Przychodnia.Obiekty_Bazy
             {
                 if (_polaczenie == null)
                 {
-                    StworzPolaczenie();
+                    _polaczenie = StworzPolaczenie();
                 }
                 return _polaczenie;
             }
-            private set { }
+             set { }
         }
 
 
-        public static void StworzPolaczenie()
+        public static MySqlConnection StworzPolaczenie()
         {
             var _builder = new MySqlConnectionStringBuilder();
             _builder.Server = _server;
@@ -37,7 +37,7 @@ namespace Przychodnia.Obiekty_Bazy
             _builder.Password = _haslo;
 
             var _connString = _builder.ToString();
-            _polaczenie = new MySqlConnection(_connString);
+            return new MySqlConnection(_connString);
         }
     }
 }

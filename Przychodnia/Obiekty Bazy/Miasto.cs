@@ -41,7 +41,29 @@ namespace Przychodnia.Obiekty_Bazy
             }
             DbHelper.Polaczenie.Close();
             return miasta;
+        }
+        public static string PobierzMiasto(int id)
+        {
+            var polaczenie = DbHelper.StworzPolaczenie();
+            var zapytanie = string.Format("SELECT Nazwa FROM miasta WHERE Id_miasta={0}",id);
+            var komenda = new MySqlCommand(zapytanie, polaczenie);
 
+            polaczenie.Open();
+            
+            var reader = komenda.ExecuteReader();
+
+           if(reader.Read())
+            {
+                var nazwa =  reader["Nazwa"].ToString();
+                polaczenie.Close();
+                return nazwa;
+            }
+           else
+            {
+                polaczenie.Close();
+                return string.Empty;
+            }
+           
         }
     }
 }

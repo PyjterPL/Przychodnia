@@ -16,6 +16,7 @@ namespace Przychodnia
         public string Adres { get; set; }
         public int IdMiasta { get; set; }
         public string Telefon { get; set; }
+        public string NazwaMiasta { get; set; }
 
         public Lekarz(int id,string imie,string nazwisko,DateTime dataUrodzenia,string adres,int idmiasta,string telefon)
         {
@@ -27,6 +28,17 @@ namespace Przychodnia
             this.Adres = adres;
             this.IdMiasta = idmiasta;
             this.Telefon = telefon;
+            this.NazwaMiasta = Miasto.PobierzMiasto(idmiasta);
+        }
+        public Lekarz( string imie, string nazwisko, DateTime dataUrodzenia, string adres, int idmiasta, string telefon)
+        {
+            this.Imie = imie;
+            this.Nazwisko = nazwisko;
+            this.DataUrodzenia = dataUrodzenia;
+            this.Adres = adres;
+            this.IdMiasta = idmiasta;
+            this.Telefon = telefon;
+            this.NazwaMiasta = Miasto.PobierzMiasto(idmiasta);
         }
         public static List<Lekarz> PobierzWszystkichLekarzy()
         {
@@ -66,6 +78,17 @@ namespace Przychodnia
             return lekarze;
 
         }
+        public static void DodajLekarza(Lekarz lekarz)
+        {
+            var zapytanie = string.Format("INSERT INTO lekarze VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",null, lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta,lekarz.Telefon);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        }
         public static void UsunLekarza(int index)
         {
             var zapytanie = string.Format("DELETE FROM lekarze WHERE Id_lekarza={0}",index.ToString());
@@ -77,6 +100,7 @@ namespace Przychodnia
 
             DbHelper.Polaczenie.Close();
         }
+        
 
     }
 }

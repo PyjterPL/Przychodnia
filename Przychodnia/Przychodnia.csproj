@@ -53,11 +53,17 @@
     <Compile Include="Glowne_Okno.Designer.cs">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Obiekty Bazy\Lekarz.cs" />
-    <Compile Include="LekarzeGlowneOkno.cs">
+    <Compile Include="Lekarze_formy\Dodaj_lekarza_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LekarzeGlowneOkno.Designer.cs">
+    <Compile Include="Lekarze_formy\Dodaj_lekarza_form.Designer.cs">
+      <DependentUpon>Dodaj_lekarza_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Obiekty Bazy\Lekarz.cs" />
+    <Compile Include="Lekarze_formy\LekarzeGlowneOkno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lekarze_formy\LekarzeGlowneOkno.Designer.cs">
       <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
     </Compile>
     <Compile Include="Obiekty Bazy\Miasto.cs" />
@@ -67,7 +73,10 @@
     <EmbeddedResource Include="Glowne_Okno.resx">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LekarzeGlowneOkno.resx">
+    <EmbeddedResource Include="Lekarze_formy\Dodaj_lekarza_form.resx">
+      <DependentUpon>Dodaj_lekarza_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lekarze_formy\LekarzeGlowneOkno.resx">
       <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
