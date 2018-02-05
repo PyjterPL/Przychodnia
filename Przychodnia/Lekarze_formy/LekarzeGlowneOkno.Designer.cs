@@ -39,6 +39,7 @@
             this.Dodaj = new System.Windows.Forms.Button();
             this.Usun = new System.Windows.Forms.Button();
             this.Edytuj = new System.Windows.Forms.Button();
+            this.Odswierz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,12 +132,24 @@
             this.Edytuj.TabIndex = 3;
             this.Edytuj.Text = "Edytuj";
             this.Edytuj.UseVisualStyleBackColor = true;
+            this.Edytuj.Click += new System.EventHandler(this.Edytuj_Click);
+            // 
+            // Odswierz
+            // 
+            this.Odswierz.Location = new System.Drawing.Point(259, 263);
+            this.Odswierz.Name = "Odswierz";
+            this.Odswierz.Size = new System.Drawing.Size(75, 23);
+            this.Odswierz.TabIndex = 4;
+            this.Odswierz.Text = "Odświerz";
+            this.Odswierz.UseVisualStyleBackColor = true;
+            this.Odswierz.Click += new System.EventHandler(this.Odswierz_Click);
             // 
             // LekarzeGlowneOkno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 298);
+            this.Controls.Add(this.Odswierz);
             this.Controls.Add(this.Edytuj);
             this.Controls.Add(this.Usun);
             this.Controls.Add(this.Dodaj);
@@ -161,5 +174,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Miasto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefon;
+        private System.Windows.Forms.Button Odswierz;
     }
 }

@@ -78,9 +78,60 @@ namespace Przychodnia
             return lekarze;
 
         }
+
+        public static Lekarz PobierzLekarza(int index)
+        {
+            int id;
+            string imie;
+            string nazwisko;
+            DateTime dataUrodzenia;
+            string adres;
+            int idMiasta;
+            string telefon;
+
+
+            var zapytanie = string.Format("SELECT * FROM lekarze WHERE Id_lekarza='{0}'",index);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            var reader = komenda.ExecuteReader();
+
+           if(reader.Read())
+            {
+                id = (int)reader["Id_lekarza"];
+                imie = reader["Imie"].ToString();
+                nazwisko = reader["Nazwisko"].ToString();
+                dataUrodzenia = (DateTime)reader["Data_urodzenia"];
+                adres = reader["Adres"].ToString();
+                idMiasta = (int)reader["Id_miasta"];
+                telefon = reader["Telefon"].ToString();
+
+                var lekarz = new Lekarz(id, imie, nazwisko, dataUrodzenia, adres, idMiasta, telefon);
+                DbHelper.Polaczenie.Close();
+                return lekarz;
+                
+            }
+            DbHelper.Polaczenie.Close();
+            return null;
+
+        }
         public static void DodajLekarza(Lekarz lekarz)
         {
             var zapytanie = string.Format("INSERT INTO lekarze VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",null, lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta,lekarz.Telefon);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        }
+
+        public static void EdytujLekarza(Lekarz lekarz)
+        {
+            var zapytanie = string.Format("UPDATE lekarze SET Imie='{0}',Nazwisko='{1}',Data_urodzenia='{2}',Adres='{3}',Id_miasta='{4}',Telefon='{5}' WHERE Id_lekarza='{6}' "
+            , lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon,lekarz.ID);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();

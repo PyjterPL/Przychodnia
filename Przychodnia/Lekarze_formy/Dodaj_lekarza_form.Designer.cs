@@ -181,7 +181,7 @@
             this.Controls.Add(this.L_Imie);
             this.Controls.Add(this.Miasto_combobox);
             this.Name = "Dodaj_lekarza_form";
-            this.Text = "Dodaj_lekarza_form";
+            this.Text = "Dodaj lekarza";
             this.ResumeLayout(false);
             this.PerformLayout();
 

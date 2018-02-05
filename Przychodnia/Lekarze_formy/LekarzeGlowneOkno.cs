@@ -31,7 +31,6 @@ namespace Przychodnia
                 i++;
             }
         }
-
         private void Usun_Click(object sender, EventArgs e)
         {
             if (Tabela.SelectedRows.Count > 0)
@@ -56,6 +55,27 @@ namespace Przychodnia
         {
             var dodawanie = new Dodaj_lekarza_form();
             dodawanie.Show();
+            OdswierzTabele();
+        }
+
+        private void Edytuj_Click(object sender, EventArgs e)
+        {
+            if (Tabela.SelectedRows.Count == 1)
+            {
+                    foreach (DataGridViewRow lekarz in this.Tabela.SelectedRows)
+                    {
+                        //var index = lekarz.Index;
+                        var ID = (int)lekarz.Cells["ID"].Value;
+                        var edycja = new Dodaj_lekarza_form(ID);
+                    edycja.Show();
+                    }    
+            }
+            OdswierzTabele();
+        }
+
+        private void Odswierz_Click(object sender, EventArgs e)
+        {
+            OdswierzTabele();
         }
     }
 }
