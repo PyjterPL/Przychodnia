@@ -66,6 +66,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DialogRecepty\PotwierdzDialog.Designer.cs" />
+    <Compile Include="DialogRecepty\ReceptyGlowneOkno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogRecepty\ReceptyGlowneOkno.Designer.cs" />
     <Compile Include="Glowne_Okno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +92,7 @@
     <Compile Include="Obiekty Bazy\Miasto.cs" />
     <Compile Include="Obiekty Bazy\Pacjent.cs" />
     <Compile Include="Obiekty Bazy\Polaczenie.cs" />
+    <Compile Include="Obiekty Bazy\Recepta.cs" />
     <Compile Include="Pacjenci_formy\Dodaj-edytuj_pacjenta_forma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +109,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DialogRecepty\DodRecepte.resx" />
     <EmbeddedResource Include="DialogRecepty\PotwierdzDialog.resx" />
+    <EmbeddedResource Include="DialogRecepty\ReceptyGlowneOkno.resx" />
     <EmbeddedResource Include="Glowne_Okno.resx">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </EmbeddedResource>
