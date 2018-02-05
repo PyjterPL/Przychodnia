@@ -71,7 +71,6 @@ namespace Przychodnia.Pacjenci_formy
                 var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
 
                 Pacjent.DodajPacjenta(new Pacjent(null,pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
-               // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
                 MessageBox.Show("Dodano pacjenta!");
                 this.Close();
             }
