@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Przychodnia
 {
     public partial class Okno_glowne : Form
-    {
+    {//test 
         public Okno_glowne()
         {
             InitializeComponent();
