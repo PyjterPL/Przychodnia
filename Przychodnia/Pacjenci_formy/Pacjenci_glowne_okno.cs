@@ -27,10 +27,21 @@ namespace Przychodnia.Pacjenci_formy
             int i = 0;
             foreach (Pacjent pacjent in _pacjenci)
             {
-                Tabela.Rows.Insert(i, pacjent.ID, pacjent.Pesel, pacjent.Imie, pacjent.Nazwisko, pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"), pacjent.Adres, pacjent.IdMiasta,
-                    pacjent.Telefon,pacjent.Plec,pacjent.IdLekarza);
+                Tabela.Rows.Insert(i, pacjent.ID, pacjent.Pesel, pacjent.Imie, pacjent.Nazwisko, pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"), pacjent.Adres, pacjent.NazwaMiasta,
+                    pacjent.Telefon,pacjent.Plec,pacjent.LekarzProwadzacy.Imie +" " + pacjent.LekarzProwadzacy.Nazwisko);
                 i++;
             }
+        }
+
+        private void DodajButton_Click(object sender, EventArgs e)
+        {
+            var dodajForm =new Dodaj_edytuj_pacjenta_forma();
+            dodajForm.Show();
+        }
+
+        private void Odswierz_Click(object sender, EventArgs e)
+        {
+            OdswierzTabele();
         }
     }
 }

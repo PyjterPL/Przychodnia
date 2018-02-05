@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Przychodnia.Obiekty_Bazy;
 
 namespace Przychodnia.Obiekty_Bazy
 {
     class Pacjent
     {
-        public int ID { get; private set; }
+        public int? ID { get; private set; }
         public string Pesel { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
@@ -19,8 +20,10 @@ namespace Przychodnia.Obiekty_Bazy
         public string Telefon { get; set; }
         public char Plec { get; set; }
         public int IdLekarza { get; set; }
+        public string NazwaMiasta { get; set; }
+        public Lekarz LekarzProwadzacy{ get; set; }
 
-        public Pacjent(int id,string pesel,string imie,string nazwisko,DateTime dataur,string adres,int idmiasta,string telefon,char plec, int idlekarza)
+        public Pacjent(int? id,string pesel,string imie,string nazwisko,DateTime dataur,string adres,int idmiasta,string telefon,char plec, int idlekarza)
         {
             this.ID = id;
             this.Pesel = pesel;
@@ -32,6 +35,8 @@ namespace Przychodnia.Obiekty_Bazy
             this.Telefon = telefon;
             this.Plec = plec;
             this.IdLekarza = idlekarza;
+            this.NazwaMiasta = Miasto.PobierzMiasto(idmiasta);
+            this.LekarzProwadzacy = Lekarz.PobierzLekarza(IdLekarza);
         }
         public static List<Pacjent> PobierzWszystkichPacjentow()
         {
@@ -73,6 +78,18 @@ namespace Przychodnia.Obiekty_Bazy
             }
             DbHelper.Polaczenie.Close();
             return pacjenci;
+        }
+
+        public static void DodajPacjenta(Pacjent pacjent)
+        {
+            var zapytanie = string.Format("INSERT INTO pacjenci VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", null,pacjent.Pesel, pacjent.Imie, pacjent.Nazwisko, pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"), pacjent.Adres, pacjent.IdMiasta, pacjent.Telefon,pacjent.Plec,pacjent.IdLekarza);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
         }
     }
 }
