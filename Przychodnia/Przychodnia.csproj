@@ -60,6 +60,7 @@
     <Compile Include="LekarzeGlowneOkno.Designer.cs">
       <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Obiekty Bazy\Miasto.cs" />
     <Compile Include="Obiekty Bazy\Polaczenie.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
