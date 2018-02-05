@@ -57,6 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComboboxItem.cs" />
+    <Compile Include="DialogRecepty\DodRecepte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogRecepty\DodRecepte.Designer.cs" />
+    <Compile Include="DialogRecepty\PotwierdzDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogRecepty\PotwierdzDialog.Designer.cs" />
     <Compile Include="Glowne_Okno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +102,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DialogRecepty\DodRecepte.resx" />
+    <EmbeddedResource Include="DialogRecepty\PotwierdzDialog.resx" />
     <EmbeddedResource Include="Glowne_Okno.resx">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </EmbeddedResource>
