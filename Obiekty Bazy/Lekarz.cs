@@ -89,12 +89,11 @@ namespace Przychodnia
             int idMiasta;
             string telefon;
 
-            var polaczenie = DbHelper.StworzPolaczenie();
 
             var zapytanie = string.Format("SELECT * FROM lekarze WHERE Id_lekarza='{0}'",index);
-            var komenda = new MySqlCommand(zapytanie, polaczenie);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
-            polaczenie.Open();
+            DbHelper.Polaczenie.Open();
 
             var reader = komenda.ExecuteReader();
 
@@ -109,11 +108,11 @@ namespace Przychodnia
                 telefon = reader["Telefon"].ToString();
 
                 var lekarz = new Lekarz(id, imie, nazwisko, dataUrodzenia, adres, idMiasta, telefon);
-                polaczenie.Close();
+                DbHelper.Polaczenie.Close();
                 return lekarz;
                 
             }
-            polaczenie.Close();
+            DbHelper.Polaczenie.Close();
             return null;
 
         }
@@ -152,38 +151,7 @@ namespace Przychodnia
 
             DbHelper.Polaczenie.Close();
         }
-    /*    public static Lekarz PobierzLekarza(int id)
-        {
-            var polaczenie = DbHelper.StworzPolaczenie();
-            var zapytanie = string.Format("SELECT * FROM lekarze WHERE Id_lekarza={0}", id);
-            var komenda = new MySqlCommand(zapytanie, polaczenie);
-
-            polaczenie.Open();
-
-            var reader = komenda.ExecuteReader();
-
-            if (reader.Read())
-            {
-                int id = (int)reader["Id_lekarza"];
-                string imie = reader["Imie"].ToString();
-                string nazwisko = reader["Nazwisko"].ToString();
-                DateTime dataUrodzenia = (DateTime)reader["Data_urodzenia"];
-                string adres = reader["Adres"].ToString();
-                int idMiasta = (int)reader["Id_miasta"];
-                string telefon = reader["Telefon"].ToString();
-
-                var lekarz = new Lekarz(id, imie, nazwisko, dataUrodzenia, adres, idMiasta, telefon);
-                DbHelper.Polaczenie.Close();
-                return lekarz;
-            }
-            else
-            {
-                polaczenie.Close();
-                return null;
-            }
-
-        }*/
-
+        
 
     }
 }
