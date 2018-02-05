@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.Tabela = new System.Windows.Forms.DataGridView();
-            this.Dodaj = new System.Windows.Forms.Button();
-            this.Usun = new System.Windows.Forms.Button();
-            this.Edytuj = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +36,10 @@
             this.Adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Miasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dodaj = new System.Windows.Forms.Button();
+            this.Usun = new System.Windows.Forms.Button();
+            this.Edytuj = new System.Windows.Forms.Button();
+            this.Odswierz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,34 +61,6 @@
             this.Tabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabela.Size = new System.Drawing.Size(746, 243);
             this.Tabela.TabIndex = 0;
-            // 
-            // Dodaj
-            // 
-            this.Dodaj.Location = new System.Drawing.Point(13, 263);
-            this.Dodaj.Name = "Dodaj";
-            this.Dodaj.Size = new System.Drawing.Size(75, 23);
-            this.Dodaj.TabIndex = 1;
-            this.Dodaj.Text = "Dodaj";
-            this.Dodaj.UseVisualStyleBackColor = true;
-            // 
-            // Usun
-            // 
-            this.Usun.Location = new System.Drawing.Point(95, 263);
-            this.Usun.Name = "Usun";
-            this.Usun.Size = new System.Drawing.Size(75, 23);
-            this.Usun.TabIndex = 2;
-            this.Usun.Text = "Usuń";
-            this.Usun.UseVisualStyleBackColor = true;
-            this.Usun.Click += new System.EventHandler(this.Usun_Click);
-            // 
-            // Edytuj
-            // 
-            this.Edytuj.Location = new System.Drawing.Point(177, 263);
-            this.Edytuj.Name = "Edytuj";
-            this.Edytuj.Size = new System.Drawing.Size(75, 23);
-            this.Edytuj.TabIndex = 3;
-            this.Edytuj.Text = "Edytuj";
-            this.Edytuj.UseVisualStyleBackColor = true;
             // 
             // ID
             // 
@@ -131,11 +104,52 @@
             this.Telefon.Name = "Telefon";
             this.Telefon.ReadOnly = true;
             // 
+            // Dodaj
+            // 
+            this.Dodaj.Location = new System.Drawing.Point(13, 263);
+            this.Dodaj.Name = "Dodaj";
+            this.Dodaj.Size = new System.Drawing.Size(75, 23);
+            this.Dodaj.TabIndex = 1;
+            this.Dodaj.Text = "Dodaj";
+            this.Dodaj.UseVisualStyleBackColor = true;
+            this.Dodaj.Click += new System.EventHandler(this.Dodaj_Click);
+            // 
+            // Usun
+            // 
+            this.Usun.Location = new System.Drawing.Point(95, 263);
+            this.Usun.Name = "Usun";
+            this.Usun.Size = new System.Drawing.Size(75, 23);
+            this.Usun.TabIndex = 2;
+            this.Usun.Text = "Usuń";
+            this.Usun.UseVisualStyleBackColor = true;
+            this.Usun.Click += new System.EventHandler(this.Usun_Click);
+            // 
+            // Edytuj
+            // 
+            this.Edytuj.Location = new System.Drawing.Point(177, 263);
+            this.Edytuj.Name = "Edytuj";
+            this.Edytuj.Size = new System.Drawing.Size(75, 23);
+            this.Edytuj.TabIndex = 3;
+            this.Edytuj.Text = "Edytuj";
+            this.Edytuj.UseVisualStyleBackColor = true;
+            this.Edytuj.Click += new System.EventHandler(this.Edytuj_Click);
+            // 
+            // Odswierz
+            // 
+            this.Odswierz.Location = new System.Drawing.Point(259, 263);
+            this.Odswierz.Name = "Odswierz";
+            this.Odswierz.Size = new System.Drawing.Size(75, 23);
+            this.Odswierz.TabIndex = 4;
+            this.Odswierz.Text = "Odświerz";
+            this.Odswierz.UseVisualStyleBackColor = true;
+            this.Odswierz.Click += new System.EventHandler(this.Odswierz_Click);
+            // 
             // LekarzeGlowneOkno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 298);
+            this.Controls.Add(this.Odswierz);
             this.Controls.Add(this.Edytuj);
             this.Controls.Add(this.Usun);
             this.Controls.Add(this.Dodaj);
@@ -160,5 +174,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Miasto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefon;
+        private System.Windows.Forms.Button Odswierz;
     }
 }
