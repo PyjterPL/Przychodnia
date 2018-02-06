@@ -8,13 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Przychodnia.Pacjenci_formy;
-using Przychodnia.Recepty_formy;
-
 
 namespace Przychodnia
 {
     public partial class Okno_glowne : Form
-    {
+    {//test 
         public Okno_glowne()
         {
             InitializeComponent();
@@ -32,10 +30,10 @@ namespace Przychodnia
             pacjenciOkno.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Wizyty_button_Click(object sender, EventArgs e)
         {
-            var receptyOkno = new ReceptyGlowneOkno();
-            receptyOkno.Show();
+            var grafik =new Grafik_formy.Grafik_glowna_forma();
+            grafik.Show();
         }
     }
 }
