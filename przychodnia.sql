@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2018 at 03:59 PM
+-- Generation Time: Feb 07, 2018 at 12:17 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -32,10 +32,17 @@ CREATE TABLE `grafik` (
   `Id_grafiku` int(11) NOT NULL,
   `Id_lekarza` int(11) NOT NULL,
   `Dzien_od` datetime NOT NULL COMMENT '15 minut na wizyte',
-  `Id_pacjenta` int(11) NOT NULL COMMENT 'jesli null to wolne',
+  `Id_pacjenta` int(11) DEFAULT NULL COMMENT 'jesli null to wolne',
   `Opis` varchar(500) COLLATE utf8_polish_ci NOT NULL COMMENT 'max 500 znakow',
   `Id_oddzialu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Dumping data for table `grafik`
+--
+
+INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Opis`, `Id_oddzialu`) VALUES
+(2, 1, '2018-02-06 08:00:00', NULL, 'asdasd', 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +66,8 @@ CREATE TABLE `lekarze` (
 
 INSERT INTO `lekarze` (`Id_lekarza`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`) VALUES
 (1, 'Adam', 'Lekarz', '2018-02-01', 'ul.Miodowa 25 71-706', 1, '546565656'),
-(2, 'Paweł', 'Kaczmarczyk', '2018-02-14', 'asdasdasd', 2, 'jakiś');
+(2, 'Paweł', 'Kaczmarczyk', '2018-02-14', 'asdasdasd', 2, 'jakiś'),
+(6, 'edit', 'Jeditss', '2017-11-30', 'asdedit', 1, 'asdedit');
 
 -- --------------------------------------------------------
 
@@ -136,8 +144,9 @@ CREATE TABLE `pacjenci` (
 --
 
 INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`, `Plec`, `Id_lekarza`) VALUES
-(1, '93061305789', 'Jan', 'Snopek', '2018-02-15', 'asdasdasd', 1, '456', 'M', 1),
-(2, '123456', 'Kaźmira', 'Połomska', '2018-02-17', '2123', 1, 'asd', 'K', 1);
+(1, '12', 'edit', 'edit', '2018-01-31', 'edit', 1, 'edit', 'K', 2),
+(2, '12', 'edit', 'edit', '2018-01-31', 'edit', 1, 'edit', 'K', 2),
+(6, '1222', 't', 't', '2018-01-31', 't', 1, 't', 'M', 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +160,7 @@ CREATE TABLE `recepty` (
   `Id_pacjenta` int(11) NOT NULL,
   `Tresc` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `Data_waznosci` date NOT NULL,
-  `Id_grafiku` int(11) NOT NULL
+  `Id_grafiku` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
@@ -184,7 +193,7 @@ ALTER TABLE `grafik`
   ADD PRIMARY KEY (`Id_grafiku`),
   ADD KEY `lekaro` (`Id_lekarza`),
   ADD KEY `Oddzial` (`Id_oddzialu`),
-  ADD KEY `Pancjentt` (`Id_pacjenta`);
+  ADD KEY `pacjencii` (`Id_pacjenta`);
 
 --
 -- Indexes for table `lekarze`
@@ -246,13 +255,13 @@ ALTER TABLE `specjalizacja`
 -- AUTO_INCREMENT for table `grafik`
 --
 ALTER TABLE `grafik`
-  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `lekarze`
 --
 ALTER TABLE `lekarze`
-  MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `miasta`
@@ -276,19 +285,19 @@ ALTER TABLE `odwolane`
 -- AUTO_INCREMENT for table `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `recepty`
 --
 ALTER TABLE `recepty`
-  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `specjalizacja`
 --
 ALTER TABLE `specjalizacja`
-  MODIFY `Id_specjalizacji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_specjalizacji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -299,8 +308,8 @@ ALTER TABLE `specjalizacja`
 --
 ALTER TABLE `grafik`
   ADD CONSTRAINT `Oddzial` FOREIGN KEY (`Id_oddzialu`) REFERENCES `oddzialy` (`Id_oddzialu`),
-  ADD CONSTRAINT `Pancjentt` FOREIGN KEY (`Id_pacjenta`) REFERENCES `pacjenci` (`Id_pacjenta`),
-  ADD CONSTRAINT `lekaro` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`);
+  ADD CONSTRAINT `lekaro` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`),
+  ADD CONSTRAINT `pacjencii` FOREIGN KEY (`Id_pacjenta`) REFERENCES `pacjenci` (`Id_pacjenta`);
 
 --
 -- Constraints for table `lekarze`
