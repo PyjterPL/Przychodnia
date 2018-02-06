@@ -16,7 +16,7 @@ namespace Przychodnia.Recepty_formy
        private Random rand;
         private string komunikat = "";
         public string Komunikat { get => komunikat; set => komunikat = value; }
-        private void Generuj()
+        public void Generuj()
         {
             rand = new Random();
             generated = rand.Next(10, 100);
@@ -57,7 +57,7 @@ namespace Przychodnia.Recepty_formy
                 MessageBox.Show("Niepoprawnie wpisana liczba", "Błąd", MessageBoxButtons.OK);
                 this.DialogResult = DialogResult.Abort;
             }
-              
+        
         }
 
         private void anlulujDialog_Click(object sender, EventArgs e)

@@ -23,6 +23,7 @@ namespace Przychodnia.Recepty_formy
             listaLekarzy = Lekarz.PobierzWszystkichLekarzy();
             listaPacjentów = Pacjent.PobierzWszystkichPacjentow();
             ComboPacjent.Sorted = true;
+            ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboLekarz.Sorted = true;
             foreach (Lekarz lek in listaLekarzy)
@@ -63,7 +64,6 @@ namespace Przychodnia.Recepty_formy
             }
             foreach( Pacjent pac in listaPacjentów)
             {
-                MessageBox.Show(pac.ID + " " + pac.Nazwisko);
                 if (pac.ID.Value==(int)pacjentID.Value)
                 {
                     
@@ -74,9 +74,11 @@ namespace Przychodnia.Recepty_formy
             }
             if (lekarz != null && pacjent != null)
             {
-                MessageBox.Show("Jestem w IF !");
+                
                 Recepta.DodajRecepte(lekarz.ID,pacjent.ID.Value, 1, Tresc.Text, dataW);
                 MessageBox.Show("Dodano Receptę !");
+                this.Hide();
+                this.Dispose();
             }
      
 

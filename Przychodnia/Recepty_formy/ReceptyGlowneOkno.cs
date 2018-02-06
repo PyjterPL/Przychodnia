@@ -89,7 +89,9 @@ namespace Przychodnia.Recepty_formy
                 obj.Hide();
                 obj.Dispose();
                 obj = new PotwierdzDialog(tmp);
-                obj.Show();
+                dr = obj.ShowDialog();
+                SprawdzUsuwanieRecept(obj, dr);
+         
             }
         }
 
