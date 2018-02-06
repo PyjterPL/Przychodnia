@@ -11,8 +11,8 @@ namespace Przychodnia.Obiekty_Bazy
         private int Id_specjalizacji;
         private string Nazwa;
 
-        public int Id_specjalizacji1 { get => Id_specjalizacji; set => Id_specjalizacji = value; }
-        public string Nazwa1 { get => Nazwa; set => Nazwa = value; }
+        public int ID_specjalizacji { get => Id_specjalizacji; set => Id_specjalizacji = value; }
+        public string nazwa { get => Nazwa; set => Nazwa = value; }
 
 
         Specjalizacja(int id_spec, string nazwa)

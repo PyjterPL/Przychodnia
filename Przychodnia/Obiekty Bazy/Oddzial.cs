@@ -12,9 +12,9 @@ namespace Przychodnia.Obiekty_Bazy
         private int IdSpecjalizacji;
         private int IdLekarza;
 
-        public int IdOdzialu1 { get => IdOdzialu; set => IdOdzialu = value; }
-        public int IdSpecjalizacji1 { get => IdSpecjalizacji; set => IdSpecjalizacji = value; }
-        public int IdLekarza1 { get => IdLekarza; set => IdLekarza = value; }
+        public int IDOdzialu { get => IdOdzialu; set => IdOdzialu = value; }
+        public int IDSpecjalizacji { get => IdSpecjalizacji; set => IdSpecjalizacji = value; }
+        public int IDLekarza { get => IdLekarza; set => IdLekarza = value; }
 
         Oddzial(int IdOdzialu, int IdSpecjalizacji, int idLekarza)
         {

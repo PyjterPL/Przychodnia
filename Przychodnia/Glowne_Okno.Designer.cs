@@ -32,6 +32,7 @@
             this.buttonPacienci = new System.Windows.Forms.Button();
             this.Wizyty_button = new System.Windows.Forms.Button();
             this.Recepty_Button = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLekarze
@@ -76,11 +77,21 @@
             this.Recepty_Button.UseVisualStyleBackColor = true;
             this.Recepty_Button.Click += new System.EventHandler(this.Recepty_Button_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 129);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(283, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Oddziały oraz Specjalizacje";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Okno_glowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 210);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Recepty_Button);
             this.Controls.Add(this.Wizyty_button);
             this.Controls.Add(this.buttonPacienci);
@@ -98,6 +109,7 @@
         private System.Windows.Forms.Button buttonPacienci;
         private System.Windows.Forms.Button Wizyty_button;
         private System.Windows.Forms.Button Recepty_Button;
+        private System.Windows.Forms.Button button1;
     }
 }
 
