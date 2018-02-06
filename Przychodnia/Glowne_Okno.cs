@@ -29,5 +29,11 @@ namespace Przychodnia
             var pacjenciOkno = new Pacjenci_glowne_okno();
             pacjenciOkno.Show();
         }
+
+        private void Wizyty_button_Click(object sender, EventArgs e)
+        {
+            var grafik =new Grafik_formy.Grafik_glowna_forma();
+            grafik.Show();
+        }
     }
 }

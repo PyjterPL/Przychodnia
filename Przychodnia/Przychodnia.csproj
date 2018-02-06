@@ -66,12 +66,19 @@
     <Compile Include="Glowne_Okno.Designer.cs">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Grafik_formy\Grafik_glowna_forma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grafik_formy\Grafik_glowna_forma.Designer.cs">
+      <DependentUpon>Grafik_glowna_forma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lekarze_formy\Dodaj-edytuj_lekarza_form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Lekarze_formy\Dodaj-edytuj_lekarza_form.Designer.cs">
       <DependentUpon>Dodaj-edytuj_lekarza_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Obiekty Bazy\Grafik.cs" />
     <Compile Include="Obiekty Bazy\Lekarz.cs" />
     <Compile Include="Lekarze_formy\LekarzeGlowneOkno.cs">
       <SubType>Form</SubType>
@@ -102,6 +109,9 @@
     <EmbeddedResource Include="DialogRecepty\ReceptyGlowneOkno.resx" />
     <EmbeddedResource Include="Glowne_Okno.resx">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grafik_formy\Grafik_glowna_forma.resx">
+      <DependentUpon>Grafik_glowna_forma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lekarze_formy\Dodaj-edytuj_lekarza_form.resx">
       <DependentUpon>Dodaj-edytuj_lekarza_form.cs</DependentUpon>

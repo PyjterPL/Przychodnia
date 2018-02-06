@@ -30,6 +30,7 @@
         {
             this.buttonLekarze = new System.Windows.Forms.Button();
             this.buttonPacienci = new System.Windows.Forms.Button();
+            this.Wizyty_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLekarze
@@ -54,11 +55,22 @@
             this.buttonPacienci.UseVisualStyleBackColor = true;
             this.buttonPacienci.Click += new System.EventHandler(this.buttonPacienci_Click);
             // 
+            // Wizyty_button
+            // 
+            this.Wizyty_button.Location = new System.Drawing.Point(13, 71);
+            this.Wizyty_button.Name = "Wizyty_button";
+            this.Wizyty_button.Size = new System.Drawing.Size(283, 23);
+            this.Wizyty_button.TabIndex = 2;
+            this.Wizyty_button.Text = "Wizyty";
+            this.Wizyty_button.UseVisualStyleBackColor = true;
+            this.Wizyty_button.Click += new System.EventHandler(this.Wizyty_button_Click);
+            // 
             // Okno_glowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 210);
+            this.Controls.Add(this.Wizyty_button);
             this.Controls.Add(this.buttonPacienci);
             this.Controls.Add(this.buttonLekarze);
             this.Name = "Okno_glowne";
@@ -72,6 +84,7 @@
 
         private System.Windows.Forms.Button buttonLekarze;
         private System.Windows.Forms.Button buttonPacienci;
+        private System.Windows.Forms.Button Wizyty_button;
     }
 }
 
