@@ -85,9 +85,11 @@
       <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
     </Compile>
     <Compile Include="Obiekty Bazy\Miasto.cs" />
+    <Compile Include="Obiekty Bazy\Oddzial.cs" />
     <Compile Include="Obiekty Bazy\Pacjent.cs" />
     <Compile Include="Obiekty Bazy\Polaczenie.cs" />
     <Compile Include="Obiekty Bazy\Recepta.cs" />
+    <Compile Include="Obiekty Bazy\Specjalizacja.cs" />
     <Compile Include="Pacjenci_formy\Dodaj-edytuj_pacjenta_forma.cs">
       <SubType>Form</SubType>
     </Compile>

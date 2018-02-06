@@ -14,7 +14,8 @@ namespace Przychodnia.Recepty_formy
     {
        private int generated;
        private Random rand;
-        private string komunikat = "";
+       private string komunikat = "";
+
         public string Komunikat { get => komunikat; set => komunikat = value; }
         public void Generuj()
         {
