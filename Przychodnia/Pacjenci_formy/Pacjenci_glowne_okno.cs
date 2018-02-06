@@ -43,5 +43,40 @@ namespace Przychodnia.Pacjenci_formy
         {
             OdswierzTabele();
         }
+
+        private void Usun_Click(object sender, EventArgs e)
+        {
+            if (Tabela.SelectedRows.Count > 0)
+            {
+                var decyzja = MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone?", "Usuwanie pacjentów", MessageBoxButtons.YesNo);
+                if (decyzja == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow pacjent in this.Tabela.SelectedRows)
+                    {
+                        var index = pacjent.Index;
+                        var ID = (int)pacjent.Cells["ID"].Value;
+
+                        Tabela.Rows.RemoveAt(index);
+                        Pacjent.UsunPacjenta(ID);
+                    }
+                }
+                OdswierzTabele();
+            }
+        }
+
+        private void Edytuj_Click(object sender, EventArgs e)
+        {
+            if (Tabela.SelectedRows.Count == 1)
+            {
+                foreach (DataGridViewRow pacjent in this.Tabela.SelectedRows)
+                {
+                    //var index = lekarz.Index;
+                    var ID = (int)pacjent.Cells["ID"].Value;
+                    var edycja = new Dodaj_edytuj_pacjenta_forma(ID);
+                    edycja.Show();
+                }
+            }
+            OdswierzTabele();
+        }
     }
 }

@@ -63,6 +63,7 @@
             this.Lekarz});
             this.Tabela.Location = new System.Drawing.Point(13, 13);
             this.Tabela.Name = "Tabela";
+            this.Tabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabela.Size = new System.Drawing.Size(1044, 159);
             this.Tabela.TabIndex = 0;
             // 
@@ -144,6 +145,7 @@
             this.Usun.TabIndex = 2;
             this.Usun.Text = "Usuń";
             this.Usun.UseVisualStyleBackColor = true;
+            this.Usun.Click += new System.EventHandler(this.Usun_Click);
             // 
             // Edytuj
             // 
@@ -153,6 +155,7 @@
             this.Edytuj.TabIndex = 3;
             this.Edytuj.Text = "Edytuj";
             this.Edytuj.UseVisualStyleBackColor = true;
+            this.Edytuj.Click += new System.EventHandler(this.Edytuj_Click);
             // 
             // Odswierz
             // 
