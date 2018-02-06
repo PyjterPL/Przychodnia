@@ -39,11 +39,16 @@
             this.Pacjent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Oddział = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Umow_button = new System.Windows.Forms.Button();
+            this.Odwolaj_button = new System.Windows.Forms.Button();
+            this.Dodaj_godzin_button = new System.Windows.Forms.Button();
+            this.Odwolaj_godziny_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
             // lekarz_comboBox
             // 
+            this.lekarz_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lekarz_comboBox.FormattingEnabled = true;
             this.lekarz_comboBox.Location = new System.Drawing.Point(57, 12);
             this.lekarz_comboBox.Name = "lekarz_comboBox";
@@ -83,6 +88,7 @@
             this.Pokaz_button.TabIndex = 4;
             this.Pokaz_button.Text = "Pokaż";
             this.Pokaz_button.UseVisualStyleBackColor = true;
+            this.Pokaz_button.Click += new System.EventHandler(this.Pokaz_button_Click);
             // 
             // Tabela
             // 
@@ -94,11 +100,10 @@
             this.Pacjent,
             this.Opis,
             this.Oddział});
-            this.Tabela.Location = new System.Drawing.Point(12, 39);
+            this.Tabela.Location = new System.Drawing.Point(12, 38);
             this.Tabela.Name = "Tabela";
             this.Tabela.Size = new System.Drawing.Size(551, 386);
             this.Tabela.TabIndex = 5;
-            this.Tabela.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ID
             // 
@@ -130,11 +135,51 @@
             this.Oddział.Name = "Oddział";
             this.Oddział.ReadOnly = true;
             // 
+            // Umow_button
+            // 
+            this.Umow_button.Location = new System.Drawing.Point(12, 432);
+            this.Umow_button.Name = "Umow_button";
+            this.Umow_button.Size = new System.Drawing.Size(97, 23);
+            this.Umow_button.TabIndex = 6;
+            this.Umow_button.Text = "Umów wizytę";
+            this.Umow_button.UseVisualStyleBackColor = true;
+            // 
+            // Odwolaj_button
+            // 
+            this.Odwolaj_button.Location = new System.Drawing.Point(115, 431);
+            this.Odwolaj_button.Name = "Odwolaj_button";
+            this.Odwolaj_button.Size = new System.Drawing.Size(95, 23);
+            this.Odwolaj_button.TabIndex = 7;
+            this.Odwolaj_button.Text = "Odwołaj wizytę";
+            this.Odwolaj_button.UseVisualStyleBackColor = true;
+            // 
+            // Dodaj_godzin_button
+            // 
+            this.Dodaj_godzin_button.Location = new System.Drawing.Point(12, 461);
+            this.Dodaj_godzin_button.Name = "Dodaj_godzin_button";
+            this.Dodaj_godzin_button.Size = new System.Drawing.Size(119, 23);
+            this.Dodaj_godzin_button.TabIndex = 8;
+            this.Dodaj_godzin_button.Text = "Dodaj godziny pracy";
+            this.Dodaj_godzin_button.UseVisualStyleBackColor = true;
+            // 
+            // Odwolaj_godziny_button
+            // 
+            this.Odwolaj_godziny_button.Location = new System.Drawing.Point(138, 461);
+            this.Odwolaj_godziny_button.Name = "Odwolaj_godziny_button";
+            this.Odwolaj_godziny_button.Size = new System.Drawing.Size(75, 23);
+            this.Odwolaj_godziny_button.TabIndex = 9;
+            this.Odwolaj_godziny_button.Text = "Odwołaj godziny pracy";
+            this.Odwolaj_godziny_button.UseVisualStyleBackColor = true;
+            // 
             // Grafik_glowna_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 484);
+            this.ClientSize = new System.Drawing.Size(589, 494);
+            this.Controls.Add(this.Odwolaj_godziny_button);
+            this.Controls.Add(this.Dodaj_godzin_button);
+            this.Controls.Add(this.Odwolaj_button);
+            this.Controls.Add(this.Umow_button);
             this.Controls.Add(this.Tabela);
             this.Controls.Add(this.Pokaz_button);
             this.Controls.Add(this.dateTimePicker1);
@@ -162,5 +207,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Pacjent;
         private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
         private System.Windows.Forms.DataGridViewTextBoxColumn Oddział;
+        private System.Windows.Forms.Button Umow_button;
+        private System.Windows.Forms.Button Odwolaj_button;
+        private System.Windows.Forms.Button Dodaj_godzin_button;
+        private System.Windows.Forms.Button Odwolaj_godziny_button;
     }
 }
