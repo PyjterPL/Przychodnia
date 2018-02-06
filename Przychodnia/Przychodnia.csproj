@@ -58,18 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComboboxItem.cs" />
-    <Compile Include="DialogRecepty\DodRecepte.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DialogRecepty\DodRecepte.Designer.cs" />
-    <Compile Include="DialogRecepty\PotwierdzDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DialogRecepty\PotwierdzDialog.Designer.cs" />
-    <Compile Include="DialogRecepty\ReceptyGlowneOkno.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DialogRecepty\ReceptyGlowneOkno.Designer.cs" />
     <Compile Include="Glowne_Okno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,9 +95,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DialogRecepty\DodRecepte.resx" />
-    <EmbeddedResource Include="DialogRecepty\PotwierdzDialog.resx" />
-    <EmbeddedResource Include="DialogRecepty\ReceptyGlowneOkno.resx" />
+    <Compile Include="Recepty_formy\DodajRecepte_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepty_formy\DodajRecepte_Form.Designer.cs">
+      <DependentUpon>DodajRecepte_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepty_formy\PotwierdzDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepty_formy\PotwierdzDialog.Designer.cs">
+      <DependentUpon>PotwierdzDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepty_formy\ReceptyGlowneOkno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepty_formy\ReceptyGlowneOkno.Designer.cs">
+      <DependentUpon>ReceptyGlowneOkno.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Glowne_Okno.resx">
       <DependentUpon>Glowne_Okno.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +137,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Recepty_formy\DodajRecepte_Form.resx">
+      <DependentUpon>DodajRecepte_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepty_formy\PotwierdzDialog.resx">
+      <DependentUpon>PotwierdzDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepty_formy\ReceptyGlowneOkno.resx">
+      <DependentUpon>ReceptyGlowneOkno.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

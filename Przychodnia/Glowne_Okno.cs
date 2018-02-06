@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Przychodnia.Pacjenci_formy;
+using Przychodnia.Recepty_formy;
+
 
 namespace Przychodnia
 {
@@ -28,6 +30,12 @@ namespace Przychodnia
         {
             var pacjenciOkno = new Pacjenci_glowne_okno();
             pacjenciOkno.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var receptyOkno = new ReceptyGlowneOkno();
+            receptyOkno.Show();
         }
     }
 }
