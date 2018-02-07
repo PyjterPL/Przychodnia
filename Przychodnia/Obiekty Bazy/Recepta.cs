@@ -11,12 +11,12 @@ namespace Przychodnia.Obiekty_Bazy
         public int ID_recepty { get; private set; }
         public int ID_lekarza { get; set; }
         public int ID_pacjenta { get; set; }
-        public int ID_grafiku { get; set; }
+        public int? ID_grafiku { get; set; }
         public string Tresc { get; set; }
         public DateTime Data_waznosci { get; set; }
 
         private Recepta() {}
-        public Recepta (int ID_recepty, int ID_lekarza, int ID_pacjenta,int ID_grafiku,string Tresc,DateTime Data_waznosci)
+        public Recepta (int ID_recepty, int ID_lekarza, int ID_pacjenta,int? ID_grafiku,string Tresc,DateTime Data_waznosci)
         {
             this.ID_grafiku = ID_grafiku;
             this.ID_lekarza = ID_lekarza;
@@ -25,6 +25,7 @@ namespace Przychodnia.Obiekty_Bazy
             this.Tresc = Tresc;
             this.Data_waznosci = Data_waznosci;
         }
+
         public static List<Recepta> PobierzWszystkieRecepty()
         {
             // tNazwa zmiennej ---> temp + nazwa zmiennej 
@@ -32,7 +33,7 @@ namespace Przychodnia.Obiekty_Bazy
             int tID_recepty;
             int tID_lekarza;
             int tID_pacjenta;
-            int tID_grafiku;
+            int? tID_grafiku;
             string tTresc;
             DateTime tData_waznosci;
 
@@ -46,15 +47,26 @@ namespace Przychodnia.Obiekty_Bazy
 
             while(reader.Read())
             {
-                tID_recepty      = (int)reader["Id_recepty"];
-                tID_lekarza      = (int)reader["Id_lekarza"];
-                tID_pacjenta     = (int)reader["Id_pacjenta"];
-                tID_grafiku      = (int)reader["Id_grafiku"];
-                tTresc           = reader["Tresc"].ToString();
-                tData_waznosci = (DateTime)reader["Data_waznosci"];
+               
+            
+                tID_recepty     = (int)reader["Id_recepty"];
+                tID_lekarza     = (int)reader["Id_lekarza"];
+                tID_pacjenta    = (int)reader["Id_pacjenta"];
+                tTresc          = reader["Tresc"].ToString();
+                tData_waznosci  = (DateTime)reader["Data_waznosci"];
+                var tmp         = reader.GetOrdinal("Id_grafiku");
+                if (!reader.IsDBNull(tmp))
+                {
+                    tID_grafiku = (int?)reader["Id_grafiku"];
+                }
+                else tID_grafiku = null;
 
                 var recepta = new Recepta(tID_recepty, tID_lekarza, tID_pacjenta, tID_grafiku, tTresc, tData_waznosci);
                 recepty.Add(recepta);
+
+               
+
+                
             }
             DbHelper.Polaczenie.Close();
             return recepty;
@@ -70,7 +82,7 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Close();
         }
-        public static void DodajRecepte( int ID_lekarza, int ID_pacjenta, int ID_grafiku, string Tresc, DateTime Data_waznosci)
+        public static void DodajRecepte( int ID_lekarza, int ID_pacjenta, int? ID_grafiku, string Tresc, DateTime Data_waznosci)
         {
             var zapytanie = string.Format("INSERT INTO recepty (Id_recepty,Id_lekarza,Id_pacjenta,Tresc,Data_waznosci,Id_grafiku) VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
             null,ID_lekarza.ToString(),ID_pacjenta.ToString(),Tresc,Data_waznosci.ToString("yyy-MM-dd"),ID_grafiku.ToString());

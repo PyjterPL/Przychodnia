@@ -26,7 +26,11 @@ namespace Przychodnia.Recepty_formy
             int i = 0;
             foreach (Recepta recept in listaRecept)
             {
-                ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, recept.ID_pacjenta, recept.ID_grafiku, recept.Data_waznosci.Date, recept.Tresc);
+                if(recept.ID_grafiku==null)
+                {
+                    ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, recept.ID_pacjenta, recept.Data_waznosci.Date, "-", recept.Tresc);
+                }
+             else ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, recept.ID_pacjenta, recept.Data_waznosci.Date, recept.ID_grafiku, recept.Tresc);
                 i++;
             }
         }
