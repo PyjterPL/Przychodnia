@@ -95,5 +95,17 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
             }
         }
+
+        private void EdtSpec_Click(object sender, EventArgs e)
+        {
+            var selectedRow = SpecjalizacjeTabela.SelectedRows;
+            if(selectedRow.Count==1)
+            {
+                int id = (int)selectedRow[0].Cells[0].Value;
+               var edycja = new DodSpec_Form(id);
+                edycja.Show();
+            }
+            
+        }
     }
 }
