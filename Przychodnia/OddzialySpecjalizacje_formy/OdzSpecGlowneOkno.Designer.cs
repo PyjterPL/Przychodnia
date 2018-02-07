@@ -34,6 +34,7 @@
             this.UsuSpec = new System.Windows.Forms.Button();
             this.Id_specjalizacji = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NazwaSpec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Odswierz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpecjalizacjeTabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             this.UsuSpec.TabIndex = 5;
             this.UsuSpec.Text = "Usuń Specjalizację";
             this.UsuSpec.UseVisualStyleBackColor = true;
+            this.UsuSpec.Click += new System.EventHandler(this.UsuSpec_Click);
             // 
             // Id_specjalizacji
             // 
@@ -92,11 +94,22 @@
             this.NazwaSpec.ReadOnly = true;
             this.NazwaSpec.Width = 220;
             // 
+            // Odswierz
+            // 
+            this.Odswierz.Location = new System.Drawing.Point(12, 228);
+            this.Odswierz.Name = "Odswierz";
+            this.Odswierz.Size = new System.Drawing.Size(118, 40);
+            this.Odswierz.TabIndex = 6;
+            this.Odswierz.Text = "Odśwież";
+            this.Odswierz.UseVisualStyleBackColor = true;
+            this.Odswierz.Click += new System.EventHandler(this.Odswierz_Click);
+            // 
             // OdzSpecGlowneOkno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 376);
+            this.Controls.Add(this.Odswierz);
             this.Controls.Add(this.UsuSpec);
             this.Controls.Add(this.EdtSpec);
             this.Controls.Add(this.DodSpec);
@@ -116,5 +129,6 @@
         private System.Windows.Forms.Button DodSpec;
         private System.Windows.Forms.Button EdtSpec;
         private System.Windows.Forms.Button UsuSpec;
+        private System.Windows.Forms.Button Odswierz;
     }
 }

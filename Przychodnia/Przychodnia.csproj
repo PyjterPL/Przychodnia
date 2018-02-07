@@ -146,6 +146,9 @@
     <EmbeddedResource Include="Lekarze_formy\LekarzeGlowneOkno.resx">
       <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OddzialySpecjalizacje_formy\DodSpec_Form.resx">
+      <DependentUpon>DodSpec_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OddzialySpecjalizacje_formy\OdzSpecGlowneOkno.resx">
       <DependentUpon>OdzSpecGlowneOkno.cs</DependentUpon>
     </EmbeddedResource>

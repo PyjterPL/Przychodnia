@@ -51,7 +51,7 @@ namespace Przychodnia.Obiekty_Bazy
 
         public static void DodajSpecjalizacje(string NazwaSpec)
         {
-            var zapytanie = string.Format("INSERT INTO Oddzialy VALUES('{0}','{1}')", null, NazwaSpec);
+            var zapytanie = string.Format("INSERT INTO specjalizacja VALUES('{0}','{1}')", null, NazwaSpec);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();
@@ -60,7 +60,7 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void UsunSpecjalizacje(string NazwaSpec)
         {
-            var zapytanie = string.Format("DELETE FROM Oddzialy WHERE Nazwa='{0}'",  NazwaSpec);
+            var zapytanie = string.Format("DELETE FROM specjalizacja WHERE Nazwa='{0}'",  NazwaSpec);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();

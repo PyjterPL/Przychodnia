@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Przychodnia.Obiekty_Bazy;
 namespace Przychodnia.OddzialySpecjalizacje_formy
 {
     public partial class DodSpec_Form : Form
@@ -15,6 +15,24 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         public DodSpec_Form()
         {
             InitializeComponent();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DodSpecB_Click(object sender, EventArgs e)
+        {
+            Specjalizacja.DodajSpecjalizacje(SpecT.Text);
+            this.Hide();
+            this.Dispose();
+        }
+
+        private void AnSpecB_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
         }
     }
 }
