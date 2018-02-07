@@ -109,5 +109,6 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Close();
         }
 
+
     }
 }

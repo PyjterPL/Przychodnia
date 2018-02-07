@@ -79,6 +79,33 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Close();
             return null;
         }
+        public static List<Oddzial> PobierzOddzialyLekarza(int ID)
+        {
+            int pOddzial;
+            int pSpecjalizacja;
+            int pLekarz;
+
+            var lista = new List<Oddzial>();
+            var zapytanie = string.Format("SELECT * FROM oddzialy WHERE Id_lekarza='{0}'",ID);
+
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+
+            while (reader.Read())
+            {
+                pOddzial = (int)reader["Id_oddzialu"];
+                pSpecjalizacja = (int)reader["Id_Specjalizacji"];
+                pLekarz = (int)reader["Id_lekarza"];
+
+                var oddzial = new Oddzial(pOddzial, pSpecjalizacja, pLekarz);
+                lista.Add(oddzial);
+
+            }
+            DbHelper.Polaczenie.Close();
+            return lista;
+        }
 
         public static void DodajOddzial(int id_spec, int id_lek)
         {

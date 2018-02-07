@@ -70,6 +70,12 @@
     <Compile Include="Grafik_formy\Grafik_glowna_forma.Designer.cs">
       <DependentUpon>Grafik_glowna_forma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Grafik_formy\Wybor_specjalizacji_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grafik_formy\Wybor_specjalizacji_form.Designer.cs">
+      <DependentUpon>Wybor_specjalizacji_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lekarze_formy\Dodaj-edytuj_lekarza_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Grafik_formy\Grafik_glowna_forma.resx">
       <DependentUpon>Grafik_glowna_forma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grafik_formy\Wybor_specjalizacji_form.resx">
+      <DependentUpon>Wybor_specjalizacji_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lekarze_formy\Dodaj-edytuj_lekarza_form.resx">
       <DependentUpon>Dodaj-edytuj_lekarza_form.cs</DependentUpon>

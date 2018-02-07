@@ -14,9 +14,8 @@ namespace Przychodnia.Obiekty_Bazy
         public DateTime Dzien_od { get; set; }
         public int? IdPacjenta { get; set; }//może być nullem  
         public string Opis { get; set; }
-        public int IdOddzialu { get; set; }
-
-        public Grafik(int id,int idlekarza,DateTime dzienod,int? idpacjenta,string opis,int idodzialu)
+        public int? IdOddzialu { get; set; }
+        public Grafik(int id,int idlekarza,DateTime dzienod,int? idpacjenta,string opis,int? idodzialu)
         {
             this.ID = id;
             this.IdLekarza = idlekarza;

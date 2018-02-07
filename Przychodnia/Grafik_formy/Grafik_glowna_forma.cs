@@ -72,7 +72,13 @@ namespace Przychodnia.Grafik_formy
         {
             if (Tabela.SelectedRows.Count > 0)
             {
+                
+
                 var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
+                var spec_form = new Wybor_specjalizacji_form(ID);
+                spec_form.ShowDialog();
+                if (spec_form.wybrana == null) return;
+                
                 var lista = Grafik.PobierzGrafikDleLekarza(ID);
                 foreach (DataGridViewRow row in this.Tabela.SelectedRows)
                     {
@@ -91,7 +97,13 @@ namespace Przychodnia.Grafik_formy
                     var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
                     
                     var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
-                    Grafik.DodajGrafik(new Grafik(0,ID, wybrana_data_godzina,null,"",1));
+                    if (spec_form.wybrana.ID_specjalizacji > 0)
+                    {
+                        Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", spec_form.wybrana.ID_specjalizacji));
+                    }else
+                    {
+                        Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", null));
+                    }
                 }
                 MessageBox.Show("Dodano godziny do grafiku!");
                 Odswierz();

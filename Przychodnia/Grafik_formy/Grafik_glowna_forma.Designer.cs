@@ -166,7 +166,7 @@
             // 
             // Odwolaj_godziny_button
             // 
-            this.Odwolaj_godziny_button.Location = new System.Drawing.Point(138, 461);
+            this.Odwolaj_godziny_button.Location = new System.Drawing.Point(137, 461);
             this.Odwolaj_godziny_button.Name = "Odwolaj_godziny_button";
             this.Odwolaj_godziny_button.Size = new System.Drawing.Size(133, 23);
             this.Odwolaj_godziny_button.TabIndex = 9;

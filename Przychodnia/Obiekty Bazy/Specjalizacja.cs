@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 namespace Przychodnia.Obiekty_Bazy
 {
-    class Specjalizacja
+   public class Specjalizacja
     {
-        private int Id_specjalizacji;
-        private string Nazwa;
+
 
         public int ID_specjalizacji { get; set; }
         public string nazwa { get; set; }
-
-
-
-        Specjalizacja(int id_spec, string nazwa)
+        public Specjalizacja(int id_spec, string nazwa)
         {
-            this.Id_specjalizacji = id_spec;
-            this.Nazwa = nazwa;
+            this.ID_specjalizacji = id_spec;
+            this.nazwa = nazwa;
         }
 
         public static List<Specjalizacja> PobierzWszystkieSpecjalizacje()
@@ -63,6 +59,55 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Open();
             komenda.ExecuteNonQuery();
             DbHelper.Polaczenie.Close();
+        }
+        public static Specjalizacja PobierzSpecjalizacje(int ID)
+        {
+            int pId_specjalizacji;
+            string pNazwa;
+            
+
+            var zapytanie = string.Format("SELECT * FROM specjalizacja WHERE Id_specjalizacji='{0}'",ID);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+            DbHelper.Polaczenie.Close();
+
+            if (reader.Read())
+            {
+                pId_specjalizacji = (int)reader["Id_specjalizacji"];
+                pNazwa = (string)reader["Nazwa"];
+
+                var specjalizacja = new Specjalizacja(pId_specjalizacji, pNazwa);
+                
+                return specjalizacja;
+            }
+            return null;
+        }
+        public static List<Specjalizacja> PobierzWszystkieSpecjalizacjeLekarza(int ID)
+        {
+            int pId_specjalizacji;
+            string pNazwa;
+            var lista = new List<Specjalizacja>();
+
+            var zapytanie = string.Format("SELECT s.Id_specjalizacji, s.Nazwa FROM specjalizacja S INNER JOIN oddzialy O ON o.Id_specjalizacji=s.Id_specjalizacji WHERE o.Id_lekarza='{0}'",ID);
+
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+            
+
+            while (reader.Read())
+            {
+                pId_specjalizacji = (int)reader["Id_specjalizacji"];
+                pNazwa = (string)reader["Nazwa"];
+
+                var specjalizacja = new Specjalizacja(pId_specjalizacji, pNazwa);
+                lista.Add(specjalizacja);
+            }
+            DbHelper.Polaczenie.Close();
+            return lista;
         }
     }
 }
