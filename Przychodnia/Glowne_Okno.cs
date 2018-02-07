@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Przychodnia.Pacjenci_formy;
 using Przychodnia.Recepty_formy;
+using Przychodnia.OddzialySpecjalizacje_formy;
 namespace Przychodnia
 {
     public partial class Okno_glowne : Form
@@ -40,6 +41,12 @@ namespace Przychodnia
         {
             var receptyOkno = new Recepty_formy.ReceptyGlowneOkno();
             receptyOkno.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var SpecOdzOkno = new OddzialySpecjalizacje_formy.OdzSpecGlowneOkno();
+            SpecOdzOkno.Show();
         }
     }
 }

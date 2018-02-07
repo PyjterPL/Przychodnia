@@ -82,6 +82,7 @@ namespace Przychodnia.Recepty_formy
                     break;
                 }
             }
+
             if (lekarz != null && pacjent != null  && grafik !=null)
             {
                 

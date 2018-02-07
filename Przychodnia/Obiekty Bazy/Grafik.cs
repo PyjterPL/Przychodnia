@@ -40,7 +40,6 @@ namespace Przychodnia.Obiekty_Bazy
         {
             int id;
             DateTime dzienod;
-           // int? idpacjenta;
             string opis;
             int idoddzialu;
 

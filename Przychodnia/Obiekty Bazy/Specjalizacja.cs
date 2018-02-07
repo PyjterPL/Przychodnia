@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 namespace Przychodnia.Obiekty_Bazy
 {
     class Specjalizacja
@@ -11,8 +12,8 @@ namespace Przychodnia.Obiekty_Bazy
         private int Id_specjalizacji;
         private string Nazwa;
 
-        public int ID_specjalizacji { get; set; }
-        public string nazwa { get; set; }
+        public int ID_specjalizacji { get { return Id_specjalizacji; } set { Id_specjalizacji = value; } }
+        public string nazwa { get { return Nazwa; }  set { Nazwa=value; } }
 
 
 
@@ -26,14 +27,14 @@ namespace Przychodnia.Obiekty_Bazy
         {
             int pId_specjalizacji;
             string pNazwa;
-            List<Specjalizacja> lista = new List<Specjalizacja>();
+            var lista = new List<Specjalizacja>();
 
             var zapytanie = "SELECT * FROM specjalizacja";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();
             var reader = komenda.ExecuteReader();
-            DbHelper.Polaczenie.Close();
+      
 
             while(reader.Read())
             {
@@ -43,6 +44,8 @@ namespace Przychodnia.Obiekty_Bazy
                 var specjalizacja = new Specjalizacja(pId_specjalizacji, pNazwa);
                 lista.Add(specjalizacja);
             }
+            DbHelper.Polaczenie.Close();
+
             return lista;
         }
 
