@@ -29,7 +29,7 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Open();
             var reader = komenda.ExecuteReader();
-            DbHelper.Polaczenie.Close();
+            
 
             while(reader.Read())
             {
@@ -39,6 +39,7 @@ namespace Przychodnia.Obiekty_Bazy
                 var specjalizacja = new Specjalizacja(pId_specjalizacji, pNazwa);
                 lista.Add(specjalizacja);
             }
+            DbHelper.Polaczenie.Close();
             return lista;
         }
 
