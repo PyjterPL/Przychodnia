@@ -32,37 +32,70 @@ namespace Przychodnia.Grafik_formy
             {
                 this.lekarz_comboBox.Items.Add(lekarz.Imie + " " + lekarz.Nazwisko);
             }
+            this.lekarz_comboBox.SelectedIndex = 0;
             
         }
-
-        private void Pokaz_button_Click(object sender, EventArgs e)
+       public  void Odswierz()
         {
-
             var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
             var lista = Grafik.PobierzGrafikDleLekarza(ID);
-            foreach(Grafik grafik in lista)
+            foreach (Grafik grafik in lista)
             {
                 if (grafik.Dzien_od.Date == dateTimePicker1.Value.Date)
-                { 
-                     foreach(DataGridViewRow row in this.Tabela.Rows)
+                {
+                    foreach (DataGridViewRow row in this.Tabela.Rows)
                     {
-                        //var index = lekarz.Index;
-                        //var ID = (int)lekarz.Cells["ID"].Value;
-                        // var godzina = (DateTime)row.Cells["Godzina"].Value;
-                        //  var x = new TimeSpan()
                         var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
                         if (godzina == grafik.Dzien_od.TimeOfDay)
                         {
                             Tabela.Rows[row.Index].SetValues(grafik.ID, grafik.Dzien_od.TimeOfDay.ToString(), grafik.IdPacjenta, grafik.Opis, grafik.IdOddzialu);
+                            if (grafik.IdPacjenta == 0)
+                            {
+                                row.DefaultCellStyle.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                row.DefaultCellStyle.BackColor = Color.Red;
+                            }
                         }
-                       // Tabela.Rows.RemoveAt(index);
-                        //Lekarz.UsunLekarza(ID);
                     }
                 }
             }
-
         }
 
+        private void Pokaz_button_Click(object sender, EventArgs e)
+        {
+            Odswierz();
+        }
 
+        private void Dodaj_godzin_button_Click(object sender, EventArgs e)
+        {
+            if (Tabela.SelectedRows.Count > 0)
+            {
+                var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
+                var lista = Grafik.PobierzGrafikDleLekarza(ID);
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                    {
+                        var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
+
+                        var znalezione = lista.Find(i => i.Dzien_od == wybrana_data_godzina);
+                        if (znalezione != null)
+                        {
+                            MessageBox.Show("W zaznaczonych godzinach jest już ustalony grafik!");
+                            return;
+                        }
+                            var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
+                    }
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                {
+                    var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
+                    
+                    var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
+                    Grafik.DodajGrafik(new Grafik(0,ID, wybrana_data_godzina,null,"",1));
+                }
+                MessageBox.Show("Dodano godziny do grafiku!");
+                Odswierz();
+            }
+        }
     }
 }

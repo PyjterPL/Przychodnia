@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2018 at 12:17 AM
+-- Generation Time: Feb 07, 2018 at 02:14 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -42,7 +42,12 @@ CREATE TABLE `grafik` (
 --
 
 INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Opis`, `Id_oddzialu`) VALUES
-(2, 1, '2018-02-06 08:00:00', NULL, 'asdasd', 1);
+(27, 1, '2018-02-07 06:30:00', 0, '', 1),
+(28, 1, '2018-02-07 06:15:00', 0, '', 1),
+(29, 1, '2018-02-07 06:00:00', 0, '', 1),
+(30, 1, '2018-02-07 05:45:00', 0, '', 1),
+(31, 1, '2018-02-07 05:30:00', 0, '', 1),
+(32, 1, '2018-02-07 05:15:00', 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -144,9 +149,8 @@ CREATE TABLE `pacjenci` (
 --
 
 INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`, `Plec`, `Id_lekarza`) VALUES
-(1, '12', 'edit', 'edit', '2018-01-31', 'edit', 1, 'edit', 'K', 2),
-(2, '12', 'edit', 'edit', '2018-01-31', 'edit', 1, 'edit', 'K', 2),
-(6, '1222', 't', 't', '2018-01-31', 't', 1, 't', 'M', 1);
+(8, '11', 'ss', 's', '2018-02-07', '1', 1, '11', 'M', 1),
+(9, '123', '123', '231', '2018-02-12', '123', 2, '123', 'M', 6);
 
 -- --------------------------------------------------------
 
@@ -191,9 +195,9 @@ INSERT INTO `specjalizacja` (`Id_specjalizacji`, `Nazwa`) VALUES
 --
 ALTER TABLE `grafik`
   ADD PRIMARY KEY (`Id_grafiku`),
-  ADD KEY `lekaro` (`Id_lekarza`),
   ADD KEY `Oddzial` (`Id_oddzialu`),
-  ADD KEY `pacjencii` (`Id_pacjenta`);
+  ADD KEY `lekaro` (`Id_lekarza`),
+  ADD KEY `Pacjenciii` (`Id_pacjenta`);
 
 --
 -- Indexes for table `lekarze`
@@ -229,8 +233,8 @@ ALTER TABLE `odwolane`
 --
 ALTER TABLE `pacjenci`
   ADD PRIMARY KEY (`Id_pacjenta`),
-  ADD KEY `Miastaa` (`Id_miasta`),
-  ADD KEY `Lekarz prowadzaca` (`Id_lekarza`);
+  ADD KEY `Lekarz prowadzaca` (`Id_lekarza`),
+  ADD KEY `Miastaa` (`Id_miasta`);
 
 --
 -- Indexes for table `recepty`
@@ -255,7 +259,7 @@ ALTER TABLE `specjalizacja`
 -- AUTO_INCREMENT for table `grafik`
 --
 ALTER TABLE `grafik`
-  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `lekarze`
@@ -285,13 +289,13 @@ ALTER TABLE `odwolane`
 -- AUTO_INCREMENT for table `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `recepty`
 --
 ALTER TABLE `recepty`
-  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `specjalizacja`
@@ -308,8 +312,7 @@ ALTER TABLE `specjalizacja`
 --
 ALTER TABLE `grafik`
   ADD CONSTRAINT `Oddzial` FOREIGN KEY (`Id_oddzialu`) REFERENCES `oddzialy` (`Id_oddzialu`),
-  ADD CONSTRAINT `lekaro` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`),
-  ADD CONSTRAINT `pacjencii` FOREIGN KEY (`Id_pacjenta`) REFERENCES `pacjenci` (`Id_pacjenta`);
+  ADD CONSTRAINT `lekaro` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`);
 
 --
 -- Constraints for table `lekarze`
@@ -335,8 +338,8 @@ ALTER TABLE `odwolane`
 -- Constraints for table `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  ADD CONSTRAINT `Lekarz prowadzaca` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`),
-  ADD CONSTRAINT `Miastaa` FOREIGN KEY (`Id_miasta`) REFERENCES `miasta` (`Id_miasta`);
+  ADD CONSTRAINT `Lekarz prowadzaca` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Miastaa` FOREIGN KEY (`Id_miasta`) REFERENCES `miasta` (`Id_miasta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `recepty`

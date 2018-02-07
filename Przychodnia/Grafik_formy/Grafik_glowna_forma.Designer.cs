@@ -102,6 +102,7 @@
             this.Oddział});
             this.Tabela.Location = new System.Drawing.Point(12, 38);
             this.Tabela.Name = "Tabela";
+            this.Tabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabela.Size = new System.Drawing.Size(551, 386);
             this.Tabela.TabIndex = 5;
             // 
@@ -161,12 +162,13 @@
             this.Dodaj_godzin_button.TabIndex = 8;
             this.Dodaj_godzin_button.Text = "Dodaj godziny pracy";
             this.Dodaj_godzin_button.UseVisualStyleBackColor = true;
+            this.Dodaj_godzin_button.Click += new System.EventHandler(this.Dodaj_godzin_button_Click);
             // 
             // Odwolaj_godziny_button
             // 
             this.Odwolaj_godziny_button.Location = new System.Drawing.Point(138, 461);
             this.Odwolaj_godziny_button.Name = "Odwolaj_godziny_button";
-            this.Odwolaj_godziny_button.Size = new System.Drawing.Size(75, 23);
+            this.Odwolaj_godziny_button.Size = new System.Drawing.Size(133, 23);
             this.Odwolaj_godziny_button.TabIndex = 9;
             this.Odwolaj_godziny_button.Text = "Odwołaj godziny pracy";
             this.Odwolaj_godziny_button.UseVisualStyleBackColor = true;

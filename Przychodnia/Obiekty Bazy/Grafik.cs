@@ -25,6 +25,17 @@ namespace Przychodnia.Obiekty_Bazy
             this.Opis = opis;
             this.IdOddzialu = idodzialu;
         }
+        public static void DodajGrafik(Grafik grafik)
+        {
+            var zapytanie = string.Format("INSERT INTO grafik VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", null, grafik.IdLekarza, grafik.Dzien_od.ToString("yyyy-MM-dd HH:mm:ss"),grafik.IdPacjenta,grafik.Opis,grafik.IdOddzialu); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        }
         public static List<Grafik> PobierzGrafikDleLekarza(int idlekarza)
         {
             int id;
