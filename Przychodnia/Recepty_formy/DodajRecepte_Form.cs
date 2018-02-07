@@ -49,10 +49,21 @@ namespace Przychodnia.Recepty_formy
 
         private void DodajRecepteDialog_Click(object sender, EventArgs e)
         {
+           
            var dataW           = DataWaznosci.Value.Date;
            int lekarzIndeks    = ComboLekarz.SelectedIndex;
            int pacjentIndeks   = ComboPacjent.SelectedIndex;
-           var lekarzID        = (ComboboxItem)ComboLekarz.Items[lekarzIndeks];
+           if (lekarzIndeks<0 || pacjentIndeks<0 )
+            {
+                MessageBox.Show("Wybierz Lekarza Oraz Pacjenta!");
+                return;
+            }
+            if (Tresc.Text ==null || Tresc.Text=="" || Tresc.Text.Length < 5) 
+            {
+                MessageBox.Show("Recepta Pusta lub zbyt krótka");
+                return;
+            }
+            var lekarzID        = (ComboboxItem)ComboLekarz.Items[lekarzIndeks];
            var pacjentID       = (ComboboxItem)ComboPacjent.Items[pacjentIndeks];
             Grafik grafik = null; 
            
