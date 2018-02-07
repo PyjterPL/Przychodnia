@@ -14,7 +14,11 @@ namespace Przychodnia.Recepty_formy
     {
         private List<Lekarz> listaLekarzy;
         private List<Pacjent> listaPacjentów;
+        private List<Grafik> listaGrafikow;
         private ComboboxItem item;
+        private Lekarz lekarz = null;
+        private Pacjent pacjent = null;
+    
         public DodajRecepte_Form()
         {
             InitializeComponent();
@@ -22,6 +26,7 @@ namespace Przychodnia.Recepty_formy
 
             listaLekarzy = Lekarz.PobierzWszystkichLekarzy();
             listaPacjentów = Pacjent.PobierzWszystkichPacjentow();
+            
             ComboPacjent.Sorted = true;
             ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -49,16 +54,23 @@ namespace Przychodnia.Recepty_formy
            int pacjentIndeks   = ComboPacjent.SelectedIndex;
            var lekarzID        = (ComboboxItem)ComboLekarz.Items[lekarzIndeks];
            var pacjentID       = (ComboboxItem)ComboPacjent.Items[pacjentIndeks];
-           Lekarz lekarz=null;
-           Pacjent pacjent=null;
+            Grafik grafik = null; 
            
             foreach( Lekarz lek in listaLekarzy)
             {
-               
                 if (lek.ID == (int)lekarzID.Value)
                 {
-                 
                     lekarz = lek;
+                    listaGrafikow = Grafik.PobierzGrafikDleLekarza(lek.ID);
+
+                    foreach (Grafik graf in listaGrafikow)
+                    {
+                        if (graf.IdLekarza == lekarz.ID)
+                        {
+                            grafik = graf;
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -66,21 +78,26 @@ namespace Przychodnia.Recepty_formy
             {
                 if (pac.ID.Value==(int)pacjentID.Value)
                 {
-                    
-                  
                     pacjent = pac;
                     break;
                 }
             }
-            if (lekarz != null && pacjent != null)
+            if (lekarz != null && pacjent != null  && grafik !=null)
             {
                 
-                Recepta.DodajRecepte(lekarz.ID,pacjent.ID.Value, 1, Tresc.Text, dataW);
+                Recepta.DodajRecepte(lekarz.ID,pacjent.ID.Value,grafik.ID, Tresc.Text, dataW);
                 MessageBox.Show("Dodano Receptę !");
                 this.Hide();
                 this.Dispose();
             }
-     
+            else if (lekarz != null && pacjent != null)
+            {
+                Recepta.DodajRecepte(lekarz.ID, pacjent.ID.Value,null, Tresc.Text, dataW);
+                MessageBox.Show("Dodano Receptę !");
+                this.Hide();
+                this.Dispose();
+            }
+            else MessageBox.Show("Wystąpił błąd !");
 
         }
     }
