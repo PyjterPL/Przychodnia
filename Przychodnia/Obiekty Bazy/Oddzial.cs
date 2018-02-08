@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 namespace Przychodnia.Obiekty_Bazy
 {
-    class Oddzial
+    public class Oddzial
     {
         //  private int IdOdzialu;
         ///  private int IdSpecjalizacji;
@@ -75,6 +75,22 @@ namespace Przychodnia.Obiekty_Bazy
                 pLekarz = (int)reader["Id_lekarza"];
 
                 oddzial = new Oddzial(pOddzial, pSpecjalizacja, pLekarz);
+                DbHelper.Polaczenie.Close();
+                return oddzial;
+            }
+            DbHelper.Polaczenie.Close();
+            return null;
+        }
+        public static Oddzial PobierzOddzialLekarza(int idlekarza,int idspecjalizacji)
+        {
+            var zapytanie = string.Format("SELECT * FROM oddzialy WHERE Id_lekarza='{0}' AND Id_specjalizacji='{1}'", idlekarza,idspecjalizacji);
+
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+            if (reader.Read())
+            {
+                var oddzial = new Oddzial((int)reader["Id_oddzialu"], idspecjalizacji, idlekarza);
                 DbHelper.Polaczenie.Close();
                 return oddzial;
             }

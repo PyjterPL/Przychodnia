@@ -34,15 +34,15 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Pokaz_button = new System.Windows.Forms.Button();
             this.Tabela = new System.Windows.Forms.DataGridView();
-            this.Umow_button = new System.Windows.Forms.Button();
-            this.Odwolaj_button = new System.Windows.Forms.Button();
-            this.Dodaj_godzin_button = new System.Windows.Forms.Button();
-            this.Odwolaj_godziny_button = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pacjent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Oddzial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Umow_button = new System.Windows.Forms.Button();
+            this.Odwolaj_button = new System.Windows.Forms.Button();
+            this.Dodaj_godzin_button = new System.Windows.Forms.Button();
+            this.Odwolaj_godziny_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +54,7 @@
             this.lekarz_comboBox.Name = "lekarz_comboBox";
             this.lekarz_comboBox.Size = new System.Drawing.Size(121, 21);
             this.lekarz_comboBox.TabIndex = 0;
+            this.lekarz_comboBox.SelectedValueChanged += new System.EventHandler(this.lekarz_comboBox_SelectedValueChanged);
             // 
             // lekarz_label
             // 
@@ -106,6 +107,36 @@
             this.Tabela.Size = new System.Drawing.Size(551, 386);
             this.Tabela.TabIndex = 5;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Godzina
+            // 
+            this.Godzina.HeaderText = "Godzina";
+            this.Godzina.Name = "Godzina";
+            this.Godzina.ReadOnly = true;
+            // 
+            // Pacjent
+            // 
+            this.Pacjent.HeaderText = "Pacjent";
+            this.Pacjent.Name = "Pacjent";
+            this.Pacjent.ReadOnly = true;
+            // 
+            // Opis
+            // 
+            this.Opis.HeaderText = "Opis";
+            this.Opis.Name = "Opis";
+            this.Opis.ReadOnly = true;
+            // 
+            // Oddzial
+            // 
+            this.Oddzial.HeaderText = "Oddział";
+            this.Oddzial.Name = "Oddzial";
+            this.Oddzial.ReadOnly = true;
+            // 
             // Umow_button
             // 
             this.Umow_button.Location = new System.Drawing.Point(12, 432);
@@ -145,36 +176,6 @@
             this.Odwolaj_godziny_button.Text = "Odwołaj godziny pracy";
             this.Odwolaj_godziny_button.UseVisualStyleBackColor = true;
             this.Odwolaj_godziny_button.Click += new System.EventHandler(this.Odwolaj_godziny_button_Click);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Godzina
-            // 
-            this.Godzina.HeaderText = "Godzina";
-            this.Godzina.Name = "Godzina";
-            this.Godzina.ReadOnly = true;
-            // 
-            // Pacjent
-            // 
-            this.Pacjent.HeaderText = "Pacjent";
-            this.Pacjent.Name = "Pacjent";
-            this.Pacjent.ReadOnly = true;
-            // 
-            // Opis
-            // 
-            this.Opis.HeaderText = "Opis";
-            this.Opis.Name = "Opis";
-            this.Opis.ReadOnly = true;
-            // 
-            // Oddzial
-            // 
-            this.Oddzial.HeaderText = "Oddział";
-            this.Oddzial.Name = "Oddzial";
-            this.Oddzial.ReadOnly = true;
             // 
             // Grafik_glowna_forma
             // 

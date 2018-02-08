@@ -19,7 +19,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         public string NazwaSpec { get; set; }
         private Oddzialy_Specjalizacje() { }
 
-        public Oddzialy_Specjalizacje(int id)
+        public Oddzialy_Specjalizacje(int id)//co to za id, czego?
         {
             SpecIDs = new List<int>();
             bool czyWieleSpec = false;
