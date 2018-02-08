@@ -102,6 +102,7 @@
     <Compile Include="OddzialySpecjalizacje_formy\DodSpec_Form.Designer.cs">
       <DependentUpon>DodSpec_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="OddzialySpecjalizacje_formy\Oddzialy_Specjalizacje.cs" />
     <Compile Include="OddzialySpecjalizacje_formy\OdzSpecGlowneOkno.cs">
       <SubType>Form</SubType>
     </Compile>

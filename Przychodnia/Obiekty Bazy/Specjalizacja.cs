@@ -12,6 +12,7 @@ namespace Przychodnia.Obiekty_Bazy
 
         public int ID_specjalizacji { get; set; }
         public string nazwa { get; set; }
+
         public Specjalizacja(int id_spec, string nazwa)
         {
             this.ID_specjalizacji = id_spec;

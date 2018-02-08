@@ -63,7 +63,7 @@ namespace Przychodnia.Recepty_formy
                 MessageBox.Show("Recepta Pusta lub zbyt krótka");
                 return;
             }
-            var lekarzID        = (ComboboxItem)ComboLekarz.Items[lekarzIndeks];
+           var lekarzID        = (ComboboxItem)ComboLekarz.Items[lekarzIndeks];
            var pacjentID       = (ComboboxItem)ComboPacjent.Items[pacjentIndeks];
             Grafik grafik = null; 
            

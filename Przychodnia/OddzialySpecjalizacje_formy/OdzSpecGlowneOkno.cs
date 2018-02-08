@@ -14,6 +14,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
     public partial class OdzSpecGlowneOkno : Form
     {
         private List<Specjalizacja> listaSpecjalizacji;
+        private List<Oddzialy_Specjalizacje> listaOiS;
         public OdzSpecGlowneOkno()
         {
             InitializeComponent();
@@ -31,6 +32,15 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             {
                
                 SpecjalizacjeTabela.Rows.Insert(i, spec.ID_specjalizacji, spec.nazwa);
+                i++;
+            }
+            listaOiS = Oddzialy_Specjalizacje.PobierzSpecjalizacjeWszystkichLekarzy();
+
+            LekSpecTabela.Rows.Clear();
+            i = 0;
+            foreach(Oddzialy_Specjalizacje odS in listaOiS)
+            {
+                LekSpecTabela.Rows.Insert(i, odS.lekarz.ID, odS.lekarz.Imie, odS.lekarz.Nazwisko, odS.NazwaSpec, odS.lekarz.Adres);
                 i++;
             }
         }
@@ -107,5 +117,74 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             }
             
         }
+
+        private void LekSpecTabela_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void PrzypSpec_Click(object sender, EventArgs e)
+        {
+
+            var LekSelectedRow = LekSpecTabela.SelectedRows;
+            var SpecSelectedRow = SpecjalizacjeTabela.SelectedRows;
+
+            if (LekSelectedRow.Count == 1 && SpecSelectedRow.Count == 1)
+            {
+                var spec = SpecSelectedRow[0].Cells[0].Value;
+                var idLek = LekSelectedRow[0].Cells[0].Value;
+                Oddzialy_Specjalizacje.PrzypiszSpecDoLekarza((int)idLek, (int)spec);
+
+            }
+            else MessageBox.Show("Wybrano Więcej niż jedną pozycję!", "Błąd");
+
+        }
+
+        private void Odwolaj_Click(object sender, EventArgs e)
+        {
+            var LekSelectedRow = LekSpecTabela.SelectedRows;
+
+            if (LekSelectedRow.Count == 1)
+            {
+                var idLek = LekSelectedRow[0].Cells[0].Value;
+                Oddzialy_Specjalizacje.UsunWszystkieSpecLekarza((int)idLek);
+            }
+            else MessageBox.Show("Wybrano Więcej niż jedną pozycję!", "Błąd");
+        }
+
+        private void WymAll_Click(object sender, EventArgs e)
+        {
+            var DialogUsunWszystko = new Recepty_formy.PotwierdzDialog("Uwaga zaraz usuniesz specjalizacje\n WSZYSTKICH lekarzy!");
+            DialogResult dr = DialogUsunWszystko.ShowDialog();
+            SprawdzUsuwanieWszystkichSpec(DialogUsunWszystko, dr);
+        }
+
+
+        private void SprawdzUsuwanieWszystkichSpec(Przychodnia.Recepty_formy.PotwierdzDialog obj, DialogResult dr)
+        {
+
+            if (dr == DialogResult.OK)
+            {
+                Oddzialy_Specjalizacje.UsunWszystkieSpecWszystkich();
+                OdswiezTabele();
+            }
+            else if (dr == DialogResult.Cancel)
+            {
+                obj.Hide();
+                obj.Dispose();
+            }
+            else
+            {
+                string tmp = obj.Komunikat;
+                obj.Hide();
+                obj.Dispose();
+                obj = new Przychodnia.Recepty_formy.PotwierdzDialog(tmp);
+                dr = obj.ShowDialog();
+                SprawdzUsuwanieSpec(obj, dr);
+
+            }
+        }
+
+
     }
 }

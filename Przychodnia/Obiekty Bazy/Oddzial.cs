@@ -23,6 +23,8 @@ namespace Przychodnia.Obiekty_Bazy
             this.IdSpecjalizacji = IdSpecjalizacji;
         }
 
+        
+
         public static List<Oddzial> PobierzWszystkieOddzialy()
         {
           
