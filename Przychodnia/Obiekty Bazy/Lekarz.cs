@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using Przychodnia.Obiekty_Bazy;
 namespace Przychodnia
 {
-    class Lekarz
+   public class Lekarz
     {
         public int ID { get; private set; }
         public string Imie { get; set; }

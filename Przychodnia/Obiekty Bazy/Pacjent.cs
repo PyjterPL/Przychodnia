@@ -8,7 +8,7 @@ using Przychodnia.Obiekty_Bazy;
 
 namespace Przychodnia.Obiekty_Bazy
 {
-    class Pacjent
+   public class Pacjent
     {
         public int? ID { get; private set; }
         public string Pesel { get; set; }

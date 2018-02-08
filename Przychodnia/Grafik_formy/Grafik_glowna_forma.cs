@@ -151,6 +151,11 @@ namespace Przychodnia.Grafik_formy
                             MessageBox.Show("Zaznaczono godziny, które są puste!");
                             return;
                         }
+                        if(row.Cells["Pacjent"].Value != null)
+                        {
+                            MessageBox.Show("Najpierw odwołaj wizyty!");
+                            return;
+                        }
                     }
 
                     foreach (DataGridViewRow row in Tabela.SelectedRows)
@@ -159,10 +164,56 @@ namespace Przychodnia.Grafik_formy
                         Grafik.UsunGrafik(id);
                     }
                     Odswierz();
-                }
-               
-                //var ID = Tabela.SelectedRows.//_lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
+                } 
             }
+        }
+
+        private void Umow_button_Click(object sender, EventArgs e)
+        {
+            if (Tabela.SelectedRows.Count > 0)
+            {
+
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                {
+                    if (row.Cells["ID"].Value == null)
+                    {
+                        MessageBox.Show("Zaznaczono godziny, które są puste!");
+                        return;
+                    }
+                    if (row.Cells["Pacjent"].Value != null)
+                    {
+                        MessageBox.Show("Godziny są zajęte");
+                        return;
+                    }
+                }
+                var wybor_pacjenta = new Wybor_specjalizacji_form();
+                wybor_pacjenta.ShowDialog();
+                if (wybor_pacjenta.wybrany_pacjent == null) return;
+
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                {
+                    Grafik.UmowWizyte((int)wybor_pacjenta.wybrany_pacjent.ID, (int)row.Cells["ID"].Value);
+
+
+                    //if (row.Cells["ID"].Value == null)
+                   // {
+                    //    MessageBox.Show("Zaznaczono godziny, które są puste!");
+                   //     return;
+                  ///  }
+                   // if (row.Cells["Pacjent"].Value != null)
+                  //  {
+                   //     MessageBox.Show("Godziny są zajęte");
+                   //     return;
+                   // }
+                }
+                MessageBox.Show("Umówiono wizytę");
+                Odswierz();
+            }
+        }
+
+        private void Odwolaj_button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

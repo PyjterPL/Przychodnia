@@ -114,6 +114,7 @@
             this.Umow_button.TabIndex = 6;
             this.Umow_button.Text = "Umów wizytę";
             this.Umow_button.UseVisualStyleBackColor = true;
+            this.Umow_button.Click += new System.EventHandler(this.Umow_button_Click);
             // 
             // Odwolaj_button
             // 
@@ -123,6 +124,7 @@
             this.Odwolaj_button.TabIndex = 7;
             this.Odwolaj_button.Text = "Odwołaj wizytę";
             this.Odwolaj_button.UseVisualStyleBackColor = true;
+            this.Odwolaj_button.Click += new System.EventHandler(this.Odwolaj_button_Click);
             // 
             // Dodaj_godzin_button
             // 
