@@ -111,5 +111,15 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Close();
             return lista;
         }
+
+        public static void EdytujSpecjalizacje(int id, string tresc)
+        {
+            var zapytanie = string.Format("UPDATE specjalizacja SET Nazwa='{0}' WHERE Id_specjalizacji ='{1}' ",tresc,id);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            DbHelper.Polaczenie.Open();
+            komenda.ExecuteNonQuery();
+            DbHelper.Polaczenie.Close();
+            
+        }
     }
 }

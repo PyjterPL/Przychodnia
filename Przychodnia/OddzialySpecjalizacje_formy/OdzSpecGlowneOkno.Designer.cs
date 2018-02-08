@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.SpecjalizacjeTabela = new System.Windows.Forms.DataGridView();
+            this.Id_specjalizacji = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NazwaSpec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DodSpec = new System.Windows.Forms.Button();
             this.EdtSpec = new System.Windows.Forms.Button();
             this.UsuSpec = new System.Windows.Forms.Button();
-            this.Id_specjalizacji = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NazwaSpec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Odswierz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SpecjalizacjeTabela)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +51,19 @@
             this.SpecjalizacjeTabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SpecjalizacjeTabela.Size = new System.Drawing.Size(362, 154);
             this.SpecjalizacjeTabela.TabIndex = 2;
+            // 
+            // Id_specjalizacji
+            // 
+            this.Id_specjalizacji.HeaderText = "ID Specjalizaji";
+            this.Id_specjalizacji.Name = "Id_specjalizacji";
+            this.Id_specjalizacji.ReadOnly = true;
+            // 
+            // NazwaSpec
+            // 
+            this.NazwaSpec.HeaderText = "Nazwa Specjalizacji";
+            this.NazwaSpec.Name = "NazwaSpec";
+            this.NazwaSpec.ReadOnly = true;
+            this.NazwaSpec.Width = 220;
             // 
             // DodSpec
             // 
@@ -70,6 +83,7 @@
             this.EdtSpec.TabIndex = 4;
             this.EdtSpec.Text = "Edytuj Specjalizację";
             this.EdtSpec.UseVisualStyleBackColor = true;
+            this.EdtSpec.Click += new System.EventHandler(this.EdtSpec_Click);
             // 
             // UsuSpec
             // 
@@ -80,19 +94,6 @@
             this.UsuSpec.Text = "Usuń Specjalizację";
             this.UsuSpec.UseVisualStyleBackColor = true;
             this.UsuSpec.Click += new System.EventHandler(this.UsuSpec_Click);
-            // 
-            // Id_specjalizacji
-            // 
-            this.Id_specjalizacji.HeaderText = "ID Specjalizaji";
-            this.Id_specjalizacji.Name = "Id_specjalizacji";
-            this.Id_specjalizacji.ReadOnly = true;
-            // 
-            // NazwaSpec
-            // 
-            this.NazwaSpec.HeaderText = "Nazwa Specjalizacji";
-            this.NazwaSpec.Name = "NazwaSpec";
-            this.NazwaSpec.ReadOnly = true;
-            this.NazwaSpec.Width = 220;
             // 
             // Odswierz
             // 
