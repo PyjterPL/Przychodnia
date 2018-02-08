@@ -60,11 +60,12 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             var zapytanie = string.Format("SELECT * oddzialy WHERE Id_lekarza={0}", id_lek);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
             var reader = komenda.ExecuteReader();
-
+            DbHelper.Polaczenie.Open();
             while(reader.Read())
             {
                 SpecIDs.Add((int)reader["Id_specjalizacji"]);
             }
+            DbHelper.Polaczenie.Close();
         }
         public static string PobierzWszystkieSpecjalizacjeLekarza(int id_lekarza)
         {
