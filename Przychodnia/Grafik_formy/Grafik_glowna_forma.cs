@@ -77,17 +77,6 @@ namespace Przychodnia.Grafik_formy
                     }
                 }
             }
-            /* foreach (DataGridViewRow row in this.Tabela.Rows)
-             {
-                 if (row.Cells["ID"].Value==null)
-                 {
-                     Tabela.Rows[row.Index].Cells["Pacjent"].Value = "";
-                     Tabela.Rows[row.Index].Cells["Opis"].Value = "";
-                     Tabela.Rows[row.Index].Cells["Oddzial"].Value = "";
-                     //SetValues("", godzina.ToString(), "", "", "");
-                     row.DefaultCellStyle.BackColor = Color.White;
-                 }
-             }*/
         }
 
         private void Pokaz_button_Click(object sender, EventArgs e)
@@ -126,7 +115,11 @@ namespace Przychodnia.Grafik_formy
                     var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
                     if (spec_form.wybrana.ID_specjalizacji > 0)
                     {
-                        Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", spec_form.wybrana.ID_specjalizacji));
+                        //pobrać id oddziału po lekarzu i id specjalizacji
+                        //var oddzial = 
+                        // Oddzial.PobierzOddzialLekarza(ID, 0);
+                        var oddzial = Obiekty_Bazy.Oddzial.PobierzOddzialLekarza(ID, spec_form.wybrana.ID_specjalizacji);
+                        Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "",oddzial.IdOdzialu));//Id oddziału zamiast id specjalizacju!
                     }
                     else
                     {
@@ -227,6 +220,11 @@ namespace Przychodnia.Grafik_formy
                 MessageBox.Show("Odwołano!");
                 Odswierz();
             }
+        }
+
+        private void lekarz_comboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Odswierz();
         }
     }
 }

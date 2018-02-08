@@ -31,7 +31,7 @@ namespace Przychodnia.Obiekty_Bazy
                 var pacjent = Pacjent.PobierzPacjenta((int)IdPacjenta);
                 NazwaPacjent = pacjent.Imie + " " + pacjent.Nazwisko;
             }
-            if (idodzialu > 0)
+            if (IdOddzialu > 0)
             {
                 var oddzial = Oddzial.PobierzOddzial((int)idodzialu);
                 var specjalizacja = Specjalizacja.PobierzSpecjalizacje(oddzial.IdSpecjalizacji); // EXCEPTION 
