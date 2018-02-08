@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Przychodnia.Obiekty_Bazy;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 namespace Przychodnia.OddzialySpecjalizacje_formy
 {
     class Oddzialy_Specjalizacje
@@ -17,13 +18,11 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         public string NazwaSpec { get; set; }
         private Oddzialy_Specjalizacje() { }
 
-
-    
-        public Oddzialy_Specjalizacje( int id)
+        public Oddzialy_Specjalizacje(int id)
         {
             bool czyWieleSpec = false;
             string nazwaspec = "";
-            
+
             var zapytanie = string.Format("SELECT specjalizacja.Nazwa" +
                 " FROM lekarze LEFT JOIN oddzialy ON lekarze.Id_lekarza=oddzialy.Id_lekarza " +
                 "LEFT JOIN specjalizacja ON oddzialy.Id_specjalizacji = specjalizacja.Id_specjalizacji " +
@@ -53,6 +52,44 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             NazwaSpec = nazwaspec;
             DbHelper.Polaczenie.Close();
         }
+
+        public static string PobierzWszystkieSpecjalizacjeLekarza(int id_lekarza)
+        {
+
+            bool czyWieleSpec = false;
+            string nazwaspec = "";
+
+            var zapytanie = string.Format("SELECT specjalizacja.Nazwa" +
+                " FROM lekarze LEFT JOIN oddzialy ON lekarze.Id_lekarza=oddzialy.Id_lekarza " +
+                "LEFT JOIN specjalizacja ON oddzialy.Id_specjalizacji = specjalizacja.Id_specjalizacji " +
+                "WHERE lekarze.Id_lekarza ='{0}'", id_lekarza);
+
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            Lekarz lekarz = Lekarz.PobierzLekarza(id_lekarza);
+
+            DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (reader.IsDBNull(0)) // może być konieczne zmiana na 1 
+                {
+                    nazwaspec = "brak okreslonej specjalizacji";
+                }
+                else
+                {
+                    if (czyWieleSpec == true) nazwaspec += ", " + (string)reader["Nazwa"];
+                    else nazwaspec += (string)reader["Nazwa"];
+                }
+                czyWieleSpec = true;
+
+            }
+
+            DbHelper.Polaczenie.Close();
+            return nazwaspec;
+
+        }
         public Oddzialy_Specjalizacje(Lekarz lek)
         {
             string nazwaspec = "";
@@ -71,7 +108,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
             while (reader.Read())
             {
-                if(reader.IsDBNull(0))
+                if (reader.IsDBNull(0))
                 {
                     nazwaspec = "brak okreslonej specjalizacji";
                 }
@@ -88,13 +125,13 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
         }
 
-       public static List<Oddzialy_Specjalizacje> PobierzSpecjalizacjeWszystkichLekarzy()
+        public static List<Oddzialy_Specjalizacje> PobierzSpecjalizacjeWszystkichLekarzy()
         {
             Oddzialy_Specjalizacje tmp;
             List<Oddzialy_Specjalizacje> lista = new List<Oddzialy_Specjalizacje>();
             List<Lekarz> listaLekarzy = Lekarz.PobierzWszystkichLekarzy();
-        
-            foreach(Lekarz lek in listaLekarzy)
+
+            foreach (Lekarz lek in listaLekarzy)
             {
                 tmp = new Oddzialy_Specjalizacje(lek);
                 lista.Add(tmp);
@@ -103,9 +140,9 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             return lista;
         }
 
-        public static void PrzypiszSpecDoLekarza(int IDLekarza,int IDSpec)
+        public static void PrzypiszSpecDoLekarza(int IDLekarza, int IDSpec)
         {
-            var zapytanie = string.Format("INSERT INTO oddzialy VALUES('{0}','{1}','{2}' )",null,IDSpec,IDLekarza);
+            var zapytanie = string.Format("INSERT INTO oddzialy VALUES('{0}','{1}','{2}' )", null, IDSpec, IDLekarza);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();
@@ -113,10 +150,10 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             DbHelper.Polaczenie.Close();
         }
 
-        public static void UsunSpecLekarza(int IDLekarza,int IDSpec)
+        public static void UsunSpecLekarza(int IDLekarza, int IDSpec)
         {
             {
-                var zapytanie = string.Format("DELETE FROM oddzialy WHERE Id_lekarza ='{0}' AND Id_specjalizacji='{1}'",IDLekarza,IDSpec);
+                var zapytanie = string.Format("DELETE FROM oddzialy WHERE Id_lekarza ='{0}' AND Id_specjalizacji='{1}'", IDLekarza, IDSpec);
                 var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
                 DbHelper.Polaczenie.Open();
@@ -129,21 +166,34 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             var zapytanie = string.Format("DELETE FROM oddzialy WHERE Id_lekarza ='{0}' ", IDLekarza);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
-            DbHelper.Polaczenie.Open();
-            komenda.ExecuteNonQuery();
-            DbHelper.Polaczenie.Close();
+            try
+            {
+                DbHelper.Polaczenie.Open();
+                komenda.ExecuteNonQuery();
+                DbHelper.Polaczenie.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Uwaga, lekarz lub lekarze,których specjalizacje starasz się usunąć, nadal mają umówione wizyty.Najpierw usun wszystkie wizyty,następnie ponów próbę", "Błąd");
+            }
         }
 
         public static void UsunWszystkieSpecWszystkich()
         {
             var zapytanie = string.Format("DELETE FROM oddzialy");
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
-            DbHelper.Polaczenie.Open();
-            komenda.ExecuteNonQuery();
-            DbHelper.Polaczenie.Close();
+            try
+            {
+                DbHelper.Polaczenie.Open();
+                komenda.ExecuteNonQuery();
+                DbHelper.Polaczenie.Close();
+            }
+            catch(MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Uwaga, lekarz lub lekarze,których specjalizacje starasz się usunąć, nadal mają umówione wizyty.Najpierw usun wszystkie wizyty,następnie ponów próbę", "Błąd");
+            }
         }
     }
 
-    
+
 }

@@ -18,7 +18,7 @@ namespace Przychodnia.Obiekty_Bazy
         public string NazwaPacjent { get; set; }
 
         public string NazwaSpecjalizacji { get; set; }
-        public Grafik(int id,int idlekarza,DateTime dzienod,int? idpacjenta,string opis,int? idodzialu)
+        public Grafik(int id, int idlekarza, DateTime dzienod, int? idpacjenta, string opis, int? idodzialu)
         {
             this.ID = id;
             this.IdLekarza = idlekarza;
@@ -26,23 +26,23 @@ namespace Przychodnia.Obiekty_Bazy
             this.IdPacjenta = idpacjenta;
             this.Opis = opis;
             this.IdOddzialu = idodzialu;
-            if(IdPacjenta >0 )
-            {   
+            if (IdPacjenta > 0)
+            {
                 var pacjent = Pacjent.PobierzPacjenta((int)IdPacjenta);
-                NazwaPacjent = pacjent.Imie + " "+ pacjent.Nazwisko;
+                NazwaPacjent = pacjent.Imie + " " + pacjent.Nazwisko;
             }
-            if(idodzialu > 0)
+            if (idodzialu > 0)
             {
                 var oddzial = Oddzial.PobierzOddzial((int)idodzialu);
-                var specjalizacja = Specjalizacja.PobierzSpecjalizacje(oddzial.IdSpecjalizacji);
+                var specjalizacja = Specjalizacja.PobierzSpecjalizacje(oddzial.IdSpecjalizacji); // EXCEPTION 
                 NazwaSpecjalizacji = specjalizacja.nazwa;
             }
 
-           // this.NazwaPacjenta = Pacjent.PobierzPacjenta(IdPacjenta).Imie;
+            // this.NazwaPacjenta = Pacjent.PobierzPacjenta(IdPacjenta).Imie;
         }
         public static void DodajGrafik(Grafik grafik)
         {
-            var zapytanie = string.Format("INSERT INTO grafik VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", null, grafik.IdLekarza, grafik.Dzien_od.ToString("yyyy-MM-dd HH:mm:ss"),grafik.IdPacjenta,grafik.Opis,grafik.IdOddzialu); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+            var zapytanie = string.Format("INSERT INTO grafik VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", null, grafik.IdLekarza, grafik.Dzien_od.ToString("yyyy-MM-dd HH:mm:ss"), grafik.IdPacjenta, grafik.Opis, grafik.IdOddzialu); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();
@@ -51,7 +51,7 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Close();
         }
-        public static void UmowWizyte(int idpacjenta,int idgrafiku)
+        public static void UmowWizyte(int idpacjenta, int idgrafiku)
         {
             var zapytanie = string.Format("UPDATE grafik SET Id_pacjenta='{0}' WHERE Id_grafiku='{1}'", idpacjenta, idgrafiku);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
@@ -75,8 +75,8 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void UsunGrafik(int id)
         {
-      
-            var zapytanie = string.Format("DELETE FROM grafik WHERE Id_grafiku='{0}'",id); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+
+            var zapytanie = string.Format("DELETE FROM grafik WHERE Id_grafiku='{0}'", id); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();
@@ -84,8 +84,8 @@ namespace Przychodnia.Obiekty_Bazy
             komenda.ExecuteNonQuery();
 
             DbHelper.Polaczenie.Close();
-        
-    }
+
+        }
         public static List<Grafik> PobierzGrafikDleLekarza(int idlekarza)
         {
             int id;
@@ -107,8 +107,8 @@ namespace Przychodnia.Obiekty_Bazy
 
                 id = (int)reader["Id_grafiku"];
                 dzienod = (DateTime)reader["Dzien_od"];
-               // idpacjenta = null;
-              
+                // idpacjenta = null;
+
                 opis = reader["Opis"].ToString();
                 idoddzialu = (int)reader["Id_oddzialu"];
                 var idpacjenta = reader["Id_pacjenta"];
@@ -116,7 +116,7 @@ namespace Przychodnia.Obiekty_Bazy
                 {
                     var grafik = new Grafik(id, idlekarza, dzienod, (int)idpacjenta, opis, idoddzialu);
                     lista.Add(grafik);
-                  
+
                 }
                 else
                 {
@@ -126,7 +126,7 @@ namespace Przychodnia.Obiekty_Bazy
             }
             polaczenie.Close();
             return lista;
-        
+
         }
     }
 }

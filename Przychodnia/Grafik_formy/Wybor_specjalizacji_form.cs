@@ -36,10 +36,10 @@ namespace Przychodnia.Grafik_formy
             InitializeComponent();
             pacjenci = true;
             lista_pacjentow = Pacjent.PobierzWszystkichPacjentow();//Specjalizacja.PobierzWszystkieSpecjalizacjeLekarza(ID);
-           // this.comboBox1.Items.Add("Nie wybieraj");
+                                                                   // this.comboBox1.Items.Add("Nie wybieraj");
             foreach (var pacjent in lista_pacjentow)
             {
-                this.comboBox1.Items.Add(pacjent.Imie + " " +pacjent.Nazwisko);
+                this.comboBox1.Items.Add(pacjent.Imie + " " + pacjent.Nazwisko);
             }
             this.comboBox1.SelectedIndex = 0;
         }
@@ -55,7 +55,7 @@ namespace Przychodnia.Grafik_formy
             }
             else
             {
-                
+
                 if (nazwa == "Nie wybieraj")
                 {
                     wybrana = new Specjalizacja(-1, "");
@@ -64,7 +64,7 @@ namespace Przychodnia.Grafik_formy
                 {
                     var id = lista_spec.First(i => i.nazwa == nazwa).ID_specjalizacji;
                     wybrana = new Specjalizacja(id, nazwa);
-                }        
+                }
             }
             this.Close();
         }

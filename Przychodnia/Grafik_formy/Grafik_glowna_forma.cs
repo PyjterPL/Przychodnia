@@ -23,20 +23,20 @@ namespace Przychodnia.Grafik_formy
             int i = 0;
             while (data.Day == dzien)
             {
-                Tabela.Rows.Insert(i, null, data.TimeOfDay,null,null,null);
-                data=data.AddMinutes(15);
+                Tabela.Rows.Insert(i, null, data.TimeOfDay, null, null, null);
+                data = data.AddMinutes(15);
                 i++;
             }
             _lekarze = Lekarz.PobierzWszystkichLekarzy();
-            foreach(Lekarz lekarz in _lekarze)
+            foreach (Lekarz lekarz in _lekarze)
             {
                 this.lekarz_comboBox.Items.Add(lekarz.Imie + " " + lekarz.Nazwisko);
             }
             this.lekarz_comboBox.SelectedIndex = 0;
             Odswierz();
-            
+
         }
-       public  void Odswierz()
+        public void Odswierz()
         {
             var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
             var lista = Grafik.PobierzGrafikDleLekarza(ID);
@@ -77,18 +77,18 @@ namespace Przychodnia.Grafik_formy
                     }
                 }
             }
-           /* foreach (DataGridViewRow row in this.Tabela.Rows)
-            {
-                if (row.Cells["ID"].Value==null)
-                {
-                    Tabela.Rows[row.Index].Cells["Pacjent"].Value = "";
-                    Tabela.Rows[row.Index].Cells["Opis"].Value = "";
-                    Tabela.Rows[row.Index].Cells["Oddzial"].Value = "";
-                    //SetValues("", godzina.ToString(), "", "", "");
-                    row.DefaultCellStyle.BackColor = Color.White;
-                }
-            }*/
-}
+            /* foreach (DataGridViewRow row in this.Tabela.Rows)
+             {
+                 if (row.Cells["ID"].Value==null)
+                 {
+                     Tabela.Rows[row.Index].Cells["Pacjent"].Value = "";
+                     Tabela.Rows[row.Index].Cells["Opis"].Value = "";
+                     Tabela.Rows[row.Index].Cells["Oddzial"].Value = "";
+                     //SetValues("", godzina.ToString(), "", "", "");
+                     row.DefaultCellStyle.BackColor = Color.White;
+                 }
+             }*/
+        }
 
         private void Pokaz_button_Click(object sender, EventArgs e)
         {
@@ -99,35 +99,36 @@ namespace Przychodnia.Grafik_formy
         {
             if (Tabela.SelectedRows.Count > 0)
             {
-                
+
 
                 var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
                 var spec_form = new Wybor_specjalizacji_form(ID);
                 spec_form.ShowDialog();
                 if (spec_form.wybrana == null) return;
-                
-                var lista = Grafik.PobierzGrafikDleLekarza(ID);
-                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
-                    {
-                        var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
 
-                        var znalezione = lista.Find(i => i.Dzien_od == wybrana_data_godzina);
-                        if (znalezione != null)
-                        {
-                            MessageBox.Show("W zaznaczonych godzinach jest już ustalony grafik!");
-                            return;
-                        }
-                            var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
-                    }
+                var lista = Grafik.PobierzGrafikDleLekarza(ID);
                 foreach (DataGridViewRow row in this.Tabela.SelectedRows)
                 {
                     var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
-                    
+
+                    var znalezione = lista.Find(i => i.Dzien_od == wybrana_data_godzina);
+                    if (znalezione != null)
+                    {
+                        MessageBox.Show("W zaznaczonych godzinach jest już ustalony grafik!");
+                        return;
+                    }
+                    var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
+                }
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                {
+                    var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
+
                     var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
                     if (spec_form.wybrana.ID_specjalizacji > 0)
                     {
                         Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", spec_form.wybrana.ID_specjalizacji));
-                    }else
+                    }
+                    else
                     {
                         Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", null));
                     }
@@ -151,7 +152,7 @@ namespace Przychodnia.Grafik_formy
                             MessageBox.Show("Zaznaczono godziny, które są puste!");
                             return;
                         }
-                        if(row.Cells["Pacjent"].Value != null)
+                        if (row.Cells["Pacjent"].Value != null)
                         {
                             MessageBox.Show("Najpierw odwołaj wizyty!");
                             return;
@@ -164,7 +165,7 @@ namespace Przychodnia.Grafik_formy
                         Grafik.UsunGrafik(id);
                     }
                     Odswierz();
-                } 
+                }
             }
         }
 
@@ -217,7 +218,7 @@ namespace Przychodnia.Grafik_formy
                         return;
                     }
                 }
-              
+
 
                 foreach (DataGridViewRow row in this.Tabela.SelectedRows)
                 {

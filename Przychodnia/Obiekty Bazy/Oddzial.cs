@@ -8,13 +8,13 @@ namespace Przychodnia.Obiekty_Bazy
 {
     class Oddzial
     {
-      //  private int IdOdzialu;
-      ///  private int IdSpecjalizacji;
-//private int IdLekarza;
+        //  private int IdOdzialu;
+        ///  private int IdSpecjalizacji;
+        //private int IdLekarza;
 
         public int IdOdzialu { get; set; }
         public int IdSpecjalizacji { get; set; }
-        public int IdLekarza { get ; set ; }
+        public int IdLekarza { get; set; }
 
         Oddzial(int IdOdzialu, int IdSpecjalizacji, int idLekarza)
         {
@@ -23,11 +23,11 @@ namespace Przychodnia.Obiekty_Bazy
             this.IdSpecjalizacji = IdSpecjalizacji;
         }
 
-        
+
 
         public static List<Oddzial> PobierzWszystkieOddzialy()
         {
-          
+
             int pOddzial;
             int pSpecjalizacja;
             int pLekarz;
@@ -37,13 +37,13 @@ namespace Przychodnia.Obiekty_Bazy
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             DbHelper.Polaczenie.Open();
-            var reader = komenda.ExecuteReader(); 
+            var reader = komenda.ExecuteReader();
 
-            while(reader.Read())
+            while (reader.Read())
             {
-                pOddzial       = (int)reader["Id_oddzialu"];
+                pOddzial = (int)reader["Id_oddzialu"];
                 pSpecjalizacja = (int)reader["Id_Specjalizacji"];
-                pLekarz        = (int)reader["Id_lekarza"];
+                pLekarz = (int)reader["Id_lekarza"];
 
                 var oddzial = new Oddzial(pOddzial, pSpecjalizacja, pLekarz);
                 oddzialy.Add(oddzial);
@@ -59,9 +59,9 @@ namespace Przychodnia.Obiekty_Bazy
             int pSpecjalizacja;
             int pLekarz;
 
-            var oddzialy  = new List<Oddzial>();
-            var zapytanie = string.Format( "SELECT * FROM oddzialy WHERE Id_oddzialu='{0}'",index);
-            var komenda   = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            var oddzialy = new List<Oddzial>();
+            var zapytanie = string.Format("SELECT * FROM oddzialy WHERE Id_oddzialu='{0}'", index);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             Oddzial oddzial = null;
 
@@ -74,7 +74,7 @@ namespace Przychodnia.Obiekty_Bazy
                 pSpecjalizacja = (int)reader["Id_Specjalizacji"];
                 pLekarz = (int)reader["Id_lekarza"];
 
-                 oddzial = new Oddzial(pOddzial, pSpecjalizacja, pLekarz);
+                oddzial = new Oddzial(pOddzial, pSpecjalizacja, pLekarz);
                 DbHelper.Polaczenie.Close();
                 return oddzial;
             }
@@ -88,7 +88,7 @@ namespace Przychodnia.Obiekty_Bazy
             int pLekarz;
 
             var lista = new List<Oddzial>();
-            var zapytanie = string.Format("SELECT * FROM oddzialy WHERE Id_lekarza='{0}'",ID);
+            var zapytanie = string.Format("SELECT * FROM oddzialy WHERE Id_lekarza='{0}'", ID);
 
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 

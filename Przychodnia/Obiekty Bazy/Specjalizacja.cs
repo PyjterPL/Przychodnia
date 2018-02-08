@@ -87,6 +87,7 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Close();
             return null;
         }
+
         public static List<Specjalizacja> PobierzWszystkieSpecjalizacjeLekarza(int ID)
         {
             int pId_specjalizacji;
