@@ -51,6 +51,20 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Close();
         }
+
+        public static void UsunGrafik(int id)
+        {
+      
+            var zapytanie = string.Format("DELETE FROM grafik WHERE Id_grafiku='{0}'",id); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        
+    }
         public static List<Grafik> PobierzGrafikDleLekarza(int idlekarza)
         {
             int id;

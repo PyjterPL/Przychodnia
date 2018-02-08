@@ -40,6 +40,18 @@ namespace Przychodnia.Grafik_formy
         {
             var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
             var lista = Grafik.PobierzGrafikDleLekarza(ID);
+            this.Tabela.Rows.Clear();
+            var data = this.dateTimePicker1.Value;
+            var ts = new TimeSpan(0, 0, 0);
+            data = data.Date + ts;
+            var dzien = this.dateTimePicker1.Value.Day;
+            int x = 0;
+            while (data.Day == dzien)
+            {
+                Tabela.Rows.Insert(x, null, data.TimeOfDay, null, null, null);
+                data = data.AddMinutes(15);
+                x++;
+            }
             foreach (Grafik grafik in lista)
             {
                 if (grafik.Dzien_od.Date == dateTimePicker1.Value.Date)
@@ -58,11 +70,25 @@ namespace Przychodnia.Grafik_formy
                             {
                                 row.DefaultCellStyle.BackColor = Color.Red;
                             }
+                            break;
+
                         }
+
                     }
                 }
             }
-        }
+           /* foreach (DataGridViewRow row in this.Tabela.Rows)
+            {
+                if (row.Cells["ID"].Value==null)
+                {
+                    Tabela.Rows[row.Index].Cells["Pacjent"].Value = "";
+                    Tabela.Rows[row.Index].Cells["Opis"].Value = "";
+                    Tabela.Rows[row.Index].Cells["Oddzial"].Value = "";
+                    //SetValues("", godzina.ToString(), "", "", "");
+                    row.DefaultCellStyle.BackColor = Color.White;
+                }
+            }*/
+}
 
         private void Pokaz_button_Click(object sender, EventArgs e)
         {
@@ -115,7 +141,27 @@ namespace Przychodnia.Grafik_formy
         {
             if (Tabela.SelectedRows.Count > 0)
             {
-                var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
+                var decyzja = MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone?", "Usuwanie lekarzy", MessageBoxButtons.YesNo);
+                if (decyzja == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                    {
+                        if (row.Cells["ID"].Value == null)
+                        {
+                            MessageBox.Show("Zaznaczono godziny, które są puste!");
+                            return;
+                        }
+                    }
+
+                    foreach (DataGridViewRow row in Tabela.SelectedRows)
+                    {
+                        var id = (int)row.Cells["ID"].Value;
+                        Grafik.UsunGrafik(id);
+                    }
+                    Odswierz();
+                }
+               
+                //var ID = Tabela.SelectedRows.//_lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
             }
         }
     }

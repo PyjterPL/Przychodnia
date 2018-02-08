@@ -34,15 +34,15 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Pokaz_button = new System.Windows.Forms.Button();
             this.Tabela = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pacjent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Oddział = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Umow_button = new System.Windows.Forms.Button();
             this.Odwolaj_button = new System.Windows.Forms.Button();
             this.Dodaj_godzin_button = new System.Windows.Forms.Button();
             this.Odwolaj_godziny_button = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pacjent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Oddzial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,42 +99,12 @@
             this.Godzina,
             this.Pacjent,
             this.Opis,
-            this.Oddział});
+            this.Oddzial});
             this.Tabela.Location = new System.Drawing.Point(12, 38);
             this.Tabela.Name = "Tabela";
             this.Tabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabela.Size = new System.Drawing.Size(551, 386);
             this.Tabela.TabIndex = 5;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Godzina
-            // 
-            this.Godzina.HeaderText = "Godzina";
-            this.Godzina.Name = "Godzina";
-            this.Godzina.ReadOnly = true;
-            // 
-            // Pacjent
-            // 
-            this.Pacjent.HeaderText = "Pacjent";
-            this.Pacjent.Name = "Pacjent";
-            this.Pacjent.ReadOnly = true;
-            // 
-            // Opis
-            // 
-            this.Opis.HeaderText = "Opis";
-            this.Opis.Name = "Opis";
-            this.Opis.ReadOnly = true;
-            // 
-            // Oddział
-            // 
-            this.Oddział.HeaderText = "Oddział";
-            this.Oddział.Name = "Oddział";
-            this.Oddział.ReadOnly = true;
             // 
             // Umow_button
             // 
@@ -174,6 +144,36 @@
             this.Odwolaj_godziny_button.UseVisualStyleBackColor = true;
             this.Odwolaj_godziny_button.Click += new System.EventHandler(this.Odwolaj_godziny_button_Click);
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Godzina
+            // 
+            this.Godzina.HeaderText = "Godzina";
+            this.Godzina.Name = "Godzina";
+            this.Godzina.ReadOnly = true;
+            // 
+            // Pacjent
+            // 
+            this.Pacjent.HeaderText = "Pacjent";
+            this.Pacjent.Name = "Pacjent";
+            this.Pacjent.ReadOnly = true;
+            // 
+            // Opis
+            // 
+            this.Opis.HeaderText = "Opis";
+            this.Opis.Name = "Opis";
+            this.Opis.ReadOnly = true;
+            // 
+            // Oddzial
+            // 
+            this.Oddzial.HeaderText = "Oddział";
+            this.Oddzial.Name = "Oddzial";
+            this.Oddzial.ReadOnly = true;
+            // 
             // Grafik_glowna_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,14 +205,14 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button Pokaz_button;
         private System.Windows.Forms.DataGridView Tabela;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Godzina;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pacjent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Oddział;
         private System.Windows.Forms.Button Umow_button;
         private System.Windows.Forms.Button Odwolaj_button;
         private System.Windows.Forms.Button Dodaj_godzin_button;
         private System.Windows.Forms.Button Odwolaj_godziny_button;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Godzina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pacjent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Oddzial;
     }
 }
