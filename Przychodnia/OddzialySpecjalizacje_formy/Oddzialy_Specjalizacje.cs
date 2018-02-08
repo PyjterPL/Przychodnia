@@ -15,11 +15,13 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         //private Oddzial oddzial;
         //private string nazwaSpec;
         public Lekarz lekarz { get; set; }
+        public List<int> SpecIDs { get; set; }
         public string NazwaSpec { get; set; }
         private Oddzialy_Specjalizacje() { }
 
         public Oddzialy_Specjalizacje(int id)
         {
+            SpecIDs = new List<int>();
             bool czyWieleSpec = false;
             string nazwaspec = "";
 
@@ -51,8 +53,19 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             }
             NazwaSpec = nazwaspec;
             DbHelper.Polaczenie.Close();
+            PobierzIDSpec(id);
         }
+        private void PobierzIDSpec(int id_lek)
+        {
+            var zapytanie = string.Format("SELECT * oddzialy WHERE Id_lekarza={0}", id_lek);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            var reader = komenda.ExecuteReader();
 
+            while(reader.Read())
+            {
+                SpecIDs.Add((int)reader["Id_specjalizacji"]);
+            }
+        }
         public static string PobierzWszystkieSpecjalizacjeLekarza(int id_lekarza)
         {
 
