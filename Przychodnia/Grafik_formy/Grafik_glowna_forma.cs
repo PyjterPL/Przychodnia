@@ -33,6 +33,7 @@ namespace Przychodnia.Grafik_formy
                 this.lekarz_comboBox.Items.Add(lekarz.Imie + " " + lekarz.Nazwisko);
             }
             this.lekarz_comboBox.SelectedIndex = 0;
+            Odswierz();
             
         }
        public  void Odswierz()
@@ -48,7 +49,7 @@ namespace Przychodnia.Grafik_formy
                         var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
                         if (godzina == grafik.Dzien_od.TimeOfDay)
                         {
-                            Tabela.Rows[row.Index].SetValues(grafik.ID, grafik.Dzien_od.TimeOfDay.ToString(), grafik.IdPacjenta, grafik.Opis, grafik.IdOddzialu);
+                            Tabela.Rows[row.Index].SetValues(grafik.ID, grafik.Dzien_od.TimeOfDay.ToString(), grafik.NazwaPacjent, grafik.Opis, grafik.NazwaSpecjalizacji);
                             if (grafik.IdPacjenta == 0)
                             {
                                 row.DefaultCellStyle.BackColor = Color.Green;
@@ -107,6 +108,14 @@ namespace Przychodnia.Grafik_formy
                 }
                 MessageBox.Show("Dodano godziny do grafiku!");
                 Odswierz();
+            }
+        }
+
+        private void Odwolaj_godziny_button_Click(object sender, EventArgs e)
+        {
+            if (Tabela.SelectedRows.Count > 0)
+            {
+                var ID = _lekarze.First(i => i.Imie + " " + i.Nazwisko == this.lekarz_comboBox.Text).ID;
             }
         }
     }

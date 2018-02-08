@@ -15,6 +15,9 @@ namespace Przychodnia.Obiekty_Bazy
         public int? IdPacjenta { get; set; }//może być nullem  
         public string Opis { get; set; }
         public int? IdOddzialu { get; set; }
+        public string NazwaPacjent { get; set; }
+
+        public string NazwaSpecjalizacji { get; set; }
         public Grafik(int id,int idlekarza,DateTime dzienod,int? idpacjenta,string opis,int? idodzialu)
         {
             this.ID = id;
@@ -23,6 +26,19 @@ namespace Przychodnia.Obiekty_Bazy
             this.IdPacjenta = idpacjenta;
             this.Opis = opis;
             this.IdOddzialu = idodzialu;
+            if(IdPacjenta >0 )
+            {   
+                var pacjent = Pacjent.PobierzPacjenta((int)IdPacjenta);
+                NazwaPacjent = pacjent.Imie + " "+ pacjent.Nazwisko;
+            }
+            if(idodzialu > 0)
+            {
+                var oddzial = Oddzial.PobierzOddzial((int)idodzialu);
+                var specjalizacja = Specjalizacja.PobierzSpecjalizacje(oddzial.IdSpecjalizacji);
+                NazwaSpecjalizacji = specjalizacja.nazwa;
+            }
+
+           // this.NazwaPacjenta = Pacjent.PobierzPacjenta(IdPacjenta).Imie;
         }
         public static void DodajGrafik(Grafik grafik)
         {

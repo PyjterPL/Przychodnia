@@ -8,13 +8,13 @@ namespace Przychodnia.Obiekty_Bazy
 {
     class Oddzial
     {
-        private int IdOdzialu;
-        private int IdSpecjalizacji;
-        private int IdLekarza;
+      //  private int IdOdzialu;
+      ///  private int IdSpecjalizacji;
+//private int IdLekarza;
 
-        public int IDOdzialu { get; set; }
-        public int IDSpecjalizacji { get; set; }
-        public int IDLekarza { get ; set ; }
+        public int IdOdzialu { get; set; }
+        public int IdSpecjalizacji { get; set; }
+        public int IdLekarza { get ; set ; }
 
         Oddzial(int IdOdzialu, int IdSpecjalizacji, int idLekarza)
         {

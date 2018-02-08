@@ -72,7 +72,7 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Open();
             var reader = komenda.ExecuteReader();
-            DbHelper.Polaczenie.Close();
+            
 
             if (reader.Read())
             {
@@ -80,9 +80,10 @@ namespace Przychodnia.Obiekty_Bazy
                 pNazwa = (string)reader["Nazwa"];
 
                 var specjalizacja = new Specjalizacja(pId_specjalizacji, pNazwa);
-                
+                DbHelper.Polaczenie.Close();
                 return specjalizacja;
             }
+            DbHelper.Polaczenie.Close();
             return null;
         }
         public static List<Specjalizacja> PobierzWszystkieSpecjalizacjeLekarza(int ID)

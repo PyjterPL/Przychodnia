@@ -172,6 +172,7 @@
             this.Odwolaj_godziny_button.TabIndex = 9;
             this.Odwolaj_godziny_button.Text = "Odwołaj godziny pracy";
             this.Odwolaj_godziny_button.UseVisualStyleBackColor = true;
+            this.Odwolaj_godziny_button.Click += new System.EventHandler(this.Odwolaj_godziny_button_Click);
             // 
             // Grafik_glowna_forma
             // 
