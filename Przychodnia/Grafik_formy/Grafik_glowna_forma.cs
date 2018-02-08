@@ -193,18 +193,6 @@ namespace Przychodnia.Grafik_formy
                 foreach (DataGridViewRow row in this.Tabela.SelectedRows)
                 {
                     Grafik.UmowWizyte((int)wybor_pacjenta.wybrany_pacjent.ID, (int)row.Cells["ID"].Value);
-
-
-                    //if (row.Cells["ID"].Value == null)
-                   // {
-                    //    MessageBox.Show("Zaznaczono godziny, które są puste!");
-                   //     return;
-                  ///  }
-                   // if (row.Cells["Pacjent"].Value != null)
-                  //  {
-                   //     MessageBox.Show("Godziny są zajęte");
-                   //     return;
-                   // }
                 }
                 MessageBox.Show("Umówiono wizytę");
                 Odswierz();
@@ -213,7 +201,31 @@ namespace Przychodnia.Grafik_formy
 
         private void Odwolaj_button_Click(object sender, EventArgs e)
         {
+            if (Tabela.SelectedRows.Count > 0)
+            {
 
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                {
+                    if (row.Cells["ID"].Value == null)
+                    {
+                        MessageBox.Show("Zaznaczono godziny, które są puste!");
+                        return;
+                    }
+                    if (row.Cells["Pacjent"].Value == null)
+                    {
+                        MessageBox.Show("Zaznaczone godziny są wolne!");
+                        return;
+                    }
+                }
+              
+
+                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                {
+                    Grafik.OdwolajWizyte((int)row.Cells["ID"].Value);
+                }
+                MessageBox.Show("Odwołano!");
+                Odswierz();
+            }
         }
     }
 }

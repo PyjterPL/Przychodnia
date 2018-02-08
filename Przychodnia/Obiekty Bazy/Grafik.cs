@@ -62,6 +62,17 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Close();
         }
+        public static void OdwolajWizyte(int idgrafiku)
+        {
+            var zapytanie = string.Format("UPDATE grafik SET Id_pacjenta='{0}' WHERE Id_grafiku='{1}'", null, idgrafiku);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        }
         public static void UsunGrafik(int id)
         {
       
