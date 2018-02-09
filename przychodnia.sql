@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2018 at 12:38 PM
+-- Generation Time: Feb 09, 2018 at 01:12 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -45,7 +45,7 @@ INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Op
 (69, 1, '2018-02-08 01:00:00', 0, '', 8),
 (70, 2, '2018-02-08 01:00:00', 0, '', 9),
 (71, 2, '2018-02-08 01:45:00', 0, '', 0),
-(73, 1, '2018-02-09 00:30:00', 0, '', 8);
+(75, 1, '2018-02-09 02:00:00', 0, '', 8);
 
 -- --------------------------------------------------------
 
@@ -69,8 +69,7 @@ CREATE TABLE `lekarze` (
 
 INSERT INTO `lekarze` (`Id_lekarza`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`) VALUES
 (1, 'Adam', 'Lekarz', '2018-02-01', 'ul.Miodowa 25 71-706', 1, '546565656'),
-(2, 'Paweł', 'Kaczmarczyk', '2018-02-14', 'asdasdasd', 2, 'jakiś'),
-(6, 'edit', 'Jeditss', '2017-11-30', 'asdedit', 1, 'asdedit');
+(2, 'Paweł', 'Kaczmarczyk', '2018-02-14', 'asdasdasd', 2, 'jakiś');
 
 -- --------------------------------------------------------
 
@@ -121,10 +120,17 @@ INSERT INTO `oddzialy` (`Id_oddzialu`, `Id_specjalizacji`, `Id_lekarza`) VALUES
 CREATE TABLE `odwolane` (
   `Id_odwolania` int(11) NOT NULL,
   `Id_pacjenta` int(11) NOT NULL,
-  `Id_lekarza` int(11) NOT NULL,
+  `Lekarz` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `Specjalizacja` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `Dzien_od` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Dumping data for table `odwolane`
+--
+
+INSERT INTO `odwolane` (`Id_odwolania`, `Id_pacjenta`, `Lekarz`, `Specjalizacja`, `Dzien_od`) VALUES
+(3, 8, 'Adam Lekarz', 'Urogol', '2018-02-09 02:00:00');
 
 -- --------------------------------------------------------
 
@@ -261,7 +267,7 @@ ALTER TABLE `specjalizacja`
 -- AUTO_INCREMENT for table `grafik`
 --
 ALTER TABLE `grafik`
-  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `lekarze`
@@ -285,7 +291,7 @@ ALTER TABLE `oddzialy`
 -- AUTO_INCREMENT for table `odwolane`
 --
 ALTER TABLE `odwolane`
-  MODIFY `Id_odwolania` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_odwolania` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pacjenci`
@@ -325,7 +331,6 @@ ALTER TABLE `lekarze`
 -- Constraints for table `oddzialy`
 --
 ALTER TABLE `oddzialy`
-  ADD CONSTRAINT `Lekarz` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`),
   ADD CONSTRAINT `Specjalizacja` FOREIGN KEY (`Id_specjalizacji`) REFERENCES `specjalizacja` (`Id_specjalizacji`);
 
 --
@@ -338,7 +343,6 @@ ALTER TABLE `odwolane`
 -- Constraints for table `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  ADD CONSTRAINT `Lekarz prowadzaca` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Miastaa` FOREIGN KEY (`Id_miasta`) REFERENCES `miasta` (`Id_miasta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

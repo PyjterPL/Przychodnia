@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Przychodnia;
 using Przychodnia.Lekarze_formy;
+using Przychodnia.Obiekty_Bazy;
 namespace Przychodnia
 {
     public partial class LekarzeGlowneOkno : Form
@@ -36,9 +37,21 @@ namespace Przychodnia
             if (Tabela.SelectedRows.Count > 0)
             {
                var decyzja = MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone?", "Usuwanie lekarzy", MessageBoxButtons.YesNo);
-               if(decyzja == DialogResult.Yes)
+               if(decyzja == DialogResult.Yes)//sprawdzic, czy lekarz ma umówione wizyty w grafiku i czy są jakieś w odwołanych
                 {
-                    foreach(DataGridViewRow lekarz in this.Tabela.SelectedRows)
+                    foreach (DataGridViewRow lekarz in this.Tabela.SelectedRows)
+                    {
+                        var ID = (int)lekarz.Cells["ID"].Value;
+                        var lista_wizyt=  Grafik.PobierzGrafikDleLekarza(ID);
+                        if (lista_wizyt.Count > 0)
+                        {
+                            MessageBox.Show("Nie można usunąć lekarza gdyż ma jeszcze umówione wizyty. Odwołaj napierw wizyty");
+                            return;
+                        }
+
+                    }
+
+                    foreach (DataGridViewRow lekarz in this.Tabela.SelectedRows)
                     {
                         var index = lekarz.Index;
                         var ID = (int)lekarz.Cells["ID"].Value;
