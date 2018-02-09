@@ -19,11 +19,11 @@ namespace Przychodnia.Obiekty_Bazy
         public int IdMiasta { get; set; }
         public string Telefon { get; set; }
         public char Plec { get; set; }
-        public int IdLekarza { get; set; }
+        public int? IdLekarza { get; set; }
         public string NazwaMiasta { get; set; }
         public Lekarz LekarzProwadzacy{ get; set; }
 
-        public Pacjent(int? id,string pesel,string imie,string nazwisko,DateTime dataur,string adres,int idmiasta,string telefon,char plec, int idlekarza)
+        public Pacjent(int? id,string pesel,string imie,string nazwisko,DateTime dataur,string adres,int idmiasta,string telefon,char plec, int? idlekarza)
         {
             this.ID = id;
             this.Pesel = pesel;

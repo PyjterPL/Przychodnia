@@ -139,6 +139,7 @@
             // 
             // Usun
             // 
+            this.Usun.Enabled = false;
             this.Usun.Location = new System.Drawing.Point(95, 179);
             this.Usun.Name = "Usun";
             this.Usun.Size = new System.Drawing.Size(75, 23);

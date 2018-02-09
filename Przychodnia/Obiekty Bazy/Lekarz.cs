@@ -79,8 +79,12 @@ namespace Przychodnia
 
         }
 
-        public static Lekarz PobierzLekarza(int index)
+        public static Lekarz PobierzLekarza(int? index)
         {
+            if(index == null)
+            {
+                return new Lekarz("Brak","Brak", new DateTime(), "", 0, "");
+            }
             int id;
             string imie;
             string nazwisko;
@@ -114,7 +118,7 @@ namespace Przychodnia
                 
             }
             polaczenie.Close();
-            return null;
+             return new Lekarz("Brak", "", new DateTime(), "", 0, ""); ;
 
         }
         public static void DodajLekarza(Lekarz lekarz)

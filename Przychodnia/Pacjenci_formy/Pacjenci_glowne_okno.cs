@@ -49,7 +49,7 @@ namespace Przychodnia.Pacjenci_formy
             if (Tabela.SelectedRows.Count > 0)
             {
                 var decyzja = MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone?", "Usuwanie pacjentów", MessageBoxButtons.YesNo);
-                if (decyzja == DialogResult.Yes)
+                if (decyzja == DialogResult.Yes)//TODO:sprawdzić czy ma umówione wizyty i czy ma dane w odwołanych
                 {
                     foreach (DataGridViewRow pacjent in this.Tabela.SelectedRows)
                     {
