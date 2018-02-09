@@ -74,6 +74,8 @@
             this.ComboLekarz.Name = "ComboLekarz";
             this.ComboLekarz.Size = new System.Drawing.Size(379, 21);
             this.ComboLekarz.TabIndex = 12;
+            this.ComboLekarz.SelectedIndexChanged += new System.EventHandler(this.ComboLekarz_SelectedIndexChanged);
+            this.ComboLekarz.TextChanged += new System.EventHandler(this.ComboLekarz_TextChanged);
             // 
             // label3
             // 

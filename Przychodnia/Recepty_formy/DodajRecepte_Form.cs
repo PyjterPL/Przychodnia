@@ -18,7 +18,8 @@ namespace Przychodnia.Recepty_formy
         private ComboboxItem item;
         private Lekarz lekarz = null;
         private Pacjent pacjent = null;
-    
+        private string SzukanyLekarz = "";
+        private string tmp = "";
         public DodajRecepte_Form()
         {
             InitializeComponent();
@@ -28,9 +29,13 @@ namespace Przychodnia.Recepty_formy
             listaPacjentów = Pacjent.PobierzWszystkichPacjentow();
             
             ComboPacjent.Sorted = true;
-            ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboLekarz.Sorted = true;
+            ComboPacjent.DropDownStyle = ComboBoxStyle.DropDown;
+            ComboLekarz.DropDownStyle = ComboBoxStyle.DropDown;
+            ComboPacjent.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ComboLekarz.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ComboLekarz.AutoCompleteSource = AutoCompleteSource.ListItems;
+            ComboPacjent.AutoCompleteSource = AutoCompleteSource.ListItems;
             foreach (Lekarz lek in listaLekarzy)
             {
                 item = new ComboboxItem();
@@ -110,6 +115,19 @@ namespace Przychodnia.Recepty_formy
                 this.Dispose();
             }
             else MessageBox.Show("Wystąpił błąd !");
+
+        }
+
+        private void ComboLekarz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ComboLekarz_TextChanged(object sender, EventArgs e)
+        {
+     
+
+   
 
         }
     }

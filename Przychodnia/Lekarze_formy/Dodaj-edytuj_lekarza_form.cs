@@ -50,7 +50,16 @@ namespace Przychodnia.Lekarze_formy
             this.Dodaj_button.Text = "Edytuj";
         }
 
-
+        private bool SprawdzPoprawnoscPola()
+        {
+            if(Imie_textbox.Text.Length<3 || Nazwisko_textbox.Text.Length<3)
+            {
+                MessageBox.Show("Imię lub Nazwisko jest nieprawidłowe", "Błąd");
+                return false;
+                
+            }
+            return true;
+        } // proste zabezpieczenie, sprawdza długosc stringa ktory jest pobierany z textboxa
 
         private void Anuluj_button_Click(object sender, EventArgs e)
         {
@@ -61,6 +70,7 @@ namespace Przychodnia.Lekarze_formy
         {
             if (edycja)
             {
+                if (SprawdzPoprawnoscPola() == false) return;
                 var imie = this.Imie_textbox.Text;
                 var nazwisko = this.Nazwisko_textbox.Text;
                 var data = this.DataUrodzenia_dtpicker.Value;
@@ -74,6 +84,7 @@ namespace Przychodnia.Lekarze_formy
             }
             else
             {
+                if (SprawdzPoprawnoscPola() == false) return;
                 var imie = this.Imie_textbox.Text;
                 var nazwisko = this.Nazwisko_textbox.Text;
                 var data = this.DataUrodzenia_dtpicker.Value;
