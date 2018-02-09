@@ -33,9 +33,17 @@ namespace Przychodnia.Obiekty_Bazy
             }
             if (IdOddzialu > 0)
             {
+                
                 var oddzial = Oddzial.PobierzOddzial((int)idodzialu);
-                var specjalizacja = Specjalizacja.PobierzSpecjalizacje(oddzial.IdSpecjalizacji); // EXCEPTION 
-                NazwaSpecjalizacji = specjalizacja.nazwa;
+                if (oddzial == null)
+                {
+                    NazwaSpecjalizacji = "Brak specjalizacji";
+                }
+                else
+                {
+                    var specjalizacja = Specjalizacja.PobierzSpecjalizacje(oddzial.IdSpecjalizacji); // EXCEPTION 
+                    NazwaSpecjalizacji = specjalizacja.nazwa;
+                }
             }
 
             // this.NazwaPacjenta = Pacjent.PobierzPacjenta(IdPacjenta).Imie;
