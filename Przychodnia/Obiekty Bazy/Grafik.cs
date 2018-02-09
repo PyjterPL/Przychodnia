@@ -26,6 +26,7 @@ namespace Przychodnia.Obiekty_Bazy
             this.IdPacjenta = idpacjenta;
             this.Opis = opis;
             this.IdOddzialu = idodzialu;
+            this.NazwaSpecjalizacji = "Brak specjalizacji";
             if (IdPacjenta > 0)
             {
                 var pacjent = Pacjent.PobierzPacjenta((int)IdPacjenta);
