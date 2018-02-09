@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Przychodnia.Obiekty_Bazy
 {
-    class Grafik
+    public class Grafik
     {
         public int ID { get; private set; }
         public int IdLekarza { get; set; }
@@ -85,6 +85,34 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Close();
 
+        }
+        public static Grafik PobierzGrafik(int ID)
+        {
+            int id;
+            DateTime dzienod;
+            string opis;
+            int idoddzialu;
+            var polaczenie = DbHelper.StworzPolaczenie();
+
+            var zapytanie = string.Format("SELECT * FROM grafik WHERE Id_grafiku='{0}'", ID);
+            var komenda = new MySqlCommand(zapytanie, polaczenie);
+            polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+            if (reader.Read())
+            {
+                id = (int)reader["Id_grafiku"];
+                dzienod = (DateTime)reader["Dzien_od"];
+
+                opis = reader["Opis"].ToString();
+                idoddzialu = (int)reader["Id_oddzialu"];
+                var idpacjenta = (int)reader["Id_pacjenta"];
+                var id_lekarza = (int)reader["Id_lekarza"];
+                var grafik = new Grafik(id, id_lekarza, dzienod, idpacjenta, opis, idoddzialu);
+                polaczenie.Close();
+                return grafik;
+            }
+            polaczenie.Close();
+            return null;
         }
         public static List<Grafik> PobierzGrafikDleLekarza(int idlekarza)
         {

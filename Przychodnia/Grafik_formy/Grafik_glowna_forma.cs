@@ -115,9 +115,6 @@ namespace Przychodnia.Grafik_formy
                     var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
                     if (spec_form.wybrana.ID_specjalizacji > 0)
                     {
-                        //pobrać id oddziału po lekarzu i id specjalizacji
-                        //var oddzial = 
-                        // Oddzial.PobierzOddzialLekarza(ID, 0);
                         var oddzial = Obiekty_Bazy.Oddzial.PobierzOddzialLekarza(ID, spec_form.wybrana.ID_specjalizacji);
                         Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "",oddzial.IdOdzialu));//Id oddziału zamiast id specjalizacju!
                     }
@@ -215,6 +212,8 @@ namespace Przychodnia.Grafik_formy
 
                 foreach (DataGridViewRow row in this.Tabela.SelectedRows)
                 {
+                    var grafik = Grafik.PobierzGrafik((int)row.Cells["ID"].Value);
+                    Odwolane.DodajOdwolanie(grafik, row.Cells["Oddzial"].Value.ToString());
                     Grafik.OdwolajWizyte((int)row.Cells["ID"].Value);
                 }
                 MessageBox.Show("Odwołano!");

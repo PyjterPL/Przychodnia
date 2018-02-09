@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Obiekty Bazy\Miasto.cs" />
     <Compile Include="Obiekty Bazy\Oddzial.cs" />
+    <Compile Include="Obiekty Bazy\Odwolane.cs" />
     <Compile Include="Obiekty Bazy\Pacjent.cs" />
     <Compile Include="Obiekty Bazy\Polaczenie.cs" />
     <Compile Include="Obiekty Bazy\Recepta.cs" />
