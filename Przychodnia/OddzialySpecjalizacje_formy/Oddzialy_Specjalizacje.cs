@@ -19,7 +19,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         public string NazwaSpec { get; set; }
         private Oddzialy_Specjalizacje() { }
 
-        public Oddzialy_Specjalizacje(int id)//co to za id, czego?
+        public Oddzialy_Specjalizacje(int id_lekarza)// ID LEKARZA 
         {
             SpecIDs = new List<int>();
             bool czyWieleSpec = false;
@@ -28,11 +28,11 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             var zapytanie = string.Format("SELECT specjalizacja.Nazwa" +
                 " FROM lekarze LEFT JOIN oddzialy ON lekarze.Id_lekarza=oddzialy.Id_lekarza " +
                 "LEFT JOIN specjalizacja ON oddzialy.Id_specjalizacji = specjalizacja.Id_specjalizacji " +
-                "WHERE lekarze.Id_lekarza ='{0}'", id);
+                "WHERE lekarze.Id_lekarza ='{0}'", id_lekarza);
 
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
-            lekarz = Lekarz.PobierzLekarza(id);
+            lekarz = Lekarz.PobierzLekarza(id_lekarza);
 
             DbHelper.Polaczenie.Open();
             var reader = komenda.ExecuteReader();
@@ -53,9 +53,9 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             }
             NazwaSpec = nazwaspec;
             DbHelper.Polaczenie.Close();
-            PobierzIDSpec(id);
+            PobierzIDSpec(id_lekarza);
         }
-        private void PobierzIDSpec(int id_lek)
+        private void PobierzIDSpec(int id_lek) // pobiera WSZYSTKIE ID_specjalizacji lekarza i odkłada je na listę 
         {
             var zapytanie = string.Format("SELECT * oddzialy WHERE Id_lekarza={0}", id_lek);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
@@ -154,7 +154,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             return lista;
         }
 
-        public static void PrzypiszSpecDoLekarza(int IDLekarza, int IDSpec)
+        public static void PrzypiszSpecDoLekarza(int IDLekarza, int IDSpec) 
         {
             var zapytanie = string.Format("INSERT INTO oddzialy VALUES('{0}','{1}','{2}' )", null, IDSpec, IDLekarza);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
