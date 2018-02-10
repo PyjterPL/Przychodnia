@@ -46,9 +46,11 @@ namespace Przychodnia.Obiekty_Bazy
 
         public static void DodajSpecjalizacje(string NazwaSpec)
         {
-            var zapytanie = string.Format("INSERT INTO specjalizacja VALUES('{0}','{1}')", null, NazwaSpec);
-            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            var zapytanie = "INSERT INTO specjalizacja VALUES(@null,@NazwaSpec)";
 
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@null", null);
+            komenda.Parameters.AddWithValue("@NazwaSpec", NazwaSpec);
             DbHelper.Polaczenie.Open();
             komenda.ExecuteNonQuery();
             DbHelper.Polaczenie.Close();

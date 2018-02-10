@@ -33,6 +33,19 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
         private void DodSpecB_Click(object sender, EventArgs e)
         {
+            if(SpecT.Text =="" || SpecT.Text.Length <3)
+            {
+                MessageBox.Show("Nazwa Specjalizacji nie moze byc pusta ani krótsza niz 3 znaki ","Błąd");
+                return;
+            }
+            for (int i =0;i<SpecT.Text.Length; i++)
+            {
+                if (SpecT.Text.Any(char.IsDigit))
+                {
+                    MessageBox.Show("Nazwa Specjalizacji nie moze zawierać cyfr", "Błąd");
+                    return; 
+                }
+            }
             if (tryb==0)
             {
                 Specjalizacja.DodajSpecjalizacje(SpecT.Text);
