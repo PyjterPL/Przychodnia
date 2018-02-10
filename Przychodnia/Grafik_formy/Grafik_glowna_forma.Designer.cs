@@ -43,6 +43,7 @@
             this.Odwolaj_button = new System.Windows.Forms.Button();
             this.Dodaj_godzin_button = new System.Windows.Forms.Button();
             this.Odwolaj_godziny_button = new System.Windows.Forms.Button();
+            this.OdwWizyty = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,11 +178,22 @@
             this.Odwolaj_godziny_button.UseVisualStyleBackColor = true;
             this.Odwolaj_godziny_button.Click += new System.EventHandler(this.Odwolaj_godziny_button_Click);
             // 
+            // OdwWizyty
+            // 
+            this.OdwWizyty.Location = new System.Drawing.Point(455, 459);
+            this.OdwWizyty.Name = "OdwWizyty";
+            this.OdwWizyty.Size = new System.Drawing.Size(108, 23);
+            this.OdwWizyty.TabIndex = 10;
+            this.OdwWizyty.Text = "Odwołane Wizyty";
+            this.OdwWizyty.UseVisualStyleBackColor = true;
+            this.OdwWizyty.Click += new System.EventHandler(this.OdwWizyty_Click);
+            // 
             // Grafik_glowna_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 494);
+            this.Controls.Add(this.OdwWizyty);
             this.Controls.Add(this.Odwolaj_godziny_button);
             this.Controls.Add(this.Dodaj_godzin_button);
             this.Controls.Add(this.Odwolaj_button);
@@ -217,5 +229,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Pacjent;
         private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
         private System.Windows.Forms.DataGridViewTextBoxColumn Oddzial;
+        private System.Windows.Forms.Button OdwWizyty;
     }
 }

@@ -24,7 +24,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         }
 
         void OdswiezTabele()
-        {
+        {          
             SpecjalizacjeTabela.Rows.Clear();
 
             listaSpecjalizacji = Specjalizacja.PobierzWszystkieSpecjalizacje();
@@ -152,6 +152,8 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             }
             else MessageBox.Show("Wybrano Więcej niż jedną pozycję!", "Błąd");
 
+            OdswiezTabele();
+           
         }
 
         private void Odwolaj_Click(object sender, EventArgs e)

@@ -225,5 +225,10 @@ namespace Przychodnia.Grafik_formy
         {
             Odswierz();
         }
+
+        private void OdwWizyty_Click(object sender, EventArgs e)
+        {
+            // tutaj forma na odwołane wizyty 
+        }
     }
 }

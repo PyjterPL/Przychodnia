@@ -33,12 +33,14 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             bool czyWieleSpec = false;
             string nazwaspec = "";
 
-            var zapytanie = string.Format("SELECT specjalizacja.Nazwa" +
-                " FROM lekarze LEFT JOIN oddzialy ON lekarze.Id_lekarza=oddzialy.Id_lekarza " +
-                "LEFT JOIN specjalizacja ON oddzialy.Id_specjalizacji = specjalizacja.Id_specjalizacji " +
-                "WHERE lekarze.Id_lekarza ='{0}'", id_lekarza);
+            var zapytanie = "SELECT specjalizacja.Nazwa" +
+                  " FROM lekarze LEFT JOIN oddzialy ON lekarze.Id_lekarza=oddzialy.Id_lekarza " +
+                  "LEFT JOIN specjalizacja ON oddzialy.Id_specjalizacji = specjalizacja.Id_specjalizacji " +
+                  "WHERE lekarze.Id_lekarza =@IDlekarza ";
 
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@IDlekarza", id_lekarza);
 
             lekarz = Lekarz.PobierzLekarza(id_lekarza);
 
@@ -91,13 +93,14 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             bool czyWieleSpec = false;
             string nazwaspec = "";
 
-            var zapytanie = string.Format("SELECT specjalizacja.Nazwa" +
+            var zapytanie = "SELECT specjalizacja.Nazwa" +
                 " FROM lekarze LEFT JOIN oddzialy ON lekarze.Id_lekarza=oddzialy.Id_lekarza " +
                 "LEFT JOIN specjalizacja ON oddzialy.Id_specjalizacji = specjalizacja.Id_specjalizacji " +
-                "WHERE lekarze.Id_lekarza ='{0}'", id_lekarza);
+                "WHERE lekarze.Id_lekarza =@IDlekarza ";
 
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
+            komenda.Parameters.AddWithValue("@IDlekarza", id_lekarza);
             Lekarz lekarz = Lekarz.PobierzLekarza(id_lekarza);
 
             DbHelper.Polaczenie.Open();
@@ -174,9 +177,12 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
         public static void PrzypiszSpecDoLekarza(int IDLekarza, int IDSpec) 
         {
-            var zapytanie = string.Format("INSERT INTO oddzialy VALUES('{0}','{1}','{2}' )", null, IDSpec, IDLekarza);
+            //     var zapytanie = string.Format("INSERT INTO oddzialy VALUES('{0}','{1}','{2}' )", null, IDSpec, IDLekarza);
+            var zapytanie = "INSERT INTO oddzialy VALUES(@null,@spec,@idlek)";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
+            komenda.Parameters.AddWithValue("@null", null);
+            komenda.Parameters.AddWithValue("@spec", IDSpec);
+            komenda.Parameters.AddWithValue("@idlek", IDLekarza);
             DbHelper.Polaczenie.Open();
             komenda.ExecuteNonQuery();
             DbHelper.Polaczenie.Close();
@@ -185,9 +191,10 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         public static void UsunSpecLekarza(int IDLekarza, int IDSpec)
         {
             {
-                var zapytanie = string.Format("DELETE FROM oddzialy WHERE Id_lekarza ='{0}' AND Id_specjalizacji='{1}'", IDLekarza, IDSpec);
+                var zapytanie = "DELETE FROM oddzialy WHERE Id_lekarza =@idlekarza AND Id_specjalizacji=@idspecjalizacji";
                 var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
+                komenda.Parameters.AddWithValue("@idlekarza", IDLekarza);
+                komenda.Parameters.AddWithValue("@idspecjalizacji", IDSpec);
                 DbHelper.Polaczenie.Open();
                 komenda.ExecuteNonQuery();
                 DbHelper.Polaczenie.Close();
@@ -195,9 +202,11 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         }
         public static void UsunWszystkieSpecLekarza(int IDLekarza)
         {
-            var zapytanie = string.Format("DELETE FROM oddzialy WHERE Id_lekarza ='{0}' ", IDLekarza);
-            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            //  var zapytanie = string.Format("DELETE FROM oddzialy WHERE Id_lekarza ='{0}' ", IDLekarza);
 
+           var zapytanie = "DELETE FROM oddzialy WHERE Id_lekarza =@IDLekarza"; // to jest ta parametryzacja,której w teorii należy używać
+           var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@IDLekarza", IDLekarza);  
             try
             {
                 DbHelper.Polaczenie.Open();

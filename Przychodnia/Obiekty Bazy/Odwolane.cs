@@ -35,5 +35,14 @@ namespace Przychodnia.Obiekty_Bazy
 
             DbHelper.Polaczenie.Close();
         }
+        public static List<Odwolane> PobierzWszystkieOdwolaneWiztyty()
+        {
+            List<Odwolane> lista = new List<Odwolane>();
+
+        //    var zapytanie = string.Format("")
+
+            return lista;
+
+        }
     }
 }
