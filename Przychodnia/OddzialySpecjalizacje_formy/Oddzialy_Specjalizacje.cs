@@ -7,21 +7,29 @@ using Przychodnia.Obiekty_Bazy;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 namespace Przychodnia.OddzialySpecjalizacje_formy
-{
+{  ///<summary> 
+   /// Klasa opakowująca. Zawiera Lekarza wraz z metodami zwracajacymi specjalizacje lekarza, w formie ID lub całego stringa
+   /// </summary
     class Oddzialy_Specjalizacje
     {
 
-        //private Lekarz lekarz;
-        //private Oddzial oddzial;
-        //private string nazwaSpec;
+        ///<summary> 
+        /// Dostęp do konkretnego lekarza 
+        /// </summary>
         public Lekarz lekarz { get; set; }
+        ///<summary> 
+        ///Lista w ktorym zawarte są ID specjalizacji lekarza, jeśli lekarz nie ma przypisanej specjalizacji zwraca zero
+        /// </summary>
         public List<int> SpecIDs { get; set; }
+        ///<summary> 
+        /// Zwraca sformatowany string zwierajacy nazwy specjalizacji lekarza
+        /// </summary>
         public string NazwaSpec { get; set; }
         private Oddzialy_Specjalizacje() { }
 
         public Oddzialy_Specjalizacje(int id_lekarza)// ID LEKARZA 
         {
-            SpecIDs = new List<int>();
+         
             bool czyWieleSpec = false;
             string nazwaspec = "";
 
@@ -57,13 +65,23 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
         }
         private void PobierzIDSpec(int id_lek) // pobiera WSZYSTKIE ID_specjalizacji lekarza i odkłada je na listę 
         {
-            var zapytanie = string.Format("SELECT * oddzialy WHERE Id_lekarza={0}", id_lek);
+            SpecIDs = new List<int>();
+            var zapytanie = string.Format("SELECT * FROM  oddzialy WHERE Id_lekarza={0}", id_lek);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-            var reader = komenda.ExecuteReader();
             DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
+         
             while(reader.Read())
             {
-                SpecIDs.Add((int)reader["Id_specjalizacji"]);
+                if (reader.IsDBNull(2) == false)
+                {
+                    SpecIDs.Add((int)reader["Id_specjalizacji"]);
+                }
+                else SpecIDs.Add(0);
+               
+                   
+                
+                
             }
             DbHelper.Polaczenie.Close();
         }
@@ -136,7 +154,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             }
             NazwaSpec = nazwaspec;
             DbHelper.Polaczenie.Close();
-
+            PobierzIDSpec(lek.ID);
         }
 
         public static List<Oddzialy_Specjalizacje> PobierzSpecjalizacjeWszystkichLekarzy()

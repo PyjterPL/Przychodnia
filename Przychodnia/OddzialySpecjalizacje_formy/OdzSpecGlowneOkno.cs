@@ -15,6 +15,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
     {
         private List<Specjalizacja> listaSpecjalizacji;
         private List<Oddzialy_Specjalizacje> listaOiS;
+       
         public OdzSpecGlowneOkno()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             i = 0;
             foreach(Oddzialy_Specjalizacje odS in listaOiS)
             {
+                
                 LekSpecTabela.Rows.Insert(i, odS.lekarz.ID, odS.lekarz.Imie, odS.lekarz.Nazwisko, odS.NazwaSpec, odS.lekarz.Adres);
                 i++;
             }
@@ -133,6 +135,18 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             {
                 var spec = SpecSelectedRow[0].Cells[0].Value;
                 var idLek = LekSelectedRow[0].Cells[0].Value;
+
+               listaSpecjalizacji = Specjalizacja.PobierzWszystkieSpecjalizacjeLekarza((int)idLek);
+                foreach(Specjalizacja specID in listaSpecjalizacji )
+                {
+                    if(specID.ID_specjalizacji==(int)spec)
+                    {
+                        MessageBox.Show("Nie można przypisać danej specjalizacji więcej niż jeden raz", "Błąd");
+                        return;
+                    }
+
+                }
+
                 Oddzialy_Specjalizacje.PrzypiszSpecDoLekarza((int)idLek, (int)spec);
 
             }

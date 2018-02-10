@@ -18,8 +18,7 @@ namespace Przychodnia.Recepty_formy
         private ComboboxItem item;
         private Lekarz lekarz = null;
         private Pacjent pacjent = null;
-        private string SzukanyLekarz = "";
-        private string tmp = "";
+
         public DodajRecepte_Form()
         {
             InitializeComponent();

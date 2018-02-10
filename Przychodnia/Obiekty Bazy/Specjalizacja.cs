@@ -52,6 +52,7 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Open();
             komenda.ExecuteNonQuery();
             DbHelper.Polaczenie.Close();
+            
         }
         public static void UsunSpecjalizacje(string NazwaSpec)
         {
