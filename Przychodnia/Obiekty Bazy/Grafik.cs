@@ -204,7 +204,7 @@ namespace Przychodnia.Obiekty_Bazy
             return lista;
 
         }
-        public static void ZaaktualizcujOpisWizyty(int id_grafiku,int id_lekarza,string opis)
+        public static void ZaaktualizujOpisWizyty(int id_grafiku,int id_lekarza,string opis)
         {
             var zapytanie = "UPDATE grafik SET Opis=@Opis WHERE Id_grafiku=@idGrafiku AND Id_lekarza=@idLekarza ";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);

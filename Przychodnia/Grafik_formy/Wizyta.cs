@@ -39,7 +39,7 @@ namespace Przychodnia.Grafik_formy
                 MessageBox.Show("Opis jest zbyt krótki!","Błąd");
                 return;
             }
-            Grafik.ZaaktualizcujOpisWizyty(graf.ID, lek.ID, Opis.Text);
+            Grafik.ZaaktualizujOpisWizyty(graf.ID, lek.ID, Opis.Text);
             this.Hide();
             this.Dispose();
         }
