@@ -209,15 +209,21 @@ namespace Przychodnia.Grafik_formy
                     }
                 }
 
-
-                foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                try
                 {
-                    var grafik = Grafik.PobierzGrafik((int)row.Cells["ID"].Value);
-                    Odwolane.DodajOdwolanie(grafik, row.Cells["Oddzial"].Value.ToString());
-                    Grafik.OdwolajWizyte((int)row.Cells["ID"].Value);
+                    foreach (DataGridViewRow row in this.Tabela.SelectedRows)
+                    {
+                        var grafik = Grafik.PobierzGrafik((int)row.Cells["ID"].Value);
+                        Odwolane.DodajOdwolanie(grafik, row.Cells["Oddzial"].Value.ToString());
+                        Grafik.OdwolajWizyte((int)row.Cells["ID"].Value);
+                    }
+                    MessageBox.Show("Odwołano!");
+                    Odswierz();
                 }
-                MessageBox.Show("Odwołano!");
-                Odswierz();
+             catch (Exception ex)
+                {
+                    MessageBox.Show("Nie można odwoływać przeszłych wizyt", "Błąd");
+                }
             }
         }
 

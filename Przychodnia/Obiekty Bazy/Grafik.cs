@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace Przychodnia.Obiekty_Bazy
 {
     public class Grafik
@@ -62,8 +62,11 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void UmowWizyte(int idpacjenta, int idgrafiku)
         {
-            var zapytanie = string.Format("UPDATE grafik SET Id_pacjenta='{0}' WHERE Id_grafiku='{1}'", idpacjenta, idgrafiku);
+            var zapytanie = "UPDATE grafik SET Id_pacjenta=@idPacjenta WHERE Id_grafiku=@idGrafiku";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@idPacjenta", idpacjenta);
+            komenda.Parameters.AddWithValue("@idGrafiku", idgrafiku);
 
             DbHelper.Polaczenie.Open();
 
@@ -73,20 +76,42 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void OdwolajWizyte(int idgrafiku)
         {
-            var zapytanie = string.Format("UPDATE grafik SET Id_pacjenta='{0}' WHERE Id_grafiku='{1}'", null, idgrafiku);
+            DateTime dzis= new DateTime(), pobrane = new DateTime();
+            var zapytanie = "SELECT Dzien_od FROM grafik WHERE id_grafiku= @idGrafiku ";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@idGrafiku", idgrafiku);
 
             DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
 
-            komenda.ExecuteNonQuery();
-
+            while(reader.Read())
+            {
+                pobrane = (DateTime)reader["Dzien_od"];
+            }
+            dzis = DateTime.Now;
             DbHelper.Polaczenie.Close();
+            if (pobrane > DateTime.Now)
+            {
+                zapytanie = "UPDATE grafik SET Id_pacjenta=@null WHERE Id_grafiku=@idGrafiku";
+                komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+                komenda.Parameters.AddWithValue("@null", null);
+                komenda.Parameters.AddWithValue("@idGrafiku", idgrafiku);
+                DbHelper.Polaczenie.Open();
+
+                komenda.ExecuteNonQuery();
+
+                DbHelper.Polaczenie.Close();
+            }
+            else throw new Exception("NIe można odwoływać przeszłych wizyt");
         }
         public static void UsunGrafik(int id)
         {
 
-            var zapytanie = string.Format("DELETE FROM grafik WHERE Id_grafiku='{0}'", id); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+            var zapytanie = "DELETE FROM grafik WHERE Id_grafiku=@id"; // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@id", id);
 
             DbHelper.Polaczenie.Open();
 
@@ -165,5 +190,20 @@ namespace Przychodnia.Obiekty_Bazy
             return lista;
 
         }
+        public static void ZaaktualizcujOpisWizyty(int id_pacjenta,int id_lekarza,string opis)
+        {
+            var zapytanie = "UPDATE grafik SET Opis=@Opis WHERE Id_pacjenta=@idPacjenta AND Id_lekarza=@idLekarza ";
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@Opis", opis);
+            komenda.Parameters.AddWithValue("@idPacjenta", id_pacjenta);
+            komenda.Parameters.AddWithValue("@idLekarza", id_lekarza);
+
+            DbHelper.Polaczenie.Open();
+            komenda.ExecuteNonQuery();
+            DbHelper.Polaczenie.Close();
+        }
+    
+
     }
 }

@@ -39,11 +39,11 @@ namespace Przychodnia.Obiekty_Bazy
             var lekarz = Lekarz.PobierzLekarza(grafik.IdLekarza);
             //  var zapytanie = string.Format("INSERT INTO odwolane VALUES('{0}','{1}','{2}','{3}','{4}')", null, grafik.IdPacjenta, lekarz.Imie+" "+lekarz.Nazwisko, specjalizacja, grafik.Dzien_od.ToString("yyyy-MM-dd HH:mm:ss")); 
             string imieInazwisko = lekarz.Imie + " " + lekarz.Nazwisko;
-            var zapytanie = " INSERT INTO odwolane VALUES(@null,@grafikIDpac,@imieInazwisko,@specjalizacja,@grafikDzien";
+            var zapytanie = " INSERT INTO odwolane VALUES(@null,@grafikIDpac,@imieInazwisko,@specjalizacja,@grafikDzien)";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             // Nie jestem do konca pewny czy to jest w tym miejscu potrzebne, ale Strzyżonego... 
-            komenda.Parameters.AddWithValue("@null", null);
+            komenda.Parameters.AddWithValue("@null", "NULL");
             komenda.Parameters.AddWithValue("@grafikIDpac", grafik.IdPacjenta);
             komenda.Parameters.AddWithValue("@imieInazwisko", imieInazwisko);
             komenda.Parameters.AddWithValue("@specjalizacja", specjalizacja);
