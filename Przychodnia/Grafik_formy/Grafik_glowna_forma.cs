@@ -12,6 +12,7 @@ namespace Przychodnia.Grafik_formy
 {
     public partial class Grafik_glowna_forma : Form
     {
+        ComboboxItem item;
         private List<Lekarz> _lekarze;
         public Grafik_glowna_forma()
         {
@@ -30,7 +31,10 @@ namespace Przychodnia.Grafik_formy
             _lekarze = Lekarz.PobierzWszystkichLekarzy();
             foreach (Lekarz lekarz in _lekarze)
             {
-                this.lekarz_comboBox.Items.Add(lekarz.Imie + " " + lekarz.Nazwisko);
+                item = new ComboboxItem();
+                item.Text = lekarz.Imie + " " + lekarz.Nazwisko;
+                item.Value = lekarz.ID;
+                this.lekarz_comboBox.Items.Add(item);
             }
             this.lekarz_comboBox.SelectedIndex = 0;
             Odswierz();
@@ -208,7 +212,7 @@ namespace Przychodnia.Grafik_formy
                         return;
                     }
                 }
-
+                // Może powodować błędy choć nie powinno 
                 try
                 {
                     foreach (DataGridViewRow row in this.Tabela.SelectedRows)
@@ -237,6 +241,34 @@ namespace Przychodnia.Grafik_formy
             // tutaj forma na odwołane wizyty 
             var odwolaneOkno = new Odwolane_forma();
             odwolaneOkno.Show();
+        }
+
+        private void wizyta_Click(object sender, EventArgs e)
+        {
+            var SelectedRow = Tabela.SelectedRows;
+           
+            if (SelectedRow.Count <= 0)
+            {
+                MessageBox.Show("Zaznacz Wizytę ", "Błąd");
+                return;
+            }
+            if (SelectedRow.Count > 1)
+            {
+                MessageBox.Show("Zaznacz jedną wizytę", "Błąd");
+                return;
+            }
+            int ID_Grafiku = (int)SelectedRow[0].Cells[0].Value;
+            string Pacjent = (string)SelectedRow[0].Cells[2].Value;
+            var SelectedComboIndex = lekarz_comboBox.SelectedIndex;
+            var ID_lekarzaComboItem = (ComboboxItem)lekarz_comboBox.Items[SelectedComboIndex]; // obiekt ComboBoxItem który zawiera string -> Imię i nazwisko oraz Value -> ID Lekarza
+            int ID_lekarza =(int) ID_lekarzaComboItem.Value;
+            var WizytaOkno = new Wizyta(ID_Grafiku, Pacjent, ID_lekarza);
+            WizytaOkno.Show();
+        }
+
+        private void lekarz_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -44,6 +44,7 @@
             this.Dodaj_godzin_button = new System.Windows.Forms.Button();
             this.Odwolaj_godziny_button = new System.Windows.Forms.Button();
             this.OdwWizyty = new System.Windows.Forms.Button();
+            this.wizyta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.lekarz_comboBox.Name = "lekarz_comboBox";
             this.lekarz_comboBox.Size = new System.Drawing.Size(121, 21);
             this.lekarz_comboBox.TabIndex = 0;
+            this.lekarz_comboBox.SelectedIndexChanged += new System.EventHandler(this.lekarz_comboBox_SelectedIndexChanged);
             this.lekarz_comboBox.SelectedValueChanged += new System.EventHandler(this.lekarz_comboBox_SelectedValueChanged);
             // 
             // lekarz_label
@@ -188,11 +190,22 @@
             this.OdwWizyty.UseVisualStyleBackColor = true;
             this.OdwWizyty.Click += new System.EventHandler(this.OdwWizyty_Click);
             // 
+            // wizyta
+            // 
+            this.wizyta.Location = new System.Drawing.Point(455, 432);
+            this.wizyta.Name = "wizyta";
+            this.wizyta.Size = new System.Drawing.Size(108, 23);
+            this.wizyta.TabIndex = 11;
+            this.wizyta.Text = "Wizyta";
+            this.wizyta.UseVisualStyleBackColor = true;
+            this.wizyta.Click += new System.EventHandler(this.wizyta_Click);
+            // 
             // Grafik_glowna_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 494);
+            this.Controls.Add(this.wizyta);
             this.Controls.Add(this.OdwWizyty);
             this.Controls.Add(this.Odwolaj_godziny_button);
             this.Controls.Add(this.Dodaj_godzin_button);
@@ -230,5 +243,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
         private System.Windows.Forms.DataGridViewTextBoxColumn Oddzial;
         private System.Windows.Forms.Button OdwWizyty;
+        private System.Windows.Forms.Button wizyta;
     }
 }

@@ -76,6 +76,12 @@
     <Compile Include="Grafik_formy\Odwolane_forma.Designer.cs">
       <DependentUpon>Odwolane_forma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Grafik_formy\Wizyta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grafik_formy\Wizyta.Designer.cs">
+      <DependentUpon>Wizyta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Grafik_formy\Wybor_specjalizacji_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Grafik_formy\Odwolane_forma.resx">
       <DependentUpon>Odwolane_forma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grafik_formy\Wizyta.resx">
+      <DependentUpon>Wizyta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Grafik_formy\Wybor_specjalizacji_form.resx">
       <DependentUpon>Wybor_specjalizacji_form.cs</DependentUpon>

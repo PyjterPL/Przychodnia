@@ -90,7 +90,7 @@ namespace Przychodnia.Obiekty_Bazy
             }
             dzis = DateTime.Now;
             DbHelper.Polaczenie.Close();
-            if (pobrane > DateTime.Now)
+            if (pobrane > DateTime.Now) // Sprawdzenie czy pobrana data jest w "przyszłości" 
             {
                 zapytanie = "UPDATE grafik SET Id_pacjenta=@null WHERE Id_grafiku=@idGrafiku";
                 komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
@@ -105,6 +105,20 @@ namespace Przychodnia.Obiekty_Bazy
             }
             else throw new Exception("NIe można odwoływać przeszłych wizyt");
         }
+
+        //public static void OdwolajWizyte(int idgrafiku)
+        //{
+        //    var zapytanie = string.Format("UPDATE grafik SET Id_pacjenta='{0}' WHERE Id_grafiku='{1}'", null, idgrafiku);
+        //    var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+        //    DbHelper.Polaczenie.Open();
+
+        //    komenda.ExecuteNonQuery();
+
+        //    DbHelper.Polaczenie.Close();
+        //}
+
+
         public static void UsunGrafik(int id)
         {
 
@@ -190,13 +204,13 @@ namespace Przychodnia.Obiekty_Bazy
             return lista;
 
         }
-        public static void ZaaktualizcujOpisWizyty(int id_pacjenta,int id_lekarza,string opis)
+        public static void ZaaktualizcujOpisWizyty(int id_grafiku,int id_lekarza,string opis)
         {
-            var zapytanie = "UPDATE grafik SET Opis=@Opis WHERE Id_pacjenta=@idPacjenta AND Id_lekarza=@idLekarza ";
+            var zapytanie = "UPDATE grafik SET Opis=@Opis WHERE Id_grafiku=@idGrafiku AND Id_lekarza=@idLekarza ";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
             komenda.Parameters.AddWithValue("@Opis", opis);
-            komenda.Parameters.AddWithValue("@idPacjenta", id_pacjenta);
+            komenda.Parameters.AddWithValue("@idGrafiku", id_grafiku);
             komenda.Parameters.AddWithValue("@idLekarza", id_lekarza);
 
             DbHelper.Polaczenie.Open();
