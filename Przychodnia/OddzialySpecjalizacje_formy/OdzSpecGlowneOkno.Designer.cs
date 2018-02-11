@@ -129,7 +129,7 @@
             this.LekSpecTabela.Name = "LekSpecTabela";
             this.LekSpecTabela.ReadOnly = true;
             this.LekSpecTabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LekSpecTabela.Size = new System.Drawing.Size(740, 275);
+            this.LekSpecTabela.Size = new System.Drawing.Size(744, 275);
             this.LekSpecTabela.TabIndex = 8;
             this.LekSpecTabela.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LekSpecTabela_CellContentClick);
             // 
@@ -167,7 +167,7 @@
             // 
             // PrzypSpec
             // 
-            this.PrzypSpec.Location = new System.Drawing.Point(757, 43);
+            this.PrzypSpec.Location = new System.Drawing.Point(761, 50);
             this.PrzypSpec.Name = "PrzypSpec";
             this.PrzypSpec.Size = new System.Drawing.Size(122, 38);
             this.PrzypSpec.TabIndex = 9;
@@ -177,7 +177,7 @@
             // 
             // Wymaz
             // 
-            this.Wymaz.Location = new System.Drawing.Point(757, 96);
+            this.Wymaz.Location = new System.Drawing.Point(761, 94);
             this.Wymaz.Name = "Wymaz";
             this.Wymaz.Size = new System.Drawing.Size(122, 41);
             this.Wymaz.TabIndex = 10;
@@ -187,7 +187,7 @@
             // 
             // WymAll
             // 
-            this.WymAll.Location = new System.Drawing.Point(757, 143);
+            this.WymAll.Location = new System.Drawing.Point(761, 141);
             this.WymAll.Name = "WymAll";
             this.WymAll.Size = new System.Drawing.Size(122, 41);
             this.WymAll.TabIndex = 11;
@@ -199,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 560);
+            this.ClientSize = new System.Drawing.Size(889, 560);
             this.Controls.Add(this.WymAll);
             this.Controls.Add(this.Wymaz);
             this.Controls.Add(this.PrzypSpec);
