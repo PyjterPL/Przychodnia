@@ -35,6 +35,7 @@ namespace Przychodnia.Recepty_formy
             ComboLekarz.AutoCompleteMode = AutoCompleteMode.Suggest;
             ComboLekarz.AutoCompleteSource = AutoCompleteSource.ListItems;
             ComboPacjent.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             foreach (Lekarz lek in listaLekarzy)
             {
                 item = new ComboboxItem();
@@ -97,23 +98,24 @@ namespace Przychodnia.Recepty_formy
                     break;
                 }
             }
+        
+              if (lekarz != null && pacjent != null && grafik != null)
+              {
 
-            if (lekarz != null && pacjent != null  && grafik !=null)
-            {
-                
-                Recepta.DodajRecepte(lekarz.ID,pacjent.ID.Value,grafik.ID, Tresc.Text, dataW);
-                MessageBox.Show("Dodano Receptę !");
-                this.Hide();
-                this.Dispose();
-            }
-            else if (lekarz != null && pacjent != null)
-            {
-                Recepta.DodajRecepte(lekarz.ID, pacjent.ID.Value,null, Tresc.Text, dataW);
-                MessageBox.Show("Dodano Receptę !");
-                this.Hide();
-                this.Dispose();
-            }
-            else MessageBox.Show("Wystąpił błąd !");
+                    Recepta.DodajRecepte(lekarz.ID, pacjent.ID.Value, grafik.ID, Tresc.Text, dataW);
+                    MessageBox.Show("Dodano Receptę !");
+                    this.Hide();
+                    this.Dispose();
+              }
+              else if (lekarz != null && pacjent != null)
+              {
+                    Recepta.DodajRecepte(lekarz.ID, pacjent.ID.Value, null, Tresc.Text, dataW);
+                    MessageBox.Show("Dodano Receptę !");
+                    this.Hide();
+                    this.Dispose();
+              }
+                else MessageBox.Show("Wystąpił błąd !");
+  
 
         }
 

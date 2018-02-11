@@ -25,6 +25,8 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
         void OdswiezTabele()
         {          
+            var selectedRow = SpecjalizacjeTabela.SelectedRows;
+
             SpecjalizacjeTabela.Rows.Clear();
 
             listaSpecjalizacji = Specjalizacja.PobierzWszystkieSpecjalizacje();
@@ -35,7 +37,20 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
                 SpecjalizacjeTabela.Rows.Insert(i, spec.ID_specjalizacji, spec.nazwa);
                 i++;
             }
+
+            //if(selectedRow.Count>0)
+            //for(int j = 0;j<SpecjalizacjeTabela.Rows.Count-1;j++)
+            //{
+                  
+            //        // if(SpecjalizacjeTabela.Rows[j].Cells[0].Value== selectedRow[0].Cells[0].Value)
+            //        if (SpecjalizacjeTabela.Rows[j].Cells[0].Value.Equals( selectedRow[0].Cells[0].Value)) 
+            //    {
+            //        SpecjalizacjeTabela.Rows[j].Selected = true;
+            //    }
+            //}
+
             listaOiS = Oddzialy_Specjalizacje.PobierzSpecjalizacjeWszystkichLekarzy();
+            selectedRow = LekSpecTabela.SelectedRows;
 
             LekSpecTabela.Rows.Clear();
             i = 0;
@@ -43,8 +58,15 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             {
                 
                 LekSpecTabela.Rows.Insert(i, odS.lekarz.ID, odS.lekarz.Imie, odS.lekarz.Nazwisko, odS.NazwaSpec, odS.lekarz.Adres);
+
+                //if (selectedRow.Count >= 1)
+                //if (LekSpecTabela.Rows[i]==selectedRow[i])
+                //{
+                //    LekSpecTabela.Rows[i].Selected = true;
+                //}
                 i++;
             }
+
         }
 
         private void DodSpec_Click(object sender, EventArgs e)

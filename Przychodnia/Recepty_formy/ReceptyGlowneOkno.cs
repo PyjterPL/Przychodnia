@@ -14,6 +14,8 @@ namespace Przychodnia.Recepty_formy
     public partial class ReceptyGlowneOkno : Form
     {
         private List<Recepta> listaRecept;
+        private Lekarz lekarz;
+        private Pacjent pac;
         public ReceptyGlowneOkno()
         {
             InitializeComponent();
@@ -24,15 +26,21 @@ namespace Przychodnia.Recepty_formy
             ReceptyTabela.Rows.Clear();
             listaRecept = Recepta.PobierzWszystkieRecepty();
             int i = 0;
+
+
             foreach (Recepta recept in listaRecept)
             {
-                if(recept.ID_grafiku==null)
+                lekarz = Lekarz.PobierzLekarza(recept.ID_lekarza);
+                pac = Pacjent.PobierzPacjenta(recept.ID_pacjenta);
+                if (recept.ID_grafiku == null)
                 {
-                    ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, recept.ID_pacjenta, recept.Data_waznosci.Date, "-", recept.Tresc);
+                    ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, lekarz.Nazwisko, "-", pac.Pesel, pac.Imie + " " + pac.Nazwisko, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
                 }
-             else ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, recept.ID_pacjenta, recept.Data_waznosci.Date, recept.ID_grafiku, recept.Tresc);
+                else ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, lekarz.Nazwisko, recept.ID_grafiku, pac.Pesel, pac.Imie + " " + pac.Nazwisko, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
                 i++;
             }
+
+
         }
 
 

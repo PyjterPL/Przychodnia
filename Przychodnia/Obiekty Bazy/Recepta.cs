@@ -84,10 +84,20 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void DodajRecepte( int ID_lekarza, int ID_pacjenta, int? ID_grafiku, string Tresc, DateTime Data_waznosci)
         {
-            var zapytanie = string.Format("INSERT INTO recepty (Id_recepty,Id_lekarza,Id_pacjenta,Tresc,Data_waznosci,Id_grafiku) VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
-            null,ID_lekarza.ToString(),ID_pacjenta.ToString(),Tresc,Data_waznosci.ToString("yyy-MM-dd"),ID_grafiku); 
-
+            var zapytanie = "INSERT INTO recepty (Id_recepty,Id_lekarza,Id_pacjenta,Tresc,Data_waznosci,Id_grafiku) VALUES(@idRec,@idLek,@idPac,@Tresc,@Data,@IdGraf)";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@idRec", null);
+            komenda.Parameters.AddWithValue("@idLek", ID_lekarza);
+            komenda.Parameters.AddWithValue("@idPac", ID_pacjenta);
+            komenda.Parameters.AddWithValue("@Tresc", Tresc);
+            komenda.Parameters.AddWithValue("@Data", Data_waznosci);
+            
+            if(ID_grafiku!=null)
+            {
+                komenda.Parameters.AddWithValue("@idGraf", ID_grafiku);
+            }
+           else komenda.Parameters.AddWithValue("@idGraf", null);
 
             DbHelper.Polaczenie.Open();
 
