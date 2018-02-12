@@ -182,9 +182,9 @@
             // 
             // OdwWizyty
             // 
-            this.OdwWizyty.Location = new System.Drawing.Point(455, 459);
+            this.OdwWizyty.Location = new System.Drawing.Point(276, 461);
             this.OdwWizyty.Name = "OdwWizyty";
-            this.OdwWizyty.Size = new System.Drawing.Size(108, 23);
+            this.OdwWizyty.Size = new System.Drawing.Size(104, 23);
             this.OdwWizyty.TabIndex = 10;
             this.OdwWizyty.Text = "Odwołane Wizyty";
             this.OdwWizyty.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             // 
             this.wizyta.Location = new System.Drawing.Point(455, 432);
             this.wizyta.Name = "wizyta";
-            this.wizyta.Size = new System.Drawing.Size(108, 23);
+            this.wizyta.Size = new System.Drawing.Size(108, 38);
             this.wizyta.TabIndex = 11;
             this.wizyta.Text = "Wizyta";
             this.wizyta.UseVisualStyleBackColor = true;

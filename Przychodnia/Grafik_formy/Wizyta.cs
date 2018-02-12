@@ -77,7 +77,7 @@ namespace Przychodnia.Grafik_formy
 
         private void WypRecpt_Click(object sender, EventArgs e)
         {
-            var dodrecpt = new Recepty_formy.DodajRecepte_Form();
+            var dodrecpt = new Recepty_formy.DodajRecepte_Form((int)graf.IdPacjenta,graf.IdLekarza);
             dodrecpt.Show();
         }
     }
