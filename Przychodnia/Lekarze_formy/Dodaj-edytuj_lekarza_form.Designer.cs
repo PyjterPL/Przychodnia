@@ -140,6 +140,7 @@
             this.Telefon_texbox.Name = "Telefon_texbox";
             this.Telefon_texbox.Size = new System.Drawing.Size(100, 20);
             this.Telefon_texbox.TabIndex = 13;
+            this.Telefon_texbox.TextChanged += new System.EventHandler(this.Telefon_texbox_TextChanged);
             // 
             // Dodaj_button
             // 

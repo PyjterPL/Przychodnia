@@ -77,10 +77,19 @@ namespace Przychodnia.Lekarze_formy
                 var adres = this.Adres_textbox.Text;
                 var miasto = this.Miasto_combobox.Text;
                 var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
-                var telefon = this.Telefon_texbox.Text;
-                Lekarz.EdytujLekarza(new Lekarz(lekarz.ID,imie, nazwisko, data, adres, id_miasta, telefon));
-                MessageBox.Show("Edytowano lekarza!");
-                this.Close();
+                if (CzyCiagJestNumerem(Telefon_texbox.Text) == true)
+                {
+                    var telefon = this.Telefon_texbox.Text;
+                    Lekarz.EdytujLekarza(new Lekarz(lekarz.ID, imie, nazwisko, data, adres, id_miasta, telefon));
+                    MessageBox.Show("Edytowano lekarza!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Podaj poprawny numer telefonu bez znaków specjalnych oraz liter", "Błąd");
+                    return;
+                }
+               
             }
             else
             {
@@ -91,11 +100,35 @@ namespace Przychodnia.Lekarze_formy
                 var adres = this.Adres_textbox.Text;
                 var miasto = this.Miasto_combobox.Text;
                 var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
-                var telefon = this.Telefon_texbox.Text;
-                Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
-                MessageBox.Show("Dodano lekarza!");
-                this.Close();
+                if (CzyCiagJestNumerem(Telefon_texbox.Text) == true)
+                {
+                    var telefon = this.Telefon_texbox.Text;
+                    Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
+                    MessageBox.Show("Dodano lekarza!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Podaj poprawny numer telefonu bez znaków specjalnych oraz liter", "Błąd");
+                    return;
+                }
             }
+        }
+
+        private bool CzyCiagJestNumerem(string ciag)
+        {
+            for (int i =0;i< ciag.Length;i++)
+            {
+            if(!char.IsDigit(ciag[i]))
+              {
+                    return false;
+              }
+            }
+            return true;
+        }
+        private void Telefon_texbox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
