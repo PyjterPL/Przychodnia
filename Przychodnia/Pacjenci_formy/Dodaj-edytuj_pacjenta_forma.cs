@@ -92,6 +92,7 @@ namespace Przychodnia.Pacjenci_formy
         {
             if (edycja)
             {
+                SprawdzPoprawnoscPola();
                 var imie = this.Imie_textBox.Text;
                 var nazwisko = this.Nazwisko_textBox.Text;
                 var data = this.dateTimePicker1.Value;
@@ -99,19 +100,29 @@ namespace Przychodnia.Pacjenci_formy
                 var miasto = this.Miasto_comboBox.Text;
                 var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
                 var pesel = this.Pesel_textBox.Text;
-                var telefon = this.Telefon_textBox.Text;
-                var plec = char.Parse(this.Plec_comboBox.Text);
-                var lekarz = this.LekarzProwadzacy_comboBox.Text;
-                var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
+                if(CzyCiagJestNumerem(Telefon_textBox.Text)==true)
+                {
+                    var telefon = this.Telefon_textBox.Text;
+                    var plec = char.Parse(this.Plec_comboBox.Text);
+                    var lekarz = this.LekarzProwadzacy_comboBox.Text;
+                    var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
 
 
-                Pacjent.EdytujPacjenta(new Pacjent(_pacjent.ID, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
-                // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
-                MessageBox.Show("Edytowano pacjenta!");
-                this.Close();
+                    Pacjent.EdytujPacjenta(new Pacjent(_pacjent.ID, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
+                    // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
+                    MessageBox.Show("Edytowano pacjenta!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Numer telefonu nie moze zawierać liter oraz znaków specjalnych", "Błąd");
+                    return;
+                }
+            
             }
             else
             {
+                SprawdzPoprawnoscPola();
                 var imie = this.Imie_textBox.Text;
                 var nazwisko = this.Nazwisko_textBox.Text;
                 var data = this.dateTimePicker1.Value;
@@ -119,16 +130,48 @@ namespace Przychodnia.Pacjenci_formy
                 var miasto = this.Miasto_comboBox.Text;
                 var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
                 var pesel = this.Pesel_textBox.Text;
-                var telefon = this.Telefon_textBox.Text;
-                var plec = char.Parse(this.Plec_comboBox.Text);
-                var lekarz = this.LekarzProwadzacy_comboBox.Text;
-                var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
+                if (CzyCiagJestNumerem(Telefon_textBox.Text) == true)
+                {
+                    var telefon = this.Telefon_textBox.Text;
+                    var plec = char.Parse(this.Plec_comboBox.Text);
+                    var lekarz = this.LekarzProwadzacy_comboBox.Text;
+                    var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
 
-                Pacjent.DodajPacjenta(new Pacjent(null,pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
-               // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
-                MessageBox.Show("Dodano pacjenta!");
-                this.Close();
+                    Pacjent.DodajPacjenta(new Pacjent(null, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
+                    // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
+                    MessageBox.Show("Dodano pacjenta!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Numer telefonu nie moze zawierać liter oraz znaków specjalnych", "Błąd");
+                    return;
+                }
             }
         }
+
+
+        private bool CzyCiagJestNumerem(string ciag)
+        {
+            for (int i = 0; i < ciag.Length; i++)
+            {
+                if (!char.IsDigit(ciag[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool SprawdzPoprawnoscPola()
+        {
+            if (Imie_textBox.Text.Length < 3 || Nazwisko_textBox.Text.Length < 3)
+            {
+                MessageBox.Show("Imię lub Nazwisko jest nieprawidłowe", "Błąd");
+                return false;
+
+            }
+            return true;
+        } // proste zabezpieczenie, sprawdza długosc stringa ktory jest pobierany z textboxa
     }
 }
