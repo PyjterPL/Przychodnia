@@ -24,7 +24,7 @@ namespace Przychodnia.Grafik_formy
         {
             InitializeComponent();
             lista_spec = Specjalizacja.PobierzWszystkieSpecjalizacjeLekarza(ID);
-            this.comboBox1.Items.Add("Nie wybieraj");
+            this.comboBox1.Items.Add("Nie wybieraj"); // Co to jest ? 
             foreach (var specjalizacja in lista_spec)
             {
                 this.comboBox1.Items.Add(specjalizacja.nazwa);
