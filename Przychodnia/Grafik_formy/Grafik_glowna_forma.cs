@@ -292,7 +292,7 @@ namespace Przychodnia.Grafik_formy
 
         private void lekarz_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Odswierz();
         }
     }
 }
