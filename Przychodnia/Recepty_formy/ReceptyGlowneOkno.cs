@@ -16,12 +16,39 @@ namespace Przychodnia.Recepty_formy
         private List<Recepta> listaRecept;
         private Lekarz lekarz;
         private Pacjent pac;
+        int ID_pacjenta,ID_lekarza;
+        bool KonstParam = false;
         public ReceptyGlowneOkno()
         {
             InitializeComponent();
-            OdswierzTabele();
+            OdswiezTabele();
         }
-        void OdswierzTabele()
+        public ReceptyGlowneOkno(int ID_pacjenta,int ID_lekarza)
+        {
+            InitializeComponent();
+            KonstParam = true;
+            this.ID_pacjenta = ID_pacjenta;
+            this.ID_lekarza = ID_lekarza;
+            OdswiezTabeleParam();
+        }
+        void OdswiezTabeleParam() // w sensie wersja konstruktora parametrycznego
+        {
+            ReceptyTabela.Rows.Clear();
+            listaRecept = Recepta.PobierzWszystkieReceptyPacjenta(ID_pacjenta);
+            int i = 0;
+            foreach (Recepta recept in listaRecept)
+            {
+                lekarz = Lekarz.PobierzLekarza(recept.ID_lekarza);
+                pac = Pacjent.PobierzPacjenta(recept.ID_pacjenta);
+                if (recept.ID_grafiku == null)
+                {
+                    ReceptyTabela.Rows.Insert(i, pac.Imie + " " + pac.Nazwisko, pac.Pesel, lekarz.Adres, lekarz.Nazwisko, " - ", recept.ID_recepty, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
+                }
+                else ReceptyTabela.Rows.Insert(i, pac.Imie + " " + pac.Nazwisko, pac.Pesel, lekarz.Adres, lekarz.Nazwisko, recept.ID_grafiku, recept.ID_recepty, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
+                i++;
+            }
+        }
+        void OdswiezTabele()
         {
             ReceptyTabela.Rows.Clear();
             listaRecept = Recepta.PobierzWszystkieRecepty();
@@ -34,9 +61,9 @@ namespace Przychodnia.Recepty_formy
                 pac = Pacjent.PobierzPacjenta(recept.ID_pacjenta);
                 if (recept.ID_grafiku == null)
                 {
-                    ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, lekarz.Nazwisko, "-", pac.Pesel, pac.Imie + " " + pac.Nazwisko, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
-                }
-                else ReceptyTabela.Rows.Insert(i, recept.ID_recepty, recept.ID_lekarza, lekarz.Nazwisko, recept.ID_grafiku, pac.Pesel, pac.Imie + " " + pac.Nazwisko, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
+                    ReceptyTabela.Rows.Insert(i, pac.Imie + " " + pac.Nazwisko, pac.Pesel, lekarz.Adres, lekarz.Nazwisko, " - ", recept.ID_recepty, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
+                } 
+                else ReceptyTabela.Rows.Insert(i, pac.Imie + " " + pac.Nazwisko, pac.Pesel, lekarz.Adres, lekarz.Nazwisko, recept.ID_grafiku, recept.ID_recepty, recept.Data_waznosci.ToString("yyyy-MM-dd"), recept.Tresc);
                 i++;
             }
 
@@ -71,8 +98,16 @@ namespace Przychodnia.Recepty_formy
 
         private void DodRecpt_Click(object sender, EventArgs e)
         {
-            var dialogRecept = new DodajRecepte_Form();
-            dialogRecept.Show();
+            if(KonstParam==false)
+            {
+                var dialogRecept = new DodajRecepte_Form();
+                dialogRecept.Show();
+            }
+            else
+            {
+                var dialogRecept = new DodajRecepte_Form(ID_pacjenta, ID_lekarza);
+                dialogRecept.Show();
+            }
         }
 
 
@@ -88,7 +123,7 @@ namespace Przychodnia.Recepty_formy
                     Recepta.UsunReceptę(ID_RECEPTY);
                 }
 
-                OdswierzTabele();
+                OdswiezTabele();
             }
             else if (dr==DialogResult.Cancel)
             {
@@ -109,7 +144,11 @@ namespace Przychodnia.Recepty_formy
 
         private void odsiwerz_Click(object sender, EventArgs e)
         {
-            OdswierzTabele();
+            if (KonstParam == false)
+            {
+                OdswiezTabele();
+            }
+            else OdswiezTabeleParam();
         }
     }
 

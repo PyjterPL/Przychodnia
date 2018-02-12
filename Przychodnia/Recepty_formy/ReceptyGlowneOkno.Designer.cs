@@ -32,12 +32,12 @@
             this.DodRecpt = new System.Windows.Forms.Button();
             this.UsuRecpt = new System.Windows.Forms.Button();
             this.odsiwerz = new System.Windows.Forms.Button();
-            this.Id_recepty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_lekarza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImieNazw = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pes_pacjenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Adres_lekarza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NazwLek = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id_grafiku = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pes_pacjenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImieNazw = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_recepty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data_waznosci = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tresc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ReceptyTabela)).BeginInit();
@@ -48,12 +48,12 @@
             this.ReceptyTabela.AllowUserToAddRows = false;
             this.ReceptyTabela.AllowUserToDeleteRows = false;
             this.ReceptyTabela.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id_recepty,
-            this.Id_lekarza,
+            this.ImieNazw,
+            this.pes_pacjenta,
+            this.Adres_lekarza,
             this.NazwLek,
             this.Id_grafiku,
-            this.pes_pacjenta,
-            this.ImieNazw,
+            this.Id_recepty,
             this.Data_waznosci,
             this.Tresc});
             this.ReceptyTabela.Location = new System.Drawing.Point(12, 12);
@@ -93,17 +93,25 @@
             this.odsiwerz.UseVisualStyleBackColor = true;
             this.odsiwerz.Click += new System.EventHandler(this.odsiwerz_Click);
             // 
-            // Id_recepty
+            // ImieNazw
             // 
-            this.Id_recepty.HeaderText = "ID Recepty";
-            this.Id_recepty.Name = "Id_recepty";
-            this.Id_recepty.ReadOnly = true;
+            this.ImieNazw.HeaderText = "Imię i Nazwisko pacjenta";
+            this.ImieNazw.Name = "ImieNazw";
+            this.ImieNazw.ReadOnly = true;
+            this.ImieNazw.Width = 200;
             // 
-            // Id_lekarza
+            // pes_pacjenta
             // 
-            this.Id_lekarza.HeaderText = "ID Lekarza";
-            this.Id_lekarza.Name = "Id_lekarza";
-            this.Id_lekarza.ReadOnly = true;
+            this.pes_pacjenta.HeaderText = "PESEL Pacjenta";
+            this.pes_pacjenta.Name = "pes_pacjenta";
+            this.pes_pacjenta.ReadOnly = true;
+            this.pes_pacjenta.Width = 150;
+            // 
+            // Adres_lekarza
+            // 
+            this.Adres_lekarza.HeaderText = "Adres Lekarza";
+            this.Adres_lekarza.Name = "Adres_lekarza";
+            this.Adres_lekarza.ReadOnly = true;
             // 
             // NazwLek
             // 
@@ -117,19 +125,11 @@
             this.Id_grafiku.Name = "Id_grafiku";
             this.Id_grafiku.ReadOnly = true;
             // 
-            // pes_pacjenta
+            // Id_recepty
             // 
-            this.pes_pacjenta.HeaderText = "PESEL Pacjenta";
-            this.pes_pacjenta.Name = "pes_pacjenta";
-            this.pes_pacjenta.ReadOnly = true;
-            this.pes_pacjenta.Width = 150;
-            // 
-            // ImieNazw
-            // 
-            this.ImieNazw.HeaderText = "Imię i Nazwisko pacjenta";
-            this.ImieNazw.Name = "ImieNazw";
-            this.ImieNazw.ReadOnly = true;
-            this.ImieNazw.Width = 200;
+            this.Id_recepty.HeaderText = "ID Recepty";
+            this.Id_recepty.Name = "Id_recepty";
+            this.Id_recepty.ReadOnly = true;
             // 
             // Data_waznosci
             // 
@@ -167,12 +167,12 @@
         private System.Windows.Forms.Button DodRecpt;
         private System.Windows.Forms.Button UsuRecpt;
         private System.Windows.Forms.Button odsiwerz;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_recepty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_lekarza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImieNazw;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pes_pacjenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Adres_lekarza;
         private System.Windows.Forms.DataGridViewTextBoxColumn NazwLek;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id_grafiku;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pes_pacjenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ImieNazw;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_recepty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_waznosci;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tresc;
     }
