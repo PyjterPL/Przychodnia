@@ -257,13 +257,27 @@ namespace Przychodnia.Grafik_formy
                 MessageBox.Show("Zaznacz jedną wizytę", "Błąd");
                 return;
             }
-            int ID_Grafiku = (int)SelectedRow[0].Cells[0].Value;
-            string Pacjent = (string)SelectedRow[0].Cells[2].Value;
-            var SelectedComboIndex = lekarz_comboBox.SelectedIndex;
-            var ID_lekarzaComboItem = (ComboboxItem)lekarz_comboBox.Items[SelectedComboIndex]; // obiekt ComboBoxItem który zawiera string -> Imię i nazwisko oraz Value -> ID Lekarza
-            int ID_lekarza =(int) ID_lekarzaComboItem.Value;
-            var WizytaOkno = new Wizyta(ID_Grafiku, Pacjent, ID_lekarza);
-            WizytaOkno.Show();
+
+            try
+            {
+                int ID_Grafiku = (int)SelectedRow[0].Cells[0].Value;
+                string Pacjent = (string)SelectedRow[0].Cells[2].Value;
+                if(string.IsNullOrEmpty(Pacjent))
+                {
+                    MessageBox.Show("Na Daną godzinę nie ma umówionego Pacjenta! ", "Błąd");
+                    return;
+                }
+                var SelectedComboIndex = lekarz_comboBox.SelectedIndex;
+                var ID_lekarzaComboItem = (ComboboxItem)lekarz_comboBox.Items[SelectedComboIndex]; // obiekt ComboBoxItem który zawiera string -> Imię i nazwisko oraz Value -> ID Lekarza
+                int ID_lekarza = (int)ID_lekarzaComboItem.Value;
+                var WizytaOkno = new Wizyta(ID_Grafiku, Pacjent, ID_lekarza);
+                WizytaOkno.Show();
+            }
+            catch(System.NullReferenceException ex)
+            {
+                MessageBox.Show("Zaznacz umówioną wizytę!", "Błąd");
+            }
+      
         }
 
         private void lekarz_comboBox_SelectedIndexChanged(object sender, EventArgs e)
