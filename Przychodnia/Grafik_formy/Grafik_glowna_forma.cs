@@ -117,15 +117,24 @@ namespace Przychodnia.Grafik_formy
                     var wybrana_data_godzina = this.dateTimePicker1.Value.Date + TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
 
                     var godzina = TimeSpan.Parse(row.Cells["Godzina"].Value.ToString());
-                    if (spec_form.wybrana.ID_specjalizacji > 0)
+                    try // Zabezpieczenie przed dodawaniem godzin " w Przeszłość" 
                     {
-                        var oddzial = Obiekty_Bazy.Oddzial.PobierzOddzialLekarza(ID, spec_form.wybrana.ID_specjalizacji);
-                        Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "",oddzial.IdOdzialu));//Id oddziału zamiast id specjalizacju!
+                        if (spec_form.wybrana.ID_specjalizacji > 0)
+                        {
+                            var oddzial = Obiekty_Bazy.Oddzial.PobierzOddzialLekarza(ID, spec_form.wybrana.ID_specjalizacji);
+                            Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", oddzial.IdOdzialu));//Id oddziału zamiast id specjalizacju!
+                        }
+                        else
+                        {
+                            Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", null));
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        Grafik.DodajGrafik(new Grafik(0, ID, wybrana_data_godzina, null, "", null));
+                        MessageBox.Show("Nie można dodawać godzin pracy w przeszłości", "Błąd");
+                        return;
                     }
+
                 }
                 MessageBox.Show("Dodano godziny do grafiku!");
                 Odswierz();
@@ -218,15 +227,16 @@ namespace Przychodnia.Grafik_formy
                     foreach (DataGridViewRow row in this.Tabela.SelectedRows)
                     {
                         var grafik = Grafik.PobierzGrafik((int)row.Cells["ID"].Value);
+                        Grafik.OdwolajWizyte((int)row.Cells["ID"].Value); // Rzuci wyjątkiem jeśli sprobuje się usunąć przeszłą wizytę 
                         Odwolane.DodajOdwolanie(grafik, row.Cells["Oddzial"].Value.ToString());
-                        Grafik.OdwolajWizyte((int)row.Cells["ID"].Value);
                     }
                     MessageBox.Show("Odwołano!");
                     Odswierz();
                 }
-             catch (Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Nie można odwoływać przeszłych wizyt", "Błąd");
+                    return;
                 }
             }
         }
@@ -246,7 +256,7 @@ namespace Przychodnia.Grafik_formy
         private void wizyta_Click(object sender, EventArgs e)
         {
             var SelectedRow = Tabela.SelectedRows;
-           
+
             if (SelectedRow.Count <= 0)
             {
                 MessageBox.Show("Zaznacz Wizytę ", "Błąd");
@@ -262,7 +272,7 @@ namespace Przychodnia.Grafik_formy
             {
                 int ID_Grafiku = (int)SelectedRow[0].Cells[0].Value;
                 string Pacjent = (string)SelectedRow[0].Cells[2].Value;
-                if(string.IsNullOrEmpty(Pacjent))
+                if (string.IsNullOrEmpty(Pacjent))
                 {
                     MessageBox.Show("Na Daną godzinę nie ma umówionego Pacjenta! ", "Błąd");
                     return;
@@ -273,11 +283,11 @@ namespace Przychodnia.Grafik_formy
                 var WizytaOkno = new Wizyta(ID_Grafiku, Pacjent, ID_lekarza);
                 WizytaOkno.Show();
             }
-            catch(System.NullReferenceException ex)
+            catch (System.NullReferenceException ex)
             {
                 MessageBox.Show("Zaznacz umówioną wizytę!", "Błąd");
             }
-      
+
         }
 
         private void lekarz_comboBox_SelectedIndexChanged(object sender, EventArgs e)

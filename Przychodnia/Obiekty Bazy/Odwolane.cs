@@ -89,5 +89,33 @@ namespace Przychodnia.Obiekty_Bazy
             return lista;
 
         }
+
+        public static List<Odwolane> PobierzOdwolaneWizytyPacjenta(int ID_Pacjenta)
+        {
+            Odwolane odwolane=null;
+            List<Odwolane> lista = new List<Odwolane>();
+            var zapytanie = "SELECT * FROM odwolane WHERE Id_pacjenta=@idpacjenta";
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@idpacjenta", ID_Pacjenta);
+            DbHelper.Polaczenie.Open();
+
+            var reader = komenda.ExecuteReader();
+
+            while(reader.Read())
+            {
+                // Nie zabij mnie, chciałem sprawdzić jak to będzie wyglądać, w sensie czytelnosci i wizualnie
+                odwolane = new Odwolane(
+                (int?)reader["Id_odwolania"],
+                (int)reader["Id_pacjenta"],
+                (string)reader["Lekarz"],
+                (string)reader["Specjalizacja"],
+                (DateTime)reader["Dzien_od"]);
+
+                lista.Add(odwolane);
+            }
+            DbHelper.Polaczenie.Close();
+            return lista;
+        }
     }
 }

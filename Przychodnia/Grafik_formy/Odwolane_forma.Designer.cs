@@ -35,6 +35,10 @@
             this.Lekarz_ImNazw = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Spec_Lek = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.odw_data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ComboPacjent = new System.Windows.Forms.ComboBox();
+            this.Szukaj = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.WyczWysz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OdwolaneTabela)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,16 +93,59 @@
             this.odw_data.Name = "odw_data";
             this.odw_data.Width = 200;
             // 
+            // ComboPacjent
+            // 
+            this.ComboPacjent.FormattingEnabled = true;
+            this.ComboPacjent.Location = new System.Drawing.Point(12, 341);
+            this.ComboPacjent.Name = "ComboPacjent";
+            this.ComboPacjent.Size = new System.Drawing.Size(379, 21);
+            this.ComboPacjent.TabIndex = 14;
+            // 
+            // Szukaj
+            // 
+            this.Szukaj.Location = new System.Drawing.Point(12, 368);
+            this.Szukaj.Name = "Szukaj";
+            this.Szukaj.Size = new System.Drawing.Size(135, 36);
+            this.Szukaj.TabIndex = 15;
+            this.Szukaj.Text = "Szukaj";
+            this.Szukaj.UseVisualStyleBackColor = true;
+            this.Szukaj.Click += new System.EventHandler(this.Szukaj_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(12, 318);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 20);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Wyszukaj Pacjenta";
+            // 
+            // WyczWysz
+            // 
+            this.WyczWysz.Location = new System.Drawing.Point(256, 368);
+            this.WyczWysz.Name = "WyczWysz";
+            this.WyczWysz.Size = new System.Drawing.Size(135, 36);
+            this.WyczWysz.TabIndex = 17;
+            this.WyczWysz.Text = "Wyczyść Wyszukiwanie";
+            this.WyczWysz.UseVisualStyleBackColor = true;
+            this.WyczWysz.Click += new System.EventHandler(this.WyczWysz_Click);
+            // 
             // Odwolane_forma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 452);
+            this.Controls.Add(this.WyczWysz);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Szukaj);
+            this.Controls.Add(this.ComboPacjent);
             this.Controls.Add(this.OdwolaneTabela);
             this.Name = "Odwolane_forma";
             this.Text = "Odwolane_forma";
             ((System.ComponentModel.ISupportInitialize)(this.OdwolaneTabela)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -111,5 +158,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Lekarz_ImNazw;
         private System.Windows.Forms.DataGridViewTextBoxColumn Spec_Lek;
         private System.Windows.Forms.DataGridViewTextBoxColumn odw_data;
+        private System.Windows.Forms.ComboBox ComboPacjent;
+        private System.Windows.Forms.Button Szukaj;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button WyczWysz;
     }
 }

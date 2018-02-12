@@ -50,18 +50,42 @@ namespace Przychodnia.Obiekty_Bazy
             // this.NazwaPacjenta = Pacjent.PobierzPacjenta(IdPacjenta).Imie;
         }
         public static void DodajGrafik(Grafik grafik)
-        {
-            var zapytanie = string.Format("INSERT INTO grafik VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", null, grafik.IdLekarza, grafik.Dzien_od.ToString("yyyy-MM-dd HH:mm:ss"), grafik.IdPacjenta, grafik.Opis, grafik.IdOddzialu); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
-            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
-            DbHelper.Polaczenie.Open();
-
-            komenda.ExecuteNonQuery();
-
+        { 
+            DateTime dzis = new DateTime(), pobrane = new DateTime();
+        
+            dzis = DateTime.Now;
+            pobrane = grafik.Dzien_od;
             DbHelper.Polaczenie.Close();
+            if (pobrane > DateTime.Now) // Sprawdzenie czy pobrana data jest w "przyszłości" 
+            {
+             var   zapytanie = "INSERT INTO grafik VALUES(@null,@grafikIdLek,@grafikDzienOd,@grafikIDpac,@grafikOpis,@grafikIdOddzialu)"; //null, grafik.IdLekarza, grafik.Dzien_od.ToString("yyyy-MM-dd HH:mm:ss"), grafik.IdPacjenta, grafik.Opis, grafik.IdOddzialu); // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+             var  komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+                komenda.Parameters.AddWithValue("@null", null);
+                komenda.Parameters.AddWithValue("@grafikIdLek", grafik.IdLekarza);
+                komenda.Parameters.AddWithValue("@grafikDzienOd", grafik.Dzien_od.ToString("yyy-MM-dd HH:mm:ss"));
+                komenda.Parameters.AddWithValue("@grafikIDpac", grafik.IdPacjenta);
+                komenda.Parameters.AddWithValue("@grafikOpis", grafik.Opis);
+                komenda.Parameters.AddWithValue("@grafikIdOddzialu", grafik.IdOddzialu);
+                DbHelper.Polaczenie.Open();
+
+                komenda.ExecuteNonQuery();
+                DbHelper.Polaczenie.Close();
+            }
+           
+            else throw new Exception("NIe można umawiać wizyt w przeszłości ");
+
+
+       
+          
+
+
+
         }
         public static void UmowWizyte(int idpacjenta, int idgrafiku)
         {
+
+
             var zapytanie = "UPDATE grafik SET Id_pacjenta=@idPacjenta WHERE Id_grafiku=@idGrafiku";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 

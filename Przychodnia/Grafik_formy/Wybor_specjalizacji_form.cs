@@ -46,27 +46,30 @@ namespace Przychodnia.Grafik_formy
 
         private void Wybierz_button_Click(object sender, EventArgs e)
         {
-            var nazwa = this.comboBox1.Text;
-            if (pacjenci)
-            {
-                // var nazwa = this
-                var id = lista_pacjentow.First(i => i.Imie + " " + i.Nazwisko == nazwa).ID;
-                wybrany_pacjent = Pacjent.PobierzPacjenta((int)id);
-            }
-            else
-            {
-
-                if (nazwa == "Nie wybieraj")
+          
+                var nazwa = this.comboBox1.Text;
+                if (pacjenci)
                 {
-                    wybrana = new Specjalizacja(-1, "");
+                    // var nazwa = this
+                    var id = lista_pacjentow.First(i => i.Imie + " " + i.Nazwisko == nazwa).ID;
+                    wybrany_pacjent = Pacjent.PobierzPacjenta((int)id);
                 }
                 else
                 {
-                    var id = lista_spec.First(i => i.nazwa == nazwa).ID_specjalizacji;
-                    wybrana = new Specjalizacja(id, nazwa);
+
+                    if (nazwa == "Nie wybieraj")
+                    {
+                        wybrana = new Specjalizacja(-1, "");
+                    }
+                    else
+                    {
+                        var id = lista_spec.First(i => i.nazwa == nazwa).ID_specjalizacji;
+                        wybrana = new Specjalizacja(id, nazwa);
+                    }
                 }
-            }
-            this.Close();
+                this.Close();
+            
+         
         }
 
         private void Anuluj_button_Click(object sender, EventArgs e)
