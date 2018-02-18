@@ -119,7 +119,7 @@ namespace Przychodnia.Recepty_formy
                 var selectedrows = ReceptyTabela.SelectedRows;
                  for (int i =0;i< selectedrows.Count;i++)
                 {
-                    int ID_RECEPTY= (int)selectedrows[i].Cells[0].Value;
+                    int ID_RECEPTY= (int)selectedrows[i].Cells[5].Value;
                     Recepta.UsunReceptę(ID_RECEPTY);
                 }
 

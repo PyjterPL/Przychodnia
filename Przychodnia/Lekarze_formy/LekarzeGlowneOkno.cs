@@ -67,7 +67,7 @@ namespace Przychodnia
         private void Dodaj_Click(object sender, EventArgs e)
         {
             var dodawanie = new Dodaj_lekarza_form();
-            dodawanie.Show();
+            dodawanie.ShowDialog();
             OdswierzTabele();
         }
 
@@ -80,7 +80,7 @@ namespace Przychodnia
                         //var index = lekarz.Index;
                         var ID = (int)lekarz.Cells["ID"].Value;
                         var edycja = new Dodaj_lekarza_form(ID);
-                    edycja.Show();
+                    edycja.ShowDialog();
                     }    
             }
             OdswierzTabele();

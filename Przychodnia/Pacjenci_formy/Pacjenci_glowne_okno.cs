@@ -36,7 +36,8 @@ namespace Przychodnia.Pacjenci_formy
         private void DodajButton_Click(object sender, EventArgs e)
         {
             var dodajForm =new Dodaj_edytuj_pacjenta_forma();
-            dodajForm.Show();
+            dodajForm.ShowDialog();
+            OdswierzTabele();
         }
 
         private void Odswierz_Click(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace Przychodnia.Pacjenci_formy
                     //var index = lekarz.Index;
                     var ID = (int)pacjent.Cells["ID"].Value;
                     var edycja = new Dodaj_edytuj_pacjenta_forma(ID);
-                    edycja.Show();
+                    edycja.ShowDialog();
                 }
             }
             OdswierzTabele();

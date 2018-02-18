@@ -66,7 +66,7 @@ namespace Przychodnia.Grafik_formy
                         if (godzina == grafik.Dzien_od.TimeOfDay)
                         {
                             Tabela.Rows[row.Index].SetValues(grafik.ID, grafik.Dzien_od.TimeOfDay.ToString(), grafik.NazwaPacjent, grafik.Opis, grafik.NazwaSpecjalizacji);
-                            if (grafik.IdPacjenta == 0)
+                            if (grafik.IdPacjenta == 0 || grafik.IdPacjenta==null)
                             {
                                 row.DefaultCellStyle.BackColor = Color.Green;
                             }
@@ -292,6 +292,12 @@ namespace Przychodnia.Grafik_formy
 
         private void lekarz_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Odswierz();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Zmieniono date");
             Odswierz();
         }
     }

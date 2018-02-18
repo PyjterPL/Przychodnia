@@ -24,7 +24,7 @@ namespace Przychodnia.Grafik_formy
         {
             InitializeComponent();
             lista_spec = Specjalizacja.PobierzWszystkieSpecjalizacjeLekarza(ID);
-            this.comboBox1.Items.Add("Nie wybieraj"); // Co to jest ? 
+            this.comboBox1.Items.Add("Nie wybieraj"); // Co to jest ? - komentarz Sladu, to jest komentarz :D
             foreach (var specjalizacja in lista_spec)
             {
                 this.comboBox1.Items.Add(specjalizacja.nazwa);
@@ -37,6 +37,7 @@ namespace Przychodnia.Grafik_formy
             pacjenci = true;
             lista_pacjentow = Pacjent.PobierzWszystkichPacjentow();//Specjalizacja.PobierzWszystkieSpecjalizacjeLekarza(ID);
                                                                    // this.comboBox1.Items.Add("Nie wybieraj");
+            this.Text = "Wybór pacjenta";
             foreach (var pacjent in lista_pacjentow)
             {
                 this.comboBox1.Items.Add(pacjent.Imie + " " + pacjent.Nazwisko);

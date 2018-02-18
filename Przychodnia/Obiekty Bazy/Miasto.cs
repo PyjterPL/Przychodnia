@@ -42,6 +42,29 @@ namespace Przychodnia.Obiekty_Bazy
             DbHelper.Polaczenie.Close();
             return miasta;
         }
+        public static void DodajMiasto(string nazwa)
+        {
+            var zapytanie = string.Format("INSERT INTO miasta(Nazwa) VALUES('{0}')",nazwa);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        }
+        public static void EdytujMiasto(int id,string nazwa)
+        {
+            var zapytanie = string.Format("UPDATE miasta SET Nazwa='{0}' WHERE Id_miasta='{1}' ", nazwa, id);
+           
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            DbHelper.Polaczenie.Open();
+
+            komenda.ExecuteNonQuery();
+
+            DbHelper.Polaczenie.Close();
+        }
         public static string PobierzMiasto(int id)
         {
             var polaczenie = DbHelper.StworzPolaczenie();
@@ -64,6 +87,31 @@ namespace Przychodnia.Obiekty_Bazy
                 return string.Empty;
             }
            
+        }
+        public static Miasto PobierzMiastoObjekt(int id)
+        {
+            var polaczenie = DbHelper.StworzPolaczenie();
+            var zapytanie = string.Format("SELECT * FROM miasta WHERE Id_miasta={0}", id);
+            var komenda = new MySqlCommand(zapytanie, polaczenie);
+
+            polaczenie.Open();
+
+            var reader = komenda.ExecuteReader();
+
+            if (reader.Read())
+            {
+                var nazwa = reader["Nazwa"].ToString();
+                var ID = (int)reader["Id_miasta"];
+                polaczenie.Close();
+                var miasto = new Miasto(ID, nazwa);
+                return miasto;
+            }
+            else
+            {
+                polaczenie.Close();
+                return null;
+            }
+
         }
     }
 }

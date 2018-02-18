@@ -219,6 +219,7 @@
             this.AnulujButton.TabIndex = 19;
             this.AnulujButton.Text = "Anuluj";
             this.AnulujButton.UseVisualStyleBackColor = true;
+            this.AnulujButton.Click += new System.EventHandler(this.AnulujButton_Click);
             // 
             // Dodaj_edytuj_pacjenta_forma
             // 

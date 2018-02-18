@@ -92,60 +92,63 @@ namespace Przychodnia.Pacjenci_formy
         {
             if (edycja)
             {
-                SprawdzPoprawnoscPola();
-                var imie = this.Imie_textBox.Text;
-                var nazwisko = this.Nazwisko_textBox.Text;
-                var data = this.dateTimePicker1.Value;
-                var adres = this.Adres_textBox.Text;
-                var miasto = this.Miasto_comboBox.Text;
-                var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
-                var pesel = this.Pesel_textBox.Text;
-                if(CzyCiagJestNumerem(Telefon_textBox.Text)==true)
+                if (SprawdzPoprawnoscPola())
                 {
-                    var telefon = this.Telefon_textBox.Text;
-                    var plec = char.Parse(this.Plec_comboBox.Text);
-                    var lekarz = this.LekarzProwadzacy_comboBox.Text;
-                    var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
+                
+                    var imie = this.Imie_textBox.Text;
+                    var nazwisko = this.Nazwisko_textBox.Text;
+                    var data = this.dateTimePicker1.Value;
+                    var adres = this.Adres_textBox.Text;
+                    var miasto = this.Miasto_comboBox.Text;
+                    var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
+                    var pesel = this.Pesel_textBox.Text;
+                    if(CzyCiagJestNumerem(Telefon_textBox.Text)==true)
+                    {
+                        var telefon = this.Telefon_textBox.Text;
+                        var plec = char.Parse(this.Plec_comboBox.Text);
+                        var lekarz = this.LekarzProwadzacy_comboBox.Text;
+                        var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
 
 
-                    Pacjent.EdytujPacjenta(new Pacjent(_pacjent.ID, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
-                    // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
-                    MessageBox.Show("Edytowano pacjenta!");
-                    this.Close();
+                        Pacjent.EdytujPacjenta(new Pacjent(_pacjent.ID, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
+                        MessageBox.Show("Edytowano pacjenta!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Numer telefonu nie moze zawierać liter oraz znaków specjalnych", "Błąd");
+                        return;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Numer telefonu nie moze zawierać liter oraz znaków specjalnych", "Błąd");
-                    return;
-                }
-            
+
             }
             else
             {
-                SprawdzPoprawnoscPola();
-                var imie = this.Imie_textBox.Text;
-                var nazwisko = this.Nazwisko_textBox.Text;
-                var data = this.dateTimePicker1.Value;
-                var adres = this.Adres_textBox.Text;
-                var miasto = this.Miasto_comboBox.Text;
-                var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
-                var pesel = this.Pesel_textBox.Text;
-                if (CzyCiagJestNumerem(Telefon_textBox.Text) == true)
+                if (SprawdzPoprawnoscPola())
                 {
-                    var telefon = this.Telefon_textBox.Text;
-                    var plec = char.Parse(this.Plec_comboBox.Text);
-                    var lekarz = this.LekarzProwadzacy_comboBox.Text;
-                    var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
+                    var imie = this.Imie_textBox.Text;
+                    var nazwisko = this.Nazwisko_textBox.Text;
+                    var data = this.dateTimePicker1.Value;
+                    var adres = this.Adres_textBox.Text;
+                    var miasto = this.Miasto_comboBox.Text;
+                    var id_miasta = _miasta.First(i => i.Nazwa == miasto).ID;
+                    var pesel = this.Pesel_textBox.Text;
+                    if (CzyCiagJestNumerem(Telefon_textBox.Text) == true)
+                    {
+                        var telefon = this.Telefon_textBox.Text;
+                        var plec = char.Parse(this.Plec_comboBox.Text);
+                        var lekarz = this.LekarzProwadzacy_comboBox.Text;
+                        var id_lekarza = _lekarze.First(i => i.Imie + " " + i.Nazwisko == lekarz).ID;
 
-                    Pacjent.DodajPacjenta(new Pacjent(null, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
-                    // Lekarz.DodajLekarza(new Lekarz(imie, nazwisko, data, adres, id_miasta, telefon));
-                    MessageBox.Show("Dodano pacjenta!");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Numer telefonu nie moze zawierać liter oraz znaków specjalnych", "Błąd");
-                    return;
+                        Pacjent.DodajPacjenta(new Pacjent(null, pesel, imie, nazwisko, data, adres, id_miasta, telefon, plec, id_lekarza));
+                        MessageBox.Show("Dodano pacjenta!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Numer telefonu nie moze zawierać liter oraz znaków specjalnych", "Błąd");
+                        return;
+                    }
                 }
             }
         }
@@ -165,7 +168,7 @@ namespace Przychodnia.Pacjenci_formy
 
         private bool SprawdzPoprawnoscPola()
         {
-            if (Imie_textBox.Text.Length < 3 || Nazwisko_textBox.Text.Length < 3)
+            if (Imie_textBox.Text.Length < 1 || Nazwisko_textBox.Text.Length < 1)
             {
                 MessageBox.Show("Imię lub Nazwisko jest nieprawidłowe", "Błąd");
                 return false;
@@ -173,5 +176,10 @@ namespace Przychodnia.Pacjenci_formy
             }
             return true;
         } // proste zabezpieczenie, sprawdza długosc stringa ktory jest pobierany z textboxa
+
+        private void AnulujButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

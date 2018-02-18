@@ -22,31 +22,37 @@ namespace Przychodnia
         private void buttonLekarze_Click(object sender, EventArgs e)
         {
             var lekarzeOkno = new LekarzeGlowneOkno();
-            lekarzeOkno.Show();
+            lekarzeOkno.ShowDialog();
         }
 
         private void buttonPacienci_Click(object sender, EventArgs e)
         {
             var pacjenciOkno = new Pacjenci_glowne_okno();
-            pacjenciOkno.Show();
+            pacjenciOkno.ShowDialog();
         }
 
         private void Wizyty_button_Click(object sender, EventArgs e)
         {
             var grafik =new Grafik_formy.Grafik_glowna_forma();
-            grafik.Show();
+            grafik.ShowDialog();
         }
 
         private void Recepty_Button_Click(object sender, EventArgs e)
         {
             var receptyOkno = new Recepty_formy.ReceptyGlowneOkno();
-            receptyOkno.Show();
+            receptyOkno.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             var SpecOdzOkno = new OddzialySpecjalizacje_formy.OdzSpecGlowneOkno();
-            SpecOdzOkno.Show();
+            SpecOdzOkno.ShowDialog();
+        }
+
+        private void buttonMiasta_Click(object sender, EventArgs e)
+        {
+            var MiastaOkno = new Miasta_formy.Miasta_glowna_forma();
+            MiastaOkno.ShowDialog();
         }
     }
 }

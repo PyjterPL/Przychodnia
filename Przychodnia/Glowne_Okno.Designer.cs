@@ -33,6 +33,7 @@
             this.Wizyty_button = new System.Windows.Forms.Button();
             this.Recepty_Button = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonMiasta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLekarze
@@ -87,11 +88,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonMiasta
+            // 
+            this.buttonMiasta.Location = new System.Drawing.Point(12, 159);
+            this.buttonMiasta.Name = "buttonMiasta";
+            this.buttonMiasta.Size = new System.Drawing.Size(284, 23);
+            this.buttonMiasta.TabIndex = 5;
+            this.buttonMiasta.Text = "Miasta";
+            this.buttonMiasta.UseVisualStyleBackColor = true;
+            this.buttonMiasta.Click += new System.EventHandler(this.buttonMiasta_Click);
+            // 
             // Okno_glowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 210);
+            this.Controls.Add(this.buttonMiasta);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Recepty_Button);
             this.Controls.Add(this.Wizyty_button);
@@ -111,6 +123,7 @@
         private System.Windows.Forms.Button Wizyty_button;
         private System.Windows.Forms.Button Recepty_Button;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonMiasta;
     }
 }
 

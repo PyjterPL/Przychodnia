@@ -61,6 +61,7 @@
             // 
             // ComboPacjent
             // 
+            this.ComboPacjent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboPacjent.FormattingEnabled = true;
             this.ComboPacjent.Location = new System.Drawing.Point(112, 50);
             this.ComboPacjent.Name = "ComboPacjent";
@@ -69,6 +70,7 @@
             // 
             // ComboLekarz
             // 
+            this.ComboLekarz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboLekarz.FormattingEnabled = true;
             this.ComboLekarz.Location = new System.Drawing.Point(112, 12);
             this.ComboLekarz.Name = "ComboLekarz";

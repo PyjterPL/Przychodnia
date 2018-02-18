@@ -94,6 +94,18 @@
     <Compile Include="Lekarze_formy\Dodaj-edytuj_lekarza_form.Designer.cs">
       <DependentUpon>Dodaj-edytuj_lekarza_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Miasta_formy\Dodaj_Edytuj_miasto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Miasta_formy\Dodaj_Edytuj_miasto.Designer.cs">
+      <DependentUpon>Dodaj_Edytuj_miasto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Miasta_formy\Miasta_glowna_forma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Miasta_formy\Miasta_glowna_forma.Designer.cs">
+      <DependentUpon>Miasta_glowna_forma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Obiekty Bazy\Grafik.cs" />
     <Compile Include="Obiekty Bazy\Lekarz.cs" />
     <Compile Include="Lekarze_formy\LekarzeGlowneOkno.cs">
@@ -175,6 +187,12 @@
     <EmbeddedResource Include="Lekarze_formy\LekarzeGlowneOkno.resx">
       <DependentUpon>LekarzeGlowneOkno.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Miasta_formy\Dodaj_Edytuj_miasto.resx">
+      <DependentUpon>Dodaj_Edytuj_miasto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Miasta_formy\Miasta_glowna_forma.resx">
+      <DependentUpon>Miasta_glowna_forma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OddzialySpecjalizacje_formy\DodSpec_Form.resx">
       <DependentUpon>DodSpec_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +250,7 @@
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
