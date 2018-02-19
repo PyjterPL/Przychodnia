@@ -112,6 +112,7 @@
             // Tresc
             // 
             this.Tresc.Location = new System.Drawing.Point(29, 123);
+            this.Tresc.MaxLength = 500;
             this.Tresc.Name = "Tresc";
             this.Tresc.Size = new System.Drawing.Size(836, 269);
             this.Tresc.TabIndex = 8;

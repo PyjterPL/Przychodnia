@@ -57,6 +57,7 @@
             // SpecT
             // 
             this.SpecT.Location = new System.Drawing.Point(83, 57);
+            this.SpecT.MaxLength = 50;
             this.SpecT.Name = "SpecT";
             this.SpecT.Size = new System.Drawing.Size(239, 20);
             this.SpecT.TabIndex = 2;

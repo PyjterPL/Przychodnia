@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2018 at 05:23 PM
+-- Generation Time: Feb 19, 2018 at 06:21 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -33,7 +33,7 @@ CREATE TABLE `grafik` (
   `Id_lekarza` int(11) NOT NULL,
   `Dzien_od` datetime NOT NULL COMMENT '15 minut na wizyte',
   `Id_pacjenta` int(11) DEFAULT NULL COMMENT 'jesli null to wolne',
-  `Opis` varchar(500) COLLATE utf8_polish_ci NOT NULL COMMENT 'max 500 znakow',
+  `Opis` varchar(5000) COLLATE utf8_polish_ci NOT NULL COMMENT 'max 5000 znakow',
   `Id_oddzialu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -84,7 +84,7 @@ CREATE TABLE `lekarze` (
 --
 
 INSERT INTO `lekarze` (`Id_lekarza`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`) VALUES
-(1, 'Adam', 'Lekarz', '2018-02-01', 'ul.Miodowa 25 71-706', 1, '546565656'),
+(1, 'Adam', 'Lekarz1', '2018-02-01', 'ul.Miodowa 25 71-706', 1, '546565656'),
 (2, 'Paweł', 'Kaczmarczyk', '2018-02-14', 'asdasdasd', 2, 'jakiś');
 
 -- --------------------------------------------------------
@@ -105,7 +105,8 @@ CREATE TABLE `miasta` (
 INSERT INTO `miasta` (`Id_miasta`, `Nazwa`) VALUES
 (1, 'Kołobrzeg'),
 (2, 'Ruda Śląska'),
-(3, 'Gliwice');
+(3, 'Gliwice'),
+(4, 'Tychy');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,8 @@ CREATE TABLE `oddzialy` (
 INSERT INTO `oddzialy` (`Id_oddzialu`, `Id_specjalizacji`, `Id_lekarza`) VALUES
 (9, 2, 2),
 (11, 4, 1),
-(15, 3, 2);
+(15, 3, 2),
+(16, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -175,9 +177,10 @@ CREATE TABLE `pacjenci` (
 --
 
 INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`, `Plec`, `Id_lekarza`) VALUES
-(8, '11', 's', 's', '2018-02-07', '1', 1, '11', 'M', 1),
-(9, '123', '123', '231', '2018-02-12', '123', 2, '123', 'M', 6),
-(10, '', '', '', '2018-02-18', '', 1, '', 'M', 1);
+(8, '93061312131', 'Piotr', 'Zuber', '2018-02-07', 'Miodowa 12', 1, '123123123', 'M', 2),
+(9, '805112312', 'Jaroslaw', 'Jakubiecz', '2018-02-12', 'Szynowa 80/51', 4, '123123123', 'M', 1),
+(10, '88885', 'Kazmira', 'Adamska', '2018-02-18', '', 1, '', 'K', 2),
+(11, '', 'Adam', 'Kowalski', '1995-06-17', 'aaaaaaa', 4, '', 'M', 2);
 
 -- --------------------------------------------------------
 
@@ -189,7 +192,7 @@ CREATE TABLE `recepty` (
   `Id_recepty` int(11) NOT NULL,
   `Id_lekarza` int(11) NOT NULL,
   `Id_pacjenta` int(11) NOT NULL,
-  `Tresc` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `Tresc` varchar(500) COLLATE utf8_polish_ci NOT NULL,
   `Data_waznosci` date NOT NULL,
   `Id_grafiku` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -199,7 +202,8 @@ CREATE TABLE `recepty` (
 --
 
 INSERT INTO `recepty` (`Id_recepty`, `Id_lekarza`, `Id_pacjenta`, `Tresc`, `Data_waznosci`, `Id_grafiku`) VALUES
-(2, 1, 8, 'dsaaaaaaaaaaaaa', '2018-02-18', 69);
+(2, 1, 8, 'dsaaaaaaaaaaaaa', '2018-02-18', 69),
+(3, 2, 9, ';drop database \'przychodnia\'', '2018-02-19', 70);
 
 -- --------------------------------------------------------
 
@@ -300,19 +304,19 @@ ALTER TABLE `grafik`
 -- AUTO_INCREMENT for table `lekarze`
 --
 ALTER TABLE `lekarze`
-  MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `miasta`
 --
 ALTER TABLE `miasta`
-  MODIFY `Id_miasta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_miasta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `oddzialy`
 --
 ALTER TABLE `oddzialy`
-  MODIFY `Id_oddzialu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Id_oddzialu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `odwolane`
@@ -324,13 +328,13 @@ ALTER TABLE `odwolane`
 -- AUTO_INCREMENT for table `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `recepty`
 --
 ALTER TABLE `recepty`
-  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `specjalizacja`

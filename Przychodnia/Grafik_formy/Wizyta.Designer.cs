@@ -43,6 +43,7 @@
             // Opis
             // 
             this.Opis.Location = new System.Drawing.Point(16, 316);
+            this.Opis.MaxLength = 5000;
             this.Opis.Name = "Opis";
             this.Opis.Size = new System.Drawing.Size(1139, 272);
             this.Opis.TabIndex = 0;

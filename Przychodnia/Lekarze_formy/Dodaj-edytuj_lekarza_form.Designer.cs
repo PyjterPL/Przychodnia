@@ -109,6 +109,7 @@
             // Imie_textbox
             // 
             this.Imie_textbox.Location = new System.Drawing.Point(158, 9);
+            this.Imie_textbox.MaxLength = 50;
             this.Imie_textbox.Name = "Imie_textbox";
             this.Imie_textbox.Size = new System.Drawing.Size(100, 20);
             this.Imie_textbox.TabIndex = 9;
@@ -116,6 +117,7 @@
             // Nazwisko_textbox
             // 
             this.Nazwisko_textbox.Location = new System.Drawing.Point(158, 36);
+            this.Nazwisko_textbox.MaxLength = 50;
             this.Nazwisko_textbox.Name = "Nazwisko_textbox";
             this.Nazwisko_textbox.Size = new System.Drawing.Size(100, 20);
             this.Nazwisko_textbox.TabIndex = 10;
@@ -130,6 +132,7 @@
             // Adres_textbox
             // 
             this.Adres_textbox.Location = new System.Drawing.Point(157, 102);
+            this.Adres_textbox.MaxLength = 50;
             this.Adres_textbox.Name = "Adres_textbox";
             this.Adres_textbox.Size = new System.Drawing.Size(100, 20);
             this.Adres_textbox.TabIndex = 12;
@@ -137,6 +140,7 @@
             // Telefon_texbox
             // 
             this.Telefon_texbox.Location = new System.Drawing.Point(158, 175);
+            this.Telefon_texbox.MaxLength = 50;
             this.Telefon_texbox.Name = "Telefon_texbox";
             this.Telefon_texbox.Size = new System.Drawing.Size(100, 20);
             this.Telefon_texbox.TabIndex = 13;
