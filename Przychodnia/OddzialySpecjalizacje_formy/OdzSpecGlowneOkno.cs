@@ -71,8 +71,12 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
 
         private void DodSpec_Click(object sender, EventArgs e)
         {
-            var dodajSpec = new DodSpec_Form();
-            dodajSpec.Show();
+         var dodajSpec = new DodSpec_Form();
+         DialogResult dr= dodajSpec.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                OdswiezTabele();
+            } 
         }
 
         private void Odswierz_Click(object sender, EventArgs e)
@@ -136,8 +140,12 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             if(selectedRow.Count==1)
             {
                 int id = (int)selectedRow[0].Cells[0].Value;
-               var edycja = new DodSpec_Form(id);
-                edycja.Show();
+                var edycja = new DodSpec_Form(id);
+                DialogResult dr= edycja.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    OdswiezTabele();
+                }
             }
             
         }

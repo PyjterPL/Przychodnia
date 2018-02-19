@@ -49,10 +49,12 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             if (tryb==0)
             {
                 Specjalizacja.DodajSpecjalizacje(SpecT.Text);
+                this.DialogResult = DialogResult.OK;
             }
            else if (tryb==1)
             {
                 Specjalizacja.EdytujSpecjalizacje(ID, SpecT.Text);
+                this.DialogResult = DialogResult.OK;
             }
             this.Hide();
             this.Dispose();

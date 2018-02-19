@@ -36,6 +36,7 @@
             // 
             // DodSpecB
             // 
+            this.DodSpecB.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.DodSpecB.Location = new System.Drawing.Point(83, 105);
             this.DodSpecB.Name = "DodSpecB";
             this.DodSpecB.Size = new System.Drawing.Size(98, 36);
@@ -46,6 +47,7 @@
             // 
             // AnSpecB
             // 
+            this.AnSpecB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.AnSpecB.Location = new System.Drawing.Point(224, 105);
             this.AnSpecB.Name = "AnSpecB";
             this.AnSpecB.Size = new System.Drawing.Size(98, 36);
