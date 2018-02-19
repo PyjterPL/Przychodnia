@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2018 at 01:12 PM
+-- Generation Time: Feb 19, 2018 at 05:23 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -45,7 +45,23 @@ INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Op
 (69, 1, '2018-02-08 01:00:00', 0, '', 8),
 (70, 2, '2018-02-08 01:00:00', 0, '', 9),
 (71, 2, '2018-02-08 01:45:00', 0, '', 0),
-(75, 1, '2018-02-09 02:00:00', 0, '', 8);
+(75, 1, '2018-02-09 02:00:00', 0, '', 8),
+(76, 1, '2018-02-09 01:30:00', 0, '', 0),
+(77, 1, '2018-02-19 02:30:00', NULL, '', 12),
+(78, 1, '2018-02-19 02:15:00', NULL, '', 12),
+(80, 1, '2018-02-19 01:45:00', 10, '', 12),
+(81, 1, '2018-02-19 01:30:00', NULL, '', 12),
+(82, 1, '2018-02-19 01:15:00', 8, '   \n\n   DATA WIZYTY: 18-02-18 19:32\n\n   \n\n   DATA WIZYTY: 18-02-18 19:25\n\nsaddasasdasdddddddd', 12),
+(83, 1, '2018-02-19 01:00:00', NULL, '', 12),
+(84, 1, '2018-02-19 00:45:00', NULL, '', 12),
+(85, 2, '2018-02-19 06:15:00', NULL, '', 9),
+(86, 2, '2018-02-19 06:00:00', NULL, '', 9),
+(87, 2, '2018-02-19 05:45:00', NULL, '', 9),
+(88, 2, '2018-02-19 05:30:00', NULL, '', 9),
+(89, 2, '2018-02-19 05:15:00', NULL, '', 9),
+(90, 2, '2018-02-19 05:00:00', NULL, '', 9),
+(91, 2, '2018-02-19 04:45:00', NULL, '', 9),
+(92, 2, '2018-02-19 04:30:00', NULL, '', 9);
 
 -- --------------------------------------------------------
 
@@ -88,7 +104,8 @@ CREATE TABLE `miasta` (
 
 INSERT INTO `miasta` (`Id_miasta`, `Nazwa`) VALUES
 (1, 'Kołobrzeg'),
-(2, 'Ruda Śląska');
+(2, 'Ruda Śląska'),
+(3, 'Gliwice');
 
 -- --------------------------------------------------------
 
@@ -107,9 +124,9 @@ CREATE TABLE `oddzialy` (
 --
 
 INSERT INTO `oddzialy` (`Id_oddzialu`, `Id_specjalizacji`, `Id_lekarza`) VALUES
-(8, 1, 1),
 (9, 2, 2),
-(10, 4, 6);
+(11, 4, 1),
+(15, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -130,7 +147,9 @@ CREATE TABLE `odwolane` (
 --
 
 INSERT INTO `odwolane` (`Id_odwolania`, `Id_pacjenta`, `Lekarz`, `Specjalizacja`, `Dzien_od`) VALUES
-(3, 8, 'Adam Lekarz', 'Urogol', '2018-02-09 02:00:00');
+(3, 8, 'Adam Lekarz', 'Urogol', '2018-02-09 02:00:00'),
+(4, 9, 'Adam Lekarz', 'Brak specjalizacji', '2018-02-09 01:30:00'),
+(5, 9, 'Adam Lekarz', 'Urogol', '2018-02-19 01:15:00');
 
 -- --------------------------------------------------------
 
@@ -156,8 +175,9 @@ CREATE TABLE `pacjenci` (
 --
 
 INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`, `Plec`, `Id_lekarza`) VALUES
-(8, '11', 'ss', 's', '2018-02-07', '1', 1, '11', 'M', 1),
-(9, '123', '123', '231', '2018-02-12', '123', 2, '123', 'M', 6);
+(8, '11', 's', 's', '2018-02-07', '1', 1, '11', 'M', 1),
+(9, '123', '123', '231', '2018-02-12', '123', 2, '123', 'M', 6),
+(10, '', '', '', '2018-02-18', '', 1, '', 'M', 1);
 
 -- --------------------------------------------------------
 
@@ -173,6 +193,13 @@ CREATE TABLE `recepty` (
   `Data_waznosci` date NOT NULL,
   `Id_grafiku` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Dumping data for table `recepty`
+--
+
+INSERT INTO `recepty` (`Id_recepty`, `Id_lekarza`, `Id_pacjenta`, `Tresc`, `Data_waznosci`, `Id_grafiku`) VALUES
+(2, 1, 8, 'dsaaaaaaaaaaaaa', '2018-02-18', 69);
 
 -- --------------------------------------------------------
 
@@ -267,43 +294,43 @@ ALTER TABLE `specjalizacja`
 -- AUTO_INCREMENT for table `grafik`
 --
 ALTER TABLE `grafik`
-  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `lekarze`
 --
 ALTER TABLE `lekarze`
-  MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `miasta`
 --
 ALTER TABLE `miasta`
-  MODIFY `Id_miasta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_miasta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `oddzialy`
 --
 ALTER TABLE `oddzialy`
-  MODIFY `Id_oddzialu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id_oddzialu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `odwolane`
 --
 ALTER TABLE `odwolane`
-  MODIFY `Id_odwolania` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_odwolania` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `recepty`
 --
 ALTER TABLE `recepty`
-  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `specjalizacja`

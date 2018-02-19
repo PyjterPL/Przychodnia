@@ -122,9 +122,28 @@ namespace Przychodnia.Obiekty_Bazy
         }
 
         public static void DodajPacjenta(Pacjent pacjent)
-        {
-            var zapytanie = string.Format("INSERT INTO pacjenci VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", null,pacjent.Pesel, pacjent.Imie, pacjent.Nazwisko, pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"), pacjent.Adres, pacjent.IdMiasta, pacjent.Telefon,pacjent.Plec,pacjent.IdLekarza);
+        {            /*var recepty = new List<Recepta>();
+            var zapytanie = "SELECT * FROM recepty WHERE Id_pacjenta=@idPacjenta";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+            komenda.Parameters.AddWithValue("@idPacjenta", ID_Pacjenta);
+            DbHelper.Polaczenie.Open();
+
+            var reader = komenda.ExecuteReader();
+             * */
+            var zapytanie = "INSERT INTO pacjenci VALUES(@null,@pesel,@imie,@nazwisko,@data,@adres,@idmiasta,@telefon,@plec,@idlekarza)";//
+           // komenda.Parameters.addwi null,pacjent.Pesel, pacjent.Imie, pacjent.Nazwisko, pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"), pacjent.Adres, pacjent.IdMiasta, pacjent.Telefon,pacjent.Plec,pacjent.IdLekarza);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@null", null);
+            komenda.Parameters.AddWithValue("@pesel", pacjent.Pesel);
+            komenda.Parameters.AddWithValue("@imie", pacjent.Imie);
+            komenda.Parameters.AddWithValue("@nazwisko", pacjent.Nazwisko);
+            komenda.Parameters.AddWithValue("@data", pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"));
+            komenda.Parameters.AddWithValue("@adres", pacjent.Adres);
+            komenda.Parameters.AddWithValue("@idmiasta", pacjent.IdMiasta);
+            komenda.Parameters.AddWithValue("@telefon", pacjent.Telefon);
+            komenda.Parameters.AddWithValue("@plec", pacjent.Plec);
+            komenda.Parameters.AddWithValue("@idlekarza",pacjent.IdLekarza);
 
             DbHelper.Polaczenie.Open();
 
@@ -134,9 +153,9 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void UsunPacjenta(int id)
         {
-            var zapytanie = string.Format("DELETE FROM pacjenci WHERE Id_pacjenta={0}", id.ToString());
+            var zapytanie = "DELETE FROM pacjenci WHERE Id_pacjenta=@id";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
+            komenda.Parameters.AddWithValue("@id", id);
             DbHelper.Polaczenie.Open();
 
             komenda.ExecuteNonQuery();
@@ -145,11 +164,21 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void EdytujPacjenta(Pacjent pacjent)
         {
-            var zapytanie = string.Format("UPDATE pacjenci SET Pesel='{0}', Imie='{1}',Nazwisko='{2}',Data_urodzenia='{3}',Adres='{4}',Id_miasta='{5}',Telefon='{6}',Plec='{7}',Id_lekarza='{8}' WHERE Id_pacjenta='{9}' ",
+            var zapytanie = string.Format("UPDATE pacjenci SET Pesel=@pesel, Imie=@imie,Nazwisko=@nazwisko,Data_urodzenia=@data,Adres=@adres,Id_miasta=@idmiasta,Telefon=@telefon,Plec=@plec,Id_lekarza=@idlekarza WHERE Id_pacjenta=@id ",
                 pacjent.Pesel,pacjent.Imie,pacjent.Nazwisko,pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"),pacjent.Adres,pacjent.IdMiasta,pacjent.Telefon,pacjent.Plec,pacjent.LekarzProwadzacy.ID,pacjent.ID);
           //  , lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon, lekarz.ID);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
+            komenda.Parameters.AddWithValue("@id", pacjent.ID);
+            komenda.Parameters.AddWithValue("@pesel", pacjent.Pesel);
+            komenda.Parameters.AddWithValue("@imie", pacjent.Imie);
+            komenda.Parameters.AddWithValue("@nazwisko", pacjent.Nazwisko);
+            komenda.Parameters.AddWithValue("@data", pacjent.DataUrodzenia.Date.ToString("yyyy-MM-dd"));
+            komenda.Parameters.AddWithValue("@adres", pacjent.Adres);
+            komenda.Parameters.AddWithValue("@idmiasta", pacjent.IdMiasta);
+            komenda.Parameters.AddWithValue("@telefon", pacjent.Telefon);
+            komenda.Parameters.AddWithValue("@plec", pacjent.Plec);
+            komenda.Parameters.AddWithValue("@idlekarza", pacjent.IdLekarza);
             DbHelper.Polaczenie.Open();
 
             komenda.ExecuteNonQuery();

@@ -44,9 +44,10 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void DodajMiasto(string nazwa)
         {
-            var zapytanie = string.Format("INSERT INTO miasta(Nazwa) VALUES('{0}')",nazwa);
+           
+            var zapytanie = "INSERT INTO miasta(Nazwa) VALUES(@nazwa)";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
+            komenda.Parameters.AddWithValue("@nazwa", nazwa);
             DbHelper.Polaczenie.Open();
 
             komenda.ExecuteNonQuery();
@@ -55,10 +56,11 @@ namespace Przychodnia.Obiekty_Bazy
         }
         public static void EdytujMiasto(int id,string nazwa)
         {
-            var zapytanie = string.Format("UPDATE miasta SET Nazwa='{0}' WHERE Id_miasta='{1}' ", nazwa, id);
+            var zapytanie = "UPDATE miasta SET Nazwa=@nazwa WHERE Id_miasta=@id ";
            
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
+            komenda.Parameters.AddWithValue("@nazwa", nazwa);
+            komenda.Parameters.AddWithValue("@id", id);
             DbHelper.Polaczenie.Open();
 
             komenda.ExecuteNonQuery();

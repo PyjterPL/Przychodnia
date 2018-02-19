@@ -127,8 +127,12 @@ namespace Przychodnia.Obiekty_Bazy
 
         public static void DodajOddzial(int id_spec, int id_lek)
         {
-            var zapytanie = string.Format("INSERT INTO oddzialy VALUES('{0}','{1}','{2}'", null, id_spec, id_lek);
+
+            var zapytanie = "INSERT INTO oddzialy VALUES(@null,@id_spec,@id_lek";//, null, id_spec, id_lek);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@null", null);
+            komenda.Parameters.AddWithValue("@id_spec", id_spec);
+            komenda.Parameters.AddWithValue("@id_lek", id_lek);
 
             DbHelper.Polaczenie.Open();
             komenda.ExecuteNonQuery();

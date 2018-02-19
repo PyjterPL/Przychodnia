@@ -123,9 +123,20 @@ namespace Przychodnia
         }
         public static void DodajLekarza(Lekarz lekarz)
         {
-            var zapytanie = string.Format("INSERT INTO lekarze VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",null, lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta,lekarz.Telefon);
-            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            
 
+            var zapytanie = "INSERT INTO lekarze VALUES(@null,@lekarz.imie,@lekarz.nazwisko,@lekarz.dataurodzenia,@lekarz.adres,@lekarz.idmiasta,@lekarz.telefon)";
+           
+            
+            //,null, lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta,lekarz.Telefon);
+            var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@null", null);
+            komenda.Parameters.AddWithValue("@lekarz.imie", lekarz.Imie);
+            komenda.Parameters.AddWithValue("@lekarz.nazwisko", lekarz.Nazwisko);
+            komenda.Parameters.AddWithValue("@lekarz.dataurodzenia", lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"));
+            komenda.Parameters.AddWithValue("@lekarz.adres", lekarz.Adres);
+            komenda.Parameters.AddWithValue("@lekarz.idmiasta", lekarz.IdMiasta);
+            komenda.Parameters.AddWithValue("@lekarz.telefon", lekarz.Telefon);
             DbHelper.Polaczenie.Open();
 
             komenda.ExecuteNonQuery();
@@ -135,10 +146,16 @@ namespace Przychodnia
 
         public static void EdytujLekarza(Lekarz lekarz)
         {
-            var zapytanie = string.Format("UPDATE lekarze SET Imie='{0}',Nazwisko='{1}',Data_urodzenia='{2}',Adres='{3}',Id_miasta='{4}',Telefon='{5}' WHERE Id_lekarza='{6}' "
-            , lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon,lekarz.ID);
+            var zapytanie = "UPDATE lekarze SET Imie=@lekarz.imie,Nazwisko=@lekarz.nazwisko,Data_urodzenia=@lekarz.dataurodzenia,Adres=@lekarz.adres,Id_miasta=@lekarz.idmiasta,Telefon=@lekarz.telefon WHERE Id_lekarza=@lekarz.id ";
+          //  , lekarz.Imie, lekarz.Nazwisko, lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon,lekarz.ID);
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
-
+            komenda.Parameters.AddWithValue("@lekarz.id", lekarz.ID);
+            komenda.Parameters.AddWithValue("@lekarz.imie", lekarz.Imie);
+            komenda.Parameters.AddWithValue("@lekarz.nazwisko", lekarz.Nazwisko);
+            komenda.Parameters.AddWithValue("@lekarz.dataurodzenia", lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"));
+            komenda.Parameters.AddWithValue("@lekarz.adres", lekarz.Adres);
+            komenda.Parameters.AddWithValue("@lekarz.idmiasta", lekarz.IdMiasta);
+            komenda.Parameters.AddWithValue("@lekarz.telefon", lekarz.Telefon);
             DbHelper.Polaczenie.Open();
 
             komenda.ExecuteNonQuery();
