@@ -50,8 +50,8 @@ namespace Przychodnia.Recepty_formy
                 item.Value = (int)pac.ID;
                 ComboPacjent.Items.Add(item);
             }
-            ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
+           // ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
+          //  ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         public DodajRecepte_Form(int ID_Pacjenta, int ID_Lekarza) 
         {
@@ -69,8 +69,8 @@ namespace Przychodnia.Recepty_formy
             ComboLekarz.AutoCompleteSource = AutoCompleteSource.ListItems;
             ComboPacjent.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
+           // ComboLekarz.DropDownStyle = ComboBoxStyle.DropDownList;
+          //  ComboPacjent.DropDownStyle = ComboBoxStyle.DropDownList;
             foreach (Lekarz lek in listaLekarzy)
             {
                 item = new ComboboxItem();
