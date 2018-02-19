@@ -101,6 +101,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
                 DialogResult dr = dialogUsunSpec.ShowDialog();
                 SprawdzUsuwanieSpec(dialogUsunSpec, dr);
             }
+            OdswiezTabele();
         }
 
         private void SprawdzUsuwanieSpec(Przychodnia.Recepty_formy.PotwierdzDialog obj, DialogResult dr)
@@ -112,7 +113,15 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
                 for (int i = 0; i < selectedrows.Count; i++)
                 {
                     string NAZWA_SPECJALIZACJI = (string)selectedrows[i].Cells[1].Value;
-                    Specjalizacja.UsunSpecjalizacje(NAZWA_SPECJALIZACJI);
+                    try
+                    {
+                        Specjalizacja.UsunSpecjalizacje(NAZWA_SPECJALIZACJI);
+                    }
+                    catch(MySql.Data.MySqlClient.MySqlException ex)
+                    {
+                        MessageBox.Show("Nie można usuwać specjalizacji,które są przypisane do lekarza lub lekarzy.\nNajpierw Usun przypisanie specjalizacji dla konkretnych lekarzy", "Błąd");
+                        DbHelper.Polaczenie.Close();
+                    }
                 }
 
                 OdswiezTabele();
@@ -194,6 +203,7 @@ namespace Przychodnia.OddzialySpecjalizacje_formy
             {
                 var idLek = LekSelectedRow[0].Cells[0].Value;
                 Oddzialy_Specjalizacje.UsunWszystkieSpecLekarza((int)idLek);
+                OdswiezTabele();
             }
             else MessageBox.Show("Wybrano Więcej niż jedną pozycję!", "Błąd");
         }
