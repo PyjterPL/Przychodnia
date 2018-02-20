@@ -122,8 +122,11 @@ namespace Przychodnia.Recepty_formy
                     int ID_RECEPTY= (int)selectedrows[i].Cells[5].Value;
                     Recepta.UsunReceptę(ID_RECEPTY);
                 }
-
-                OdswiezTabele();
+                 if(KonstParam==true)
+                {
+                    OdswiezTabeleParam();
+                }
+                else OdswiezTabele();
             }
             else if (dr==DialogResult.Cancel)
             {
