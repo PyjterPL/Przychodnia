@@ -119,8 +119,10 @@ namespace Przychodnia.Obiekty_Bazy
 
         public static void EdytujSpecjalizacje(int id, string tresc)
         {
-            var zapytanie = string.Format("UPDATE specjalizacja SET Nazwa='{0}' WHERE Id_specjalizacji ='{1}' ",tresc,id);
+            var zapytanie = "UPDATE specjalizacja SET Nazwa=@Nazwa WHERE Id_specjalizacji =@idSpec ";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+            komenda.Parameters.AddWithValue("@Nazwa", tresc);
+            komenda.Parameters.AddWithValue("@idSpec", id);
             DbHelper.Polaczenie.Open();
             komenda.ExecuteNonQuery();
             DbHelper.Polaczenie.Close();
