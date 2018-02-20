@@ -145,17 +145,36 @@ namespace Przychodnia.Obiekty_Bazy
 
         public static void UsunGrafik(int id)
         {
+            DateTime dzis = new DateTime(), pobrane = new DateTime();
 
-            var zapytanie = "DELETE FROM grafik WHERE Id_grafiku=@id"; // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+            var zapytanie = "SELECT Dzien_od FROM grafik WHERE id_grafiku= @idGrafiku ";
             var komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
 
-            komenda.Parameters.AddWithValue("@id", id);
+            komenda.Parameters.AddWithValue("@idGrafiku", id);
 
             DbHelper.Polaczenie.Open();
+            var reader = komenda.ExecuteReader();
 
-            komenda.ExecuteNonQuery();
-
+            while (reader.Read())
+            {
+                pobrane = (DateTime)reader["Dzien_od"];
+            }
+            dzis = DateTime.Now;
             DbHelper.Polaczenie.Close();
+            if (pobrane > DateTime.Now) // Sprawdzenie czy pobrana data jest w "przyszłości" 
+            {
+                zapytanie = "DELETE FROM grafik WHERE Id_grafiku=@id"; // lekarz.DataUrodzenia.Date.ToString("yyyy-MM-dd"), lekarz.Adres, lekarz.IdMiasta, lekarz.Telefon);
+                komenda = new MySqlCommand(zapytanie, DbHelper.Polaczenie);
+
+                komenda.Parameters.AddWithValue("@id", id);
+
+                DbHelper.Polaczenie.Open();
+
+                komenda.ExecuteNonQuery();
+
+                DbHelper.Polaczenie.Close();
+            }
+            else throw new Exception("Nie można odwoływać przeszłych godzin pracy");
 
         }
         public static Grafik PobierzGrafik(int ID)

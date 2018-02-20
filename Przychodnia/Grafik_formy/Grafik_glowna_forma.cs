@@ -163,12 +163,20 @@ namespace Przychodnia.Grafik_formy
                         }
                     }
 
-                    foreach (DataGridViewRow row in Tabela.SelectedRows)
+                    try
                     {
-                        var id = (int)row.Cells["ID"].Value;
-                        Grafik.UsunGrafik(id);
+                        foreach (DataGridViewRow row in Tabela.SelectedRows)
+                        {
+                            var id = (int)row.Cells["ID"].Value;
+                            Grafik.UsunGrafik(id);  // tutaj try catch
+                        }
+                        Odswierz();
                     }
-                    Odswierz();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        DbHelper.Polaczenie.Close();
+                    }
                 }
             }
         }
