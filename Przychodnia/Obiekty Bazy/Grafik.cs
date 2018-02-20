@@ -176,15 +176,7 @@ namespace Przychodnia.Obiekty_Bazy
                 dzienod = (DateTime)reader["Dzien_od"];
 
                 opis = reader["Opis"].ToString();
-
-
-                //   idoddzialu = (int)reader["Id_oddzialu"];
-                if (reader.IsDBNull(5))
-                {
-                    idoddzialu = 0;
-                }
-                else idoddzialu = (int)reader["Id_oddzialu"];
-
+                idoddzialu = (int)reader["Id_oddzialu"];
                 var idpacjenta = (int)reader["Id_pacjenta"];
                 var id_lekarza = (int)reader["Id_lekarza"];
                 var grafik = new Grafik(id, id_lekarza, dzienod, idpacjenta, opis, idoddzialu);
@@ -218,13 +210,7 @@ namespace Przychodnia.Obiekty_Bazy
                 // idpacjenta = null;
 
                 opis = reader["Opis"].ToString();
-
-             //   idoddzialu = (int)reader["Id_oddzialu"];
-                if(reader.IsDBNull(5))
-                {
-                    idoddzialu = 0;
-                }
-               else   idoddzialu = (int)reader["Id_oddzialu"];
+                idoddzialu = (int)reader["Id_oddzialu"];
                 var idpacjenta = reader["Id_pacjenta"];
                 if (idpacjenta is int)
                 {

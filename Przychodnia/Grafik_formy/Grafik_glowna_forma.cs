@@ -132,7 +132,6 @@ namespace Przychodnia.Grafik_formy
                     catch (Exception ex)
                     {
                         MessageBox.Show("Nie można dodawać godzin pracy w przeszłości", "Błąd");
-                        DbHelper.Polaczenie.Close();
                         return;
                     }
 
