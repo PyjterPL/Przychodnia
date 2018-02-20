@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2018 at 06:21 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Czas generowania: 20 Lut 2018, 22:20
+-- Wersja serwera: 10.1.28-MariaDB
+-- Wersja PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `przychodnia`
+-- Baza danych: `przychodnia`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grafik`
+-- Struktura tabeli dla tabeli `grafik`
 --
 
 CREATE TABLE `grafik` (
@@ -38,7 +38,7 @@ CREATE TABLE `grafik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `grafik`
+-- Zrzut danych tabeli `grafik`
 --
 
 INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Opis`, `Id_oddzialu`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Op
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lekarze`
+-- Struktura tabeli dla tabeli `lekarze`
 --
 
 CREATE TABLE `lekarze` (
@@ -80,7 +80,7 @@ CREATE TABLE `lekarze` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `lekarze`
+-- Zrzut danych tabeli `lekarze`
 --
 
 INSERT INTO `lekarze` (`Id_lekarza`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `lekarze` (`Id_lekarza`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `miasta`
+-- Struktura tabeli dla tabeli `miasta`
 --
 
 CREATE TABLE `miasta` (
@@ -99,7 +99,7 @@ CREATE TABLE `miasta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `miasta`
+-- Zrzut danych tabeli `miasta`
 --
 
 INSERT INTO `miasta` (`Id_miasta`, `Nazwa`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `miasta` (`Id_miasta`, `Nazwa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `oddzialy`
+-- Struktura tabeli dla tabeli `oddzialy`
 --
 
 CREATE TABLE `oddzialy` (
@@ -121,7 +121,7 @@ CREATE TABLE `oddzialy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `oddzialy`
+-- Zrzut danych tabeli `oddzialy`
 --
 
 INSERT INTO `oddzialy` (`Id_oddzialu`, `Id_specjalizacji`, `Id_lekarza`) VALUES
@@ -133,7 +133,7 @@ INSERT INTO `oddzialy` (`Id_oddzialu`, `Id_specjalizacji`, `Id_lekarza`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `odwolane`
+-- Struktura tabeli dla tabeli `odwolane`
 --
 
 CREATE TABLE `odwolane` (
@@ -145,7 +145,7 @@ CREATE TABLE `odwolane` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `odwolane`
+-- Zrzut danych tabeli `odwolane`
 --
 
 INSERT INTO `odwolane` (`Id_odwolania`, `Id_pacjenta`, `Lekarz`, `Specjalizacja`, `Dzien_od`) VALUES
@@ -156,7 +156,7 @@ INSERT INTO `odwolane` (`Id_odwolania`, `Id_pacjenta`, `Lekarz`, `Specjalizacja`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pacjenci`
+-- Struktura tabeli dla tabeli `pacjenci`
 --
 
 CREATE TABLE `pacjenci` (
@@ -173,7 +173,7 @@ CREATE TABLE `pacjenci` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `pacjenci`
+-- Zrzut danych tabeli `pacjenci`
 --
 
 INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodzenia`, `Adres`, `Id_miasta`, `Telefon`, `Plec`, `Id_lekarza`) VALUES
@@ -185,7 +185,7 @@ INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodze
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recepty`
+-- Struktura tabeli dla tabeli `recepty`
 --
 
 CREATE TABLE `recepty` (
@@ -198,7 +198,7 @@ CREATE TABLE `recepty` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `recepty`
+-- Zrzut danych tabeli `recepty`
 --
 
 INSERT INTO `recepty` (`Id_recepty`, `Id_lekarza`, `Id_pacjenta`, `Tresc`, `Data_waznosci`, `Id_grafiku`) VALUES
@@ -208,7 +208,7 @@ INSERT INTO `recepty` (`Id_recepty`, `Id_lekarza`, `Id_pacjenta`, `Tresc`, `Data
 -- --------------------------------------------------------
 
 --
--- Table structure for table `specjalizacja`
+-- Struktura tabeli dla tabeli `specjalizacja`
 --
 
 CREATE TABLE `specjalizacja` (
@@ -217,7 +217,7 @@ CREATE TABLE `specjalizacja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Dumping data for table `specjalizacja`
+-- Zrzut danych tabeli `specjalizacja`
 --
 
 INSERT INTO `specjalizacja` (`Id_specjalizacji`, `Nazwa`) VALUES
@@ -227,7 +227,7 @@ INSERT INTO `specjalizacja` (`Id_specjalizacji`, `Nazwa`) VALUES
 (4, 'Neurolog');
 
 --
--- Indexes for dumped tables
+-- Indeksy dla zrzutów tabel
 --
 
 --
@@ -295,89 +295,89 @@ ALTER TABLE `specjalizacja`
 --
 
 --
--- AUTO_INCREMENT for table `grafik`
+-- AUTO_INCREMENT dla tabeli `grafik`
 --
 ALTER TABLE `grafik`
   MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
--- AUTO_INCREMENT for table `lekarze`
+-- AUTO_INCREMENT dla tabeli `lekarze`
 --
 ALTER TABLE `lekarze`
   MODIFY `Id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `miasta`
+-- AUTO_INCREMENT dla tabeli `miasta`
 --
 ALTER TABLE `miasta`
   MODIFY `Id_miasta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `oddzialy`
+-- AUTO_INCREMENT dla tabeli `oddzialy`
 --
 ALTER TABLE `oddzialy`
   MODIFY `Id_oddzialu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `odwolane`
+-- AUTO_INCREMENT dla tabeli `odwolane`
 --
 ALTER TABLE `odwolane`
   MODIFY `Id_odwolania` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `pacjenci`
+-- AUTO_INCREMENT dla tabeli `pacjenci`
 --
 ALTER TABLE `pacjenci`
   MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `recepty`
+-- AUTO_INCREMENT dla tabeli `recepty`
 --
 ALTER TABLE `recepty`
   MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `specjalizacja`
+-- AUTO_INCREMENT dla tabeli `specjalizacja`
 --
 ALTER TABLE `specjalizacja`
   MODIFY `Id_specjalizacji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Ograniczenia dla zrzutów tabel
 --
 
 --
--- Constraints for table `grafik`
+-- Ograniczenia dla tabeli `grafik`
 --
 ALTER TABLE `grafik`
   ADD CONSTRAINT `lekaro` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`);
 
 --
--- Constraints for table `lekarze`
+-- Ograniczenia dla tabeli `lekarze`
 --
 ALTER TABLE `lekarze`
   ADD CONSTRAINT `Miasta` FOREIGN KEY (`Id_miasta`) REFERENCES `miasta` (`Id_miasta`);
 
 --
--- Constraints for table `oddzialy`
+-- Ograniczenia dla tabeli `oddzialy`
 --
 ALTER TABLE `oddzialy`
   ADD CONSTRAINT `Specjalizacja` FOREIGN KEY (`Id_specjalizacji`) REFERENCES `specjalizacja` (`Id_specjalizacji`);
 
 --
--- Constraints for table `odwolane`
+-- Ograniczenia dla tabeli `odwolane`
 --
 ALTER TABLE `odwolane`
   ADD CONSTRAINT `Pacjento` FOREIGN KEY (`Id_pacjenta`) REFERENCES `pacjenci` (`Id_pacjenta`);
 
 --
--- Constraints for table `pacjenci`
+-- Ograniczenia dla tabeli `pacjenci`
 --
 ALTER TABLE `pacjenci`
   ADD CONSTRAINT `Miastaa` FOREIGN KEY (`Id_miasta`) REFERENCES `miasta` (`Id_miasta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `recepty`
+-- Ograniczenia dla tabeli `recepty`
 --
 ALTER TABLE `recepty`
   ADD CONSTRAINT `Lekarzz` FOREIGN KEY (`Id_lekarza`) REFERENCES `lekarze` (`Id_lekarza`),
