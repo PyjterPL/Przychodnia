@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Lut 2018, 22:20
+-- Czas generowania: 20 Lut 2018, 23:51
 -- Wersja serwera: 10.1.28-MariaDB
 -- Wersja PHP: 7.1.11
 
@@ -34,7 +34,7 @@ CREATE TABLE `grafik` (
   `Dzien_od` datetime NOT NULL COMMENT '15 minut na wizyte',
   `Id_pacjenta` int(11) DEFAULT NULL COMMENT 'jesli null to wolne',
   `Opis` varchar(5000) COLLATE utf8_polish_ci NOT NULL COMMENT 'max 5000 znakow',
-  `Id_oddzialu` int(11) NOT NULL
+  `Id_oddzialu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
@@ -51,7 +51,7 @@ INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Op
 (78, 1, '2018-02-19 02:15:00', NULL, '', 12),
 (80, 1, '2018-02-19 01:45:00', 10, '', 12),
 (81, 1, '2018-02-19 01:30:00', NULL, '', 12),
-(82, 1, '2018-02-19 01:15:00', 8, '   \n\n   DATA WIZYTY: 18-02-18 19:32\n\n   \n\n   DATA WIZYTY: 18-02-18 19:25\n\nsaddasasdasdddddddd', 12),
+(82, 1, '2018-02-19 01:15:00', 8, '   \n\n   DATA WIZYTY: 20-02-18 23:44\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus turpis sit amet risus gravida, a scelerisque velit ornare. Curabitur convallis nisl non fringilla ultricies. In hac habitasse platea dictumst. Morbi placerat placerat porta. Praesent rutrum quis tellus vel vehicula. Fusce eu elit ultrices, venenatis lacus sit amet, ultricies mauris. Etiam cursus felis ut sem efficitur, et faucibus nibh malesuada. Morbi finibus at ipsum ac fermentum. Nam quis eros quam. In eget nibh ut neque tempor dictum.', 12),
 (83, 1, '2018-02-19 01:00:00', NULL, '', 12),
 (84, 1, '2018-02-19 00:45:00', NULL, '', 12),
 (85, 2, '2018-02-19 06:15:00', NULL, '', 9),
@@ -61,7 +61,12 @@ INSERT INTO `grafik` (`Id_grafiku`, `Id_lekarza`, `Dzien_od`, `Id_pacjenta`, `Op
 (89, 2, '2018-02-19 05:15:00', NULL, '', 9),
 (90, 2, '2018-02-19 05:00:00', NULL, '', 9),
 (91, 2, '2018-02-19 04:45:00', NULL, '', 9),
-(92, 2, '2018-02-19 04:30:00', NULL, '', 9);
+(92, 2, '2018-02-19 04:30:00', NULL, '', 9),
+(93, 1, '2018-02-20 23:15:00', NULL, '', 11),
+(94, 1, '2018-02-20 23:45:00', NULL, '', NULL),
+(95, 2, '2018-02-21 02:15:00', NULL, '', NULL),
+(96, 1, '2018-02-21 21:30:00', NULL, '', 11),
+(97, 2, '2018-02-21 03:45:00', 9, '   \n\n   DATA WIZYTY: 20-02-18 23:49\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus turpis sit amet risus gravida, a scelerisque velit ornare. Curabitur convallis nisl non fringilla ultricies. In hac habitasse platea dictumst. Morbi placerat placerat porta. Praesent rutrum quis tellus vel vehicula. Fusce eu elit ultrices, venenatis lacus sit amet, ultricies mauris. Etiam cursus felis ut sem efficitur, et faucibus nibh malesuada. Morbi finibus at ipsum ac fermentum. Nam quis eros quam. In eget nibh ut neque tempor dictum.\n', 15);
 
 -- --------------------------------------------------------
 
@@ -180,7 +185,8 @@ INSERT INTO `pacjenci` (`Id_pacjenta`, `Pesel`, `Imie`, `Nazwisko`, `Data_urodze
 (8, '93061312131', 'Piotr', 'Zuber', '2018-02-07', 'Miodowa 12', 1, '123123123', 'M', 2),
 (9, '805112312', 'Jaroslaw', 'Jakubiecz', '2018-02-12', 'Szynowa 80/51', 4, '123123123', 'M', 1),
 (10, '88885', 'Kazmira', 'Adamska', '2018-02-18', '', 1, '', 'K', 2),
-(11, '', 'Adam', 'Kowalski', '1995-06-17', 'aaaaaaa', 4, '', 'M', 2);
+(11, '12345', 'Adam', 'Kowalski', '1995-06-17', 'Ruda Slaska ul ks.Niedzieli 14', 4, '', 'M', 2),
+(12, '99999555555', 'TEST Imie', 'TEST Nazwisko', '2018-02-20', 'TEST Adres', 2, '111', 'M', 1);
 
 -- --------------------------------------------------------
 
@@ -202,8 +208,9 @@ CREATE TABLE `recepty` (
 --
 
 INSERT INTO `recepty` (`Id_recepty`, `Id_lekarza`, `Id_pacjenta`, `Tresc`, `Data_waznosci`, `Id_grafiku`) VALUES
-(2, 1, 8, 'dsaaaaaaaaaaaaa', '2018-02-18', 69),
-(3, 2, 9, ';drop database \'przychodnia\'', '2018-02-19', 70);
+(4, 1, 8, 'Fusce in tellus non odio pulvinar lobortis. Aliquam erat volutpat. Sed vestibulum orci nisl, quis imperdiet nunc lobortis vitae. Donec laoreet neque et ipsum condimentum ultrices. Nam dictum diam quis convallis viverra. Aenean id pellentesque velit. Sed fermentum purus id tortor sagittis lobortis. Quisque quis massa ante. Duis interdum consequat purus, nec semper turpis interdum et. Suspendisse ultrices, libero sed euismod finibus, nulla ligula venenatis orci, sed facilisis sem leo non ante. Cra', '2018-02-20', 69),
+(5, 2, 9, 'Donec ullamcorper lacus at pretium sodales. Sed at mauris ante. Phasellus euismod finibus velit, nec facilisis mauris facilisis vel. Nulla lectus massa, dapibus at urna eu, sagittis pellentesque orci. Etiam aliquam laoreet convallis. Aenean faucibus leo in dapibus gravida. Etiam ac luctus ipsum.', '2018-02-20', 70),
+(6, 2, 9, 'Donec eleifend, velit eu gravida ullamcorper, leo orci bibendum ipsum, et placerat libero mi at eros. Vestibulum lacinia imperdiet lorem sit amet convallis. Vivamus in lectus vestibulum, laoreet nisi nec, tempus ante. Vivamus ac est eu dui elementum varius auctor non lorem. Maecenas efficitur ante a fringilla accumsan. Sed ultricies felis et enim dignissim placerat quis a ex. Aenean auctor sem et magna aliquam, sit amet iaculis turpis congue. Vestibulum ante ipsum primis in faucibus orci luctus ', '2018-02-20', 70);
 
 -- --------------------------------------------------------
 
@@ -221,7 +228,7 @@ CREATE TABLE `specjalizacja` (
 --
 
 INSERT INTO `specjalizacja` (`Id_specjalizacji`, `Nazwa`) VALUES
-(1, 'Urogol'),
+(1, 'Urolog'),
 (2, 'Psychiatra'),
 (3, 'Pediatra'),
 (4, 'Neurolog');
@@ -298,7 +305,7 @@ ALTER TABLE `specjalizacja`
 -- AUTO_INCREMENT dla tabeli `grafik`
 --
 ALTER TABLE `grafik`
-  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `Id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT dla tabeli `lekarze`
@@ -328,13 +335,13 @@ ALTER TABLE `odwolane`
 -- AUTO_INCREMENT dla tabeli `pacjenci`
 --
 ALTER TABLE `pacjenci`
-  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT dla tabeli `recepty`
 --
 ALTER TABLE `recepty`
-  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_recepty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `specjalizacja`
